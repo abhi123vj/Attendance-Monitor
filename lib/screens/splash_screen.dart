@@ -15,6 +15,9 @@ class SplashScreen extends StatelessWidget {
         child: Container(
           height: 350,
           decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(color: AppColors.black, blurRadius: 18.0),
+            ],
             color: Colors.white70,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(60), topRight: Radius.circular(60)),
@@ -37,9 +40,9 @@ class SplashScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 80, left: 28, right: 20),
                 child: RichText(
                     text: TextSpan(
-                        text: "HI there,  ",
-                        style: TextStyle(
-                            color: AppColors.orangeLight, fontSize: 23),
+                        text: "HI there  ",
+                        style:
+                            TextStyle(color: AppColors.redNormal, fontSize: 23),
                         children: <TextSpan>[
                       TextSpan(
                         text: "welcome to UCEK Buzz",
