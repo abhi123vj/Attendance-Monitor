@@ -5,17 +5,17 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Container(
-        decoration: BoxDecoration(color: Colors.amberAccent),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
         child: Stack(
           children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(color: Colors.black12),
-                ))
+            Opacity(
+              opacity: 0.5,
+              child: Container(
+                color: Colors.deepOrangeAccent,
+              ),
+            )
           ],
         ),
       ),
