@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.blackGlaze,
       ),
       bottomNavigationBar: BottomAppBar(
         color: AppColors.blackGlaze,
