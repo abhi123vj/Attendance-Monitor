@@ -32,6 +32,8 @@ class _AppFormFieldState extends State<AppFormField> {
   Widget build(BuildContext context) {
     switch (widget.type) {
       case "Normal":
+        return normalTextField();
+      case 'DropDown':
         return dropDownTextField();
       default:
         return normalTextField();
