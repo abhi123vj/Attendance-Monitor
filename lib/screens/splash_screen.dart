@@ -6,18 +6,21 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        child: Stack(
-          children: [
-            Opacity(
-              opacity: 0.5,
-              child: Container(
-                color: Colors.deepOrangeAccent,
-              ),
-            )
-          ],
-        ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white30,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.edit_calendar_outlined,
+              //color: AppColors.buttonBlue,
+            ),
+          )
+        ],
+        backgroundColor: Colors.redAccent,
       ),
     );
   }
