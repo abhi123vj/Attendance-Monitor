@@ -9,18 +9,26 @@ class SplashScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.white30,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.edit_calendar_outlined,
-              //color: AppColors.buttonBlue,
-            ),
-          )
-        ],
-        backgroundColor: Colors.redAccent,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        child: Container(
+          height: 350,
+          decoration: const BoxDecoration(
+            color: Colors.white70,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(50)),
+          ),
+          child: Stack(
+            children: [
+              Text("UCEK"),
+              Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                  child: IconButton(
+                      onPressed: null, icon: Icon(Icons.arrow_forward_ios))),
+            ],
+          ),
+        ),
       ),
     );
   }
