@@ -38,7 +38,7 @@ class AttendenceReview extends StatelessWidget {
                   "Date",
                   style: TextStyle(
                       color: AppColors.cyanLight,
-                      fontSize: 34,
+                      fontSize: 22,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w400),
                 ),
@@ -65,7 +65,7 @@ class AttendenceReview extends StatelessWidget {
                   width: 85.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    border: Border.all(width: 2.0, color: AppColors.white),
+                    border: Border.all(width: 1.0, color: AppColors.cyanLight),
                   ),
                   child: Column(children: [
                     Row(
@@ -74,11 +74,11 @@ class AttendenceReview extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 30.0, top: 20),
                           child: Text(
-                            "present ",
+                            "Present ",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: AppColors.cyanLight,
-                                fontSize: 23,
+                                fontSize: 18,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -90,7 +90,7 @@ class AttendenceReview extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: AppColors.cyanLight,
-                                fontSize: 23,
+                                fontSize: 18,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -104,11 +104,11 @@ class AttendenceReview extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 30.0, top: 10, bottom: 20),
                           child: Text(
-                            "absence ",
+                            "Absent ",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: AppColors.cyanLight,
-                                fontSize: 23,
+                                fontSize: 18,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -150,7 +150,7 @@ class AttendenceReview extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: AppColors.cyanLight,
-                        fontSize: 23,
+                        fontSize: 22,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w400),
                   ),
@@ -162,7 +162,7 @@ class AttendenceReview extends StatelessWidget {
                 width: 85.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(width: 2.0, color: AppColors.white),
+                  border: Border.all(width: 1.0, color: AppColors.white),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(25.0),
@@ -184,7 +184,7 @@ class AttendenceReview extends StatelessWidget {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: AppColors.cyanLight,
-                          fontSize: 23,
+                          fontSize: 22,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w400),
                     ),
@@ -197,7 +197,7 @@ class AttendenceReview extends StatelessWidget {
                 width: 85.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(width: 2.0, color: AppColors.white),
+                  border: Border.all(width: 1.0, color: AppColors.white),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(25.0),
