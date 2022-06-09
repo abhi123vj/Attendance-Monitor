@@ -97,6 +97,11 @@ class ADetialView extends StatelessWidget {
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 30.0, top: 20),
@@ -196,11 +201,16 @@ class ADetialView extends StatelessWidget {
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 30.0, top: 20),
                               child: Text(
-                                "Name ",
+                                "name ",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     color: AppColors.cyanLight,
