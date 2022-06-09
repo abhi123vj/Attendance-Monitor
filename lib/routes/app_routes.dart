@@ -1,3 +1,4 @@
+import 'package:attendance_montior/screens/attendce_detial.dart';
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
@@ -27,6 +28,10 @@ class AppRoutes {
     GetPage(
       name: '/home',
       page: () => HomeScreen(),
+    ),
+    GetPage(
+      name: '/detial',
+      page: () => ADetialView(),
     ),
   ];
 }
