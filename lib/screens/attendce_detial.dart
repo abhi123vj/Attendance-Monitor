@@ -34,16 +34,7 @@ class ADetialView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Date",
-                  style: TextStyle(
-                      color: AppColors.cyanLight,
-                      fontSize: 34,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
+              children: [],
             ),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
