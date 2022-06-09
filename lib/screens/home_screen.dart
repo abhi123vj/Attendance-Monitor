@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             margin: EdgeInsets.all(10.w),
             child:
-                AppFormField(hintText: "your subject", controller: tmp, list: [
+                AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
               "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
               "Engineering Management for Electronics Engineers (T)",
               "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
