@@ -14,7 +14,7 @@ import '../screens/splash_screen.dart';
 class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
-      name: '/',
+      name: '/aview',
       page: () => AttendenceReview(),
     ),
     GetPage(
@@ -22,16 +22,16 @@ class AppRoutes {
       page: () => MarkAttendanceScreen(),
     ),
     GetPage(
-      name: '/aview',
-      page: () => AttendenceReview(),
-    ),
-    GetPage(
-      name: '/home',
+      name: '/..',
       page: () => HomeScreen(),
     ),
     GetPage(
       name: '/detial',
       page: () => ADetialView(),
+    ),
+    GetPage(
+      name: '/',
+      page: () => SplashScreen(),
     ),
   ];
 }
