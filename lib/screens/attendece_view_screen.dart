@@ -17,6 +17,13 @@ class AttendenceReview extends StatelessWidget {
             style: TextStyle(
                 fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  log("Profile icon Tapped");
+                },
+                icon: Icon(Icons.notifications))
+          ],
         ),
         body: Column(children: [
           Container(
