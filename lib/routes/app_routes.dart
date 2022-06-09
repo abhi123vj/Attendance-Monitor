@@ -9,7 +9,7 @@ class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
       name: '/',
-      page: () => HomeScreen(),
+      page: () => AttendenceReview(),
     ),
     GetPage(
       name: '/mark',
