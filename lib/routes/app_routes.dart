@@ -22,16 +22,16 @@ class AppRoutes {
       page: () => MarkAttendanceScreen(),
     ),
     GetPage(
-      name: '/aview',
-      page: () => AttendenceReview(),
-    ),
-    GetPage(
-      name: '/home',
+      name: '/..',
       page: () => HomeScreen(),
     ),
     GetPage(
       name: '/detial',
       page: () => ADetialView(),
+    ),
+    GetPage(
+      name: '/',
+      page: () => SplashScreen(),
     ),
   ];
 }
