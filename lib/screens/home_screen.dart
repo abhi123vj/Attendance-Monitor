@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -73,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             margin: EdgeInsets.all(10.w),
             child:
-                AppFormField(hintText: "your subject", controller: tmp, list: [
+                AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
               "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
               "Engineering Management for Electronics Engineers (T)",
               "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
@@ -84,7 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           //Todo List view with details
 
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -99,32 +102,45 @@ class _HomeScreenState extends State<HomeScreen> {
 
   TextButton classDetails(String key, String value) {
     return TextButton(
-        onPressed: () {},
+        onPressed: () {
+          if (value == "Mark") {
+            Get.toNamed("/mark");
+          }
+        },
         child: Container(
-        padding: EdgeInsets.symmetric( vertical: 20),
-      
-        child: Column(
-          children: [
-            Text(key  ,style: TextStyle(
-                color: value=="View"?AppColors.yellowPale:AppColors.cyanLight,
-                  fontSize: 14,
-                  letterSpacing: 0.10,
-                  fontWeight: FontWeight.w500),),
-            Text(
-              value,
-              style: TextStyle(
-                color: value=="View"?AppColors.yellowPale:AppColors.cyanLight,
-                  fontSize: 24,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w400),
-            ),
-          ],
-        )),
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              children: [
+                Text(
+                  key,
+                  style: TextStyle(
+                      color: value == "View"
+                          ? AppColors.yellowPale
+                          : AppColors.cyanLight,
+                      fontSize: 14,
+                      letterSpacing: 0.10,
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  value,
+                  style: TextStyle(
+                      color: value == "View"
+                          ? AppColors.yellowPale
+                          : AppColors.cyanLight,
+                      fontSize: 24,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            )),
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(color: value=="View"?AppColors.yellowPale:AppColors.cyanLight)))));
+                    side: BorderSide(
+                        color: value == "View"
+                            ? AppColors.yellowPale
+                            : AppColors.cyanLight)))));
   }
 
   // TextButton subjectButton(String subjectName) {

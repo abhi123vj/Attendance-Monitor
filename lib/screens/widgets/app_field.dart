@@ -9,18 +9,22 @@ import '../../constants/app_colors.dart';
 import '../../constants/app_image_strings.dart';
 
 class AppFormField extends StatefulWidget {
-  final String hintText;
+  final String? hintText;
   final List<String>? list;
   final String type;
   final TextEditingController controller;
   final bool isReadOnly;
+  final int maxLines;
+  final double height;
   const AppFormField({
-    required this.hintText,
+    this.hintText,
     this.type = 'Normal',
     Key? key,
     required this.controller,
     this.list,
     this.isReadOnly = false,
+    this.maxLines = 1,
+    this.height=65,
   }) : super(key: key);
 
   @override
@@ -32,7 +36,11 @@ class _AppFormFieldState extends State<AppFormField> {
   Widget build(BuildContext context) {
     switch (widget.type) {
       case "Normal":
+        return normalTextField();
+      case 'DropDown':
         return dropDownTextField();
+      case "Mark":
+        return markerTextField();
       default:
         return normalTextField();
     }
@@ -45,7 +53,7 @@ class _AppFormFieldState extends State<AppFormField> {
       isNumbers = false}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 40),
-      width: 100.w,
+      width: 100.w,height: widget.height,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(18)),
         border: Border.all(color: AppColors.cyanLight, width: 1),
@@ -57,6 +65,7 @@ class _AppFormFieldState extends State<AppFormField> {
       child: TextFormField(
         controller: widget.controller,
         readOnly: widget.isReadOnly,
+        maxLines: widget.maxLines,
         keyboardType: isphone
             ? TextInputType.phone
             : isEmail
@@ -85,6 +94,59 @@ class _AppFormFieldState extends State<AppFormField> {
             hintStyle: const TextStyle(
                 fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
             hintText: widget.hintText),
+      ),
+    );
+  }
+
+  Container markerTextField(
+      {isEmail = false,
+      isPassword = false,
+      isphone = false,
+      isNumbers = false}) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10, left: 10.w, right: 10.w),
+      width: 100.w,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(18)),
+        border: Border.all(color: AppColors.yellowPale, width: 1),
+      ),
+      padding: const EdgeInsets.only(
+        left: 20,
+      ),
+      alignment: Alignment.centerLeft,
+      child: Row(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Text("36. ",
+                    style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 0.15,
+                        fontWeight: FontWeight.w500)),
+                Expanded(
+                  child: Text("Abhiram S",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 0.15,
+                          fontWeight: FontWeight.w500)),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.check,
+                color: AppColors.cyanNormal,
+              )),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.close,
+                color: AppColors.redDark,
+              ))
+        ],
       ),
     );
   }
@@ -206,7 +268,10 @@ class _AppFormFieldState extends State<AppFormField> {
                 value: value,
                 child: Text(
                   value,
-                  style: TextStyle(color: i%2==0?AppColors.yellowPale:AppColors.cyanLight),
+                  style: TextStyle(
+                      color: i % 2 == 0
+                          ? AppColors.yellowPale
+                          : AppColors.cyanLight),
                 ),
               );
             }).toList(),
