@@ -3,10 +3,13 @@ import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
-  final _emailController = TextEditingController();
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
+  final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _cpasswordController = TextEditingController();
+  final _staffIdController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,12 @@ class LoginScreen extends StatelessWidget {
               color: AppColors.blackGlaze,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: 15.h, left: 5.h, bottom: 26.9.h, right: 5.h),
+                    top: 5.h, left: 5.h, bottom: 5.h, right: 5.h),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Login In',
+                        'Sign up',
                         style: TextStyle(
                           color: AppColors.white,
                           fontSize: 22,
@@ -45,32 +48,23 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 5.h,
                       ),
+                       AppFormField(
+                          controller: _nameController,
+                          hintText: 'Name'),
                       AppFormField(
-                          controller: _emailController,
+                          controller: _staffIdController,
                           hintText: 'Staff Id'),
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
                         type: 'password',
                       ),
-                      // Container(
-                      //   alignment: Alignment.topRight,
-                      //   child: InkWell(
-                      //     child: Text(
-                      //       'Forgot Password',
-                      //       textAlign: TextAlign.right,
-                      //       style: TextStyle(
-                      //         color: AppColors.white,
-                      //         fontSize: 16,
-                      //         letterSpacing: 1,
-                      //         fontWeight: FontWeight.w500,
-                      //       ),
-                      //     ),
-                      //     onTap: () {
-
-                      //     },
-                      //   ),
-                      // ),
+                       AppFormField(
+                        controller: _cpasswordController,
+                        hintText: 'Confirm Password',
+                        type: 'password',
+                      ),
+                    
                       Row(
                         children: [
                           Expanded(
@@ -82,7 +76,7 @@ class LoginScreen extends StatelessWidget {
 
                                 },
                                 child: Text(
-                                  'Login',
+                                  'Signup',
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500),
@@ -97,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Padding(
+                        Padding(
                         padding: EdgeInsets.only(
                           top: 5.h,
 
@@ -109,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             FittedBox(
                               child: Text(
-                                'Don\'t have an account?',
+                                'Already has an account?',
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 15,
@@ -126,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                                
                               },
                               child: Text(
-                               'Create account',
+                               'login',
                                 style: TextStyle(
                                   color: AppColors.cyanDark,
                                   fontSize: 15,
@@ -136,6 +130,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           ],),
+                    
                     ]),
               ),
             ),
