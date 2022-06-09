@@ -15,7 +15,7 @@ class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
       name: '/',
-      page: () => AttendenceReview(),
+      page: () => ADetialView(),
     ),
     GetPage(
       name: '/mark',

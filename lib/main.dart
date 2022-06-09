@@ -9,7 +9,7 @@ void main() {
     return GetMaterialApp(
       //initialRoute: '/detial',
       // initialRoute: '/home',
-      initialRoute: '/aview',
+      initialRoute: '/',
       getPages: AppRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,

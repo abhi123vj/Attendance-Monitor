@@ -121,7 +121,7 @@ class AttendenceReview extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 color: AppColors.cyanNormal,
-                                fontSize: 23,
+                                fontSize: 18,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -170,7 +170,8 @@ class AttendenceReview extends StatelessWidget {
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         text: "Topics coverd are",
-                        style: TextStyle(color: AppColors.cyanDark, fontSize: 18),
+                        style:
+                            TextStyle(color: AppColors.cyanDark, fontSize: 18),
                       )),
                 ),
               ),
@@ -205,7 +206,8 @@ class AttendenceReview extends StatelessWidget {
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         text: "Remarks of the the current class are",
-                        style: TextStyle(color: AppColors.cyanDark, fontSize: 18),
+                        style:
+                            TextStyle(color: AppColors.cyanDark, fontSize: 18),
                       )),
                 ),
               ),
