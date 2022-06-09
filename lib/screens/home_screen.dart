@@ -71,30 +71,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppColors.black)
                 ]),
           ),
-          Container(
-            margin: EdgeInsets.all(10.w),
-            child:
-                AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-            ]),
-          ),
+          // Container(
+          //   margin: EdgeInsets.all(10.w),
+          //   child:
+          //       AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
+          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+          //     "Engineering Management for Electronics Engineers (T)",
+          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+          //     "Engineering Management for Electronics Engineers (T)",
+          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+          //   ]),
+          // ),
           //Todo List view with details
 
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              classDetails("Attendance", "Mark"),
-              classDetails("Attendance", "View"),
-            ],
-          ),
+          // SizedBox(
+          //   height: 20,
+          // ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     classDetails("Attendance", "Mark"),
+          //     classDetails("Attendance", "View"),
+          //   ],
+          // ),
         ],
       ),
     );
