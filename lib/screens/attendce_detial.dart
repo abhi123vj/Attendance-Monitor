@@ -57,80 +57,207 @@ class ADetialView extends StatelessWidget {
                 ]),
           ),
           Expanded(
-              child: Column(children: [
-            Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Container(
-                    margin: EdgeInsets.all(10.0),
-                    width: 85.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 2.0, color: AppColors.white),
-                    ),
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 30.0, top: 20),
-                            child: Text(
-                              "present ",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: AppColors.cyanLight,
-                                  fontSize: 23,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(right: 30.0, top: 20),
-                            child: Text(
-                              "35 ",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: AppColors.cyanLight,
-                                  fontSize: 23,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
+            child: Column(children: [
+              Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Container(
+                      margin: EdgeInsets.all(10.0),
+                      width: 85.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 2.0, color: AppColors.white),
                       ),
-                      Expanded(
-                          child: ListView.builder(
-                              itemCount: 35 + 1,
-                              itemBuilder: (cntx, index) {
-                                final TextEditingController textController =
-                                    TextEditingController();
-                                if (index == 45) {
-                                  return Row(children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5.0.h),
-                                        child: ElevatedButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            'Upload',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w500),
+                      child: Column(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30.0, top: 20),
+                              child: Text(
+                                "present ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 30.0, top: 20),
+                              child: Text(
+                                "35 ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30.0, top: 20),
+                              child: Text(
+                                "name ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 30.0, top: 20),
+                              child: Text(
+                                "roll.no ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: 35 + 1,
+                                itemBuilder: (cntx, index) {
+                                  final TextEditingController textController =
+                                      TextEditingController();
+                                  if (index == 45) {
+                                    return Row(children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5.0.h),
+                                          child: ElevatedButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              'Upload',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 4.w),
+                                                primary: AppColors.cyanDark,
+                                                shape: const StadiumBorder()),
                                           ),
-                                          style: ElevatedButton.styleFrom(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 4.w),
-                                              primary: AppColors.cyanDark,
-                                              shape: const StadiumBorder()),
                                         ),
                                       ),
-                                    ),
-                                  ]);
-                                }
-                              }))
-                    ])))
-          ]))
+                                    ]);
+                                  }
+                                }))
+                      ]))),
+              Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Container(
+                      margin: EdgeInsets.all(10.0),
+                      width: 85.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 2.0, color: AppColors.white),
+                      ),
+                      child: Column(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30.0, top: 20),
+                              child: Text(
+                                "Abscence ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 30.0, top: 20),
+                              child: Text(
+                                "10 ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30.0, top: 20),
+                              child: Text(
+                                "Name ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 30.0, top: 20),
+                              child: Text(
+                                "roll.no ",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: AppColors.cyanLight,
+                                    fontSize: 23,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: 35 + 1,
+                                itemBuilder: (cntx, index) {
+                                  final TextEditingController textController =
+                                      TextEditingController();
+                                  if (index == 45) {
+                                    return Row(children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5.0.h),
+                                          child: ElevatedButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              'Upload',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 4.w),
+                                                primary: AppColors.cyanDark,
+                                                shape: const StadiumBorder()),
+                                          ),
+                                        ),
+                                      ),
+                                    ]);
+                                  }
+                                }))
+                      ])))
+            ]),
+          )
         ])));
   }
 }
