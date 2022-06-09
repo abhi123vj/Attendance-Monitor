@@ -5,14 +5,12 @@ import 'package:sizer/sizer.dart';
 import 'theme/app_theme.dart';
 
 void main() {
-  runApp( Sizer(
-    builder: (context, orientation, deviceType) {
-      return GetMaterialApp(
-        initialRoute: '/',
-        getPages: AppRoutes.pages,
-         debugShowCheckedModeBanner: false,
-                  theme: AppTheme.theme,
-        );
-    }
-  ));
+  runApp(Sizer(builder: (context, orientation, deviceType) {
+    return GetMaterialApp(
+      initialRoute: '/',
+      getPages: AppRoutes.pages,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.theme,
+    );
+  }));
 }
