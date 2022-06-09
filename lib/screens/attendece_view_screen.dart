@@ -34,13 +34,22 @@ class AttendenceReview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Date",
-                  style: TextStyle(
+                Row(
+                  children: [
+                    Text(
+                      "Date",
+                      style: TextStyle(
+                          color: AppColors.cyanLight,
+                          fontSize: 22,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Icon(
+                      Icons.calendar_month_outlined,
                       color: AppColors.cyanLight,
-                      fontSize: 22,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w400),
+                      size: 22,
+                    )
+                  ],
                 ),
               ],
             ),
