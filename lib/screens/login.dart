@@ -11,7 +11,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,8 +45,7 @@ class LoginScreen extends StatelessWidget {
                         height: 5.h,
                       ),
                       AppFormField(
-                          controller: _emailController,
-                          hintText: 'Staff Id'),
+                          controller: _emailController, hintText: 'Student Id'),
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
@@ -75,12 +73,9 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsets.only(top: 5.0.h),
+                              padding: EdgeInsets.only(top: 5.0.h),
                               child: ElevatedButton(
-                                onPressed: () {
-
-                                },
+                                onPressed: () {},
                                 child: Text(
                                   'Login',
                                   style: TextStyle(
@@ -89,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     padding:
-                                    EdgeInsets.symmetric(vertical: 4.w),
+                                        EdgeInsets.symmetric(vertical: 4.w),
                                     primary: AppColors.cyanDark,
                                     shape: const StadiumBorder()),
                               ),
@@ -100,49 +95,45 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(
                           top: 5.h,
-
                         ),
-
                       ),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                'Don\'t have an account?',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              'Don\'t have an account?',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            InkWell(
-                              onTap: () {
-                               
-                              },
-                              child: Text(
-                               'Create account',
-                                style: TextStyle(
-                                  color: AppColors.cyanDark,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'Create account',
+                              style: TextStyle(
+                                color: AppColors.cyanDark,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ],),
+                          ),
+                        ],
+                      ),
                     ]),
               ),
             ),
           ),
-        )
-        ,
-      ),);
+        ),
+      ),
+    );
   }
-
 }

@@ -10,11 +10,9 @@ class SignUpScreen extends StatelessWidget {
   final _cpasswordController = TextEditingController();
   final _staffIdController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,33 +46,28 @@ class SignUpScreen extends StatelessWidget {
                       SizedBox(
                         height: 5.h,
                       ),
-                       AppFormField(
-                          controller: _nameController,
-                          hintText: 'Name'),
+                      AppFormField(
+                          controller: _nameController, hintText: 'Name'),
                       AppFormField(
                           controller: _staffIdController,
-                          hintText: 'Staff Id'),
+                          hintText: 'Student Id'),
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
                         type: 'password',
                       ),
-                       AppFormField(
+                      AppFormField(
                         controller: _cpasswordController,
                         hintText: 'Confirm Password',
                         type: 'password',
                       ),
-                    
                       Row(
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsets.only(top: 5.0.h),
+                              padding: EdgeInsets.only(top: 5.0.h),
                               child: ElevatedButton(
-                                onPressed: () {
-
-                                },
+                                onPressed: () {},
                                 child: Text(
                                   'Signup',
                                   style: TextStyle(
@@ -83,7 +76,7 @@ class SignUpScreen extends StatelessWidget {
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     padding:
-                                    EdgeInsets.symmetric(vertical: 4.w),
+                                        EdgeInsets.symmetric(vertical: 4.w),
                                     primary: AppColors.cyanDark,
                                     shape: const StadiumBorder()),
                               ),
@@ -91,53 +84,48 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                        Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                           top: 5.h,
-
                         ),
-
                       ),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                'Already has an account?',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              'Already has an account?',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            InkWell(
-                              onTap: () {
-                               
-                              },
-                              child: Text(
-                               'login',
-                                style: TextStyle(
-                                  color: AppColors.cyanDark,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              'login',
+                              style: TextStyle(
+                                color: AppColors.cyanDark,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ],),
-                    
+                          ),
+                        ],
+                      ),
                     ]),
               ),
             ),
           ),
-        )
-        ,
-      ),);
+        ),
+      ),
+    );
   }
-
 }

@@ -7,7 +7,7 @@ import 'theme/app_theme.dart';
 void main() {
   runApp(Sizer(builder: (context, orientation, deviceType) {
     return GetMaterialApp(
-      initialRoute: '/home',
+      initialRoute: '/detial',
       getPages: AppRoutes.pages,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
