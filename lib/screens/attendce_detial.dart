@@ -97,6 +97,11 @@ class ADetialView extends StatelessWidget {
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 30.0, top: 20),
@@ -124,38 +129,7 @@ class ADetialView extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
-                        Expanded(
-                            child: ListView.builder(
-                                itemCount: 35 + 1,
-                                itemBuilder: (cntx, index) {
-                                  final TextEditingController textController =
-                                      TextEditingController();
-                                  if (index == 45) {
-                                    return Row(children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.0.h),
-                                          child: ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Upload',
-                                              style: TextStyle(
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 4.w),
-                                                primary: AppColors.cyanDark,
-                                                shape: const StadiumBorder()),
-                                          ),
-                                        ),
-                                      ),
-                                    ]);
-                                  }
-                                }))
+                        )
                       ]))),
               Padding(
                   padding: const EdgeInsets.only(top: 8.0),
@@ -196,6 +170,11 @@ class ADetialView extends StatelessWidget {
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 30.0, top: 20),
@@ -223,38 +202,7 @@ class ADetialView extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
-                        Expanded(
-                            child: ListView.builder(
-                                itemCount: 35 + 1,
-                                itemBuilder: (cntx, index) {
-                                  final TextEditingController textController =
-                                      TextEditingController();
-                                  if (index == 45) {
-                                    return Row(children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.0.h),
-                                          child: ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Upload',
-                                              style: TextStyle(
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 4.w),
-                                                primary: AppColors.cyanDark,
-                                                shape: const StadiumBorder()),
-                                          ),
-                                        ),
-                                      ),
-                                    ]);
-                                  }
-                                }))
+                        )
                       ])))
             ]),
           )
