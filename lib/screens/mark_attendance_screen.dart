@@ -1,7 +1,10 @@
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/screens/upload_screen.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
 
 class MarkAttendanceScreen extends StatelessWidget {
@@ -79,16 +82,18 @@ class MarkAttendanceScreen extends StatelessWidget {
                 itemBuilder: (cntx, index) {
                   final TextEditingController textController =
                       TextEditingController();
-                  if (index == 45 ) {
+                  if (index == 45) {
                     return Row(
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5.0.h),
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.h,vertical: 1.h),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(UploadScreen());
+                              },
                               child: Text(
-                                'Upload',
+                                'Next',
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.w500),
                               ),

@@ -12,6 +12,13 @@ class UploadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          " ",
+          style: TextStyle(
+              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+        ),
+      ),
       backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -20,7 +27,7 @@ class UploadScreen extends StatelessWidget {
               color: AppColors.blackGlaze,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: 5.h, left: 5.h, bottom: 5.h, right: 5.h),
+                    top: 1.h, left: 5.h, bottom: 5.h, right: 5.h),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -34,7 +41,7 @@ class UploadScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 5.h,
+                        height: 4.h,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -85,7 +92,7 @@ class UploadScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 3.0.h),
+                              padding: EdgeInsets.only(top: 2.0.h),
                               child: ElevatedButton(
                                 onPressed: () {},
                                 child: Text(

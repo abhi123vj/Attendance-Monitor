@@ -15,7 +15,7 @@ class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
       name: '/',
-      page: () => ADetialView(),
+      page: () => SplashScreen(),
     ),
     GetPage(
       name: '/mark',
@@ -28,6 +28,10 @@ class AppRoutes {
     GetPage(
       name: '/detial',
       page: () => ADetialView(),
+    ),
+     GetPage(
+      name: '/login',
+      page: () => LoginScreen(),
     ),
     GetPage(
       name: '/',

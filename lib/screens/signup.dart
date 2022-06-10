@@ -1,6 +1,10 @@
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/screens/home_screen.dart';
+import 'package:attendance_montior/screens/login.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -73,6 +77,7 @@ class SignUpScreen extends StatelessWidget {
                               EdgeInsets.only(top: 5.0.h),
                               child: ElevatedButton(
                                 onPressed: () {
+                                   Get.to(HomeScreen());
 
                                 },
                                 child: Text(
@@ -117,7 +122,7 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                               
+                                Get.to(LoginScreen());
                               },
                               child: Text(
                                'login',

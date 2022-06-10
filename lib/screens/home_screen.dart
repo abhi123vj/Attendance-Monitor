@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/screens/attendce_detial.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,15 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             margin: EdgeInsets.all(10.w),
-            child:
-                AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-            ]),
+            child: AppFormField(
+                hintText: "your subject",
+                type: 'DropDown',
+                controller: tmp,
+                list: [
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Management for Electronics Engineers (T)",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Management for Electronics Engineers (T)",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                ]),
           ),
           //Todo List view with details
 
@@ -105,6 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           if (value == "Mark") {
             Get.toNamed("/mark");
+          } else if (value == 'View') {
+            Get.to(ADetialView());
           }
         },
         child: Container(

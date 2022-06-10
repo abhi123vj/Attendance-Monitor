@@ -1,6 +1,12 @@
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/screens/login.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
+
+
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -61,7 +67,9 @@ class SplashScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(LoginScreen());
+                    },
                     child: Icon(
                       Icons.arrow_forward_ios,
                       color: AppColors.cyanLight,
