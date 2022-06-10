@@ -26,15 +26,15 @@ class AppRoutes {
       page: () => HomeScreen(),
     ),
     GetPage(
-      name: '/detial',
-      page: () => ADetialView(),
+      name: '/',
+      page: () => AttendenceReview(),
     ),
      GetPage(
       name: '/login',
       page: () => LoginScreen(),
     ),
     GetPage(
-      name: '/',
+      name: '/....',
       page: () => SplashScreen(),
     ),
   ];
