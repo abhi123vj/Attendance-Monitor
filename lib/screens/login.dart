@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/network/repo/app_auth.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -11,7 +14,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,8 +48,7 @@ class LoginScreen extends StatelessWidget {
                         height: 5.h,
                       ),
                       AppFormField(
-                          controller: _emailController,
-                          hintText: 'Staff Id'),
+                          controller: _emailController, hintText: 'Staff Id'),
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
@@ -67,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-
+                           
                           },
                         ),
                       ),
@@ -75,11 +76,14 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                              EdgeInsets.only(top: 5.0.h),
+                              padding: EdgeInsets.only(top: 5.0.h),
                               child: ElevatedButton(
                                 onPressed: () {
-
+                                   log("message");
+                            AuthRepo.userSignUp(params: {
+                              "username": _emailController.text,
+                              "password": _passwordController.text
+                            });
                                 },
                                 child: Text(
                                   'Login',
@@ -89,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 style: ElevatedButton.styleFrom(
                                     padding:
-                                    EdgeInsets.symmetric(vertical: 4.w),
+                                        EdgeInsets.symmetric(vertical: 4.w),
                                     primary: AppColors.cyanDark,
                                     shape: const StadiumBorder()),
                               ),
@@ -100,17 +104,14 @@ class LoginScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(
                           top: 5.h,
-
                         ),
-
                       ),
                     ]),
               ),
             ),
           ),
-        )
-        ,
-      ),);
+        ),
+      ),
+    );
   }
-
 }

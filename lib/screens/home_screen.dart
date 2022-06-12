@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../controllers/home_controller.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -15,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController tmp = TextEditingController();
-
+  HomeController controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
               onPressed: () {
+                controller.count.value++;
                 log("Profile icon Tapped");
               },
               icon: Icon(Icons.notifications))
@@ -43,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+               Text(
                   "Hi, Abhi Ram",
                   style: TextStyle(
                       color: AppColors.cyanNormal,
@@ -73,15 +76,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             margin: EdgeInsets.all(10.w),
-            child:
-                AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-              "Engineering Management for Electronics Engineers (T)",
-              "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-            ]),
+            child: AppFormField(
+                hintText: "your subject",
+                type: 'DropDown',
+                controller: tmp,
+                list: [
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Management for Electronics Engineers (T)",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                  "Engineering Management for Electronics Engineers (T)",
+                  "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
+                ]),
           ),
           //Todo List view with details
 

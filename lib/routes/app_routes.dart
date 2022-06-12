@@ -1,4 +1,5 @@
 import 'package:attendance_montior/screens/home_screen.dart';
+import 'package:attendance_montior/screens/login.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,10 @@ import 'package:get/get.dart';
     GetPage(
       name: '/mark',
       page: () => MarkAttendanceScreen(),
+    ),
+     GetPage(
+      name: '/login',
+      page: () => LoginScreen(),
     ),
   ];
  
