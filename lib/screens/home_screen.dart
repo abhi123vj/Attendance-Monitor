@@ -85,6 +85,17 @@ class _HomeScreenState extends State<HomeScreen> {
               classDetails("Attendance", "View"),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              classDetails("Time Table", "table"),
+              classDetails("Internals", "internal"),
+              classDetails("Deadlines", "deadline"),
+            ],
+          ),
         ],
       ),
     );
@@ -95,6 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           if (value == "syllabus") {
             Get.toNamed("/syllabus");
+          }else if (value=='table'){
+            Get.toNamed('/tymtable');
           }
         },
         child: Container(
