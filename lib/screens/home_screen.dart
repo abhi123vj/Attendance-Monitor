@@ -5,6 +5,7 @@ import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController tmp = TextEditingController();
-
+  HomeController homeC = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 34,
                       fontWeight: FontWeight.w400),
                 ),
-                Text("Good Morning",
+                Text(homeC.greetingMes.value,
                     style: TextStyle(
                         fontSize: 24,
                         letterSpacing: 0.00,
@@ -61,40 +62,29 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40.0),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40.0),
+                    bottomRight: Radius.circular(40.0)),
                 color: AppColors.blackGlaze,
                 boxShadow: [
                   BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 3,
-                      offset: Offset(0, 6),
+                      offset: Offset(0, 10),
                       color: AppColors.black)
                 ]),
           ),
-          // Container(
-          //   margin: EdgeInsets.all(10.w),
-          //   child:
-          //       AppFormField(hintText: "your subject",type: 'DropDown', controller: tmp, list: [
-          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-          //     "Engineering Management for Electronics Engineers (T)",
-          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-          //     "Engineering Management for Electronics Engineers (T)",
-          //     "Engineering Mathematics IV (Complex Analysis & Linear Algebra) (TRF) ",
-          //   ]),
-          // ),
-          //Todo List view with details
-
-          // SizedBox(
-          //   height: 20,
-          // ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [
-          //     classDetails("Attendance", "Mark"),
-          //     classDetails("Attendance", "View"),
-          //   ],
-          // ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              classDetails("syllabus", "syllabus"),
+              classDetails("results", "Results"),
+              classDetails("Attendance", "View"),
+            ],
+          ),
         ],
       ),
     );
@@ -103,13 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
   TextButton classDetails(String key, String value) {
     return TextButton(
         onPressed: () {
-          if (value == "Mark") {
-            Get.toNamed("/mark");
+          if (value == "syllabus") {
+            Get.toNamed("/syllabus");
           }
         },
         child: Container(
+            height: 30.w,
+            width: 19.w,
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   key,
@@ -120,16 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 14,
                       letterSpacing: 0.10,
                       fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  value,
-                  style: TextStyle(
-                      color: value == "View"
-                          ? AppColors.yellowPale
-                          : AppColors.cyanLight,
-                      fontSize: 24,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w400),
                 ),
               ],
             )),

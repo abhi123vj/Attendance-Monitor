@@ -10,7 +10,7 @@ import '../../constants/app_image_strings.dart';
 
 class AppFormField extends StatefulWidget {
   final String? hintText;
-  final List<String>? list;
+  final List? list;
   final String type;
   final TextEditingController controller;
   final bool isReadOnly;
@@ -262,7 +262,7 @@ class _AppFormFieldState extends State<AppFormField> {
               ),
             ),
             isExpanded: true,
-            items: widget.list?.map((value) {
+            items: widget.list?.cast<String>().map((value) {
               i++;
               return DropdownMenuItem(
                 value: value,

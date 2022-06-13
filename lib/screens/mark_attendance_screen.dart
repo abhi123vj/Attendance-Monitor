@@ -1,7 +1,6 @@
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sizer/sizer.dart';
 
 class MarkAttendanceScreen extends StatelessWidget {
