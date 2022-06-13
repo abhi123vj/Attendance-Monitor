@@ -137,6 +137,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+<<<<<<< Updated upstream
+=======
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.4"
+>>>>>>> Stashed changes
   lints:
     dependency: transitive
     description:
