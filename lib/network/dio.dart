@@ -65,7 +65,10 @@ class DioHelper {
         }
         handler.resolve(Response(
           requestOptions: error.requestOptions,
-          data: {'error': error.message},
+          data: {
+            'success':error.response?.data["success"],
+            'message': error.response?.data["message"],
+            'errorMessage': error.message},
           statusCode: error.response?.statusCode,
         ));
       }),

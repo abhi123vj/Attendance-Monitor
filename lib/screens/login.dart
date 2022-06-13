@@ -1,15 +1,18 @@
 import 'dart:developer';
 
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/controllers/authentication_controller.dart';
 import 'package:attendance_montior/network/repo/app_auth.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  AuthController authC = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                         height: 5.h,
                       ),
                       AppFormField(
-                          controller: _emailController, hintText: 'Staff Id'),
+                          controller: _emailController, hintText: 'Email ID'),
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
@@ -67,9 +70,7 @@ class LoginScreen extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          onTap: () {
-                           
-                          },
+                          onTap: () {},
                         ),
                       ),
                       Row(
@@ -79,11 +80,11 @@ class LoginScreen extends StatelessWidget {
                               padding: EdgeInsets.only(top: 5.0.h),
                               child: ElevatedButton(
                                 onPressed: () {
-                                   log("message");
-                            AuthRepo.userSignUp(params: {
-                              "username": _emailController.text,
-                              "password": _passwordController.text
-                            });
+                                  log("message");
+                                  authC.login(params: {
+                                    "username": _emailController.text,
+                                    "password": _passwordController.text
+                                  });
                                 },
                                 child: Text(
                                   'Login',
