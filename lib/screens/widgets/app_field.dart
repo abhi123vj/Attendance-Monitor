@@ -37,6 +37,8 @@ class _AppFormFieldState extends State<AppFormField> {
         return dropDownTextField();
       case "Mark":
         return markerTextField();
+        case "Number":
+        return normalTextField(isNumbers:true);
       default:
         return normalTextField();
     }
@@ -80,7 +82,8 @@ class _AppFormFieldState extends State<AppFormField> {
             : isPassword
                 ? []
                 : isNumbers
-                    ? [FilteringTextInputFormatter.digitsOnly]
+                    ? [FilteringTextInputFormatter.digitsOnly,
+                    ]
                     : [FilteringTextInputFormatter.singleLineFormatter],
         decoration: InputDecoration(
             border: const OutlineInputBorder(
