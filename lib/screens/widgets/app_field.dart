@@ -10,7 +10,7 @@ import '../../constants/app_image_strings.dart';
 
 class AppFormField extends StatefulWidget {
   final String? hintText;
-  final List<String>? list;
+  final List? list;
   final String type;
   final TextEditingController controller;
   final bool isReadOnly;
@@ -99,7 +99,7 @@ class _AppFormFieldState extends State<AppFormField> {
       isphone = false,
       isNumbers = false}) {
     return Container(
-      margin:  EdgeInsets.only(bottom: 10,left: 10.w,right: 10.w),
+      margin: EdgeInsets.only(bottom: 10, left: 10.w, right: 10.w),
       width: 100.w,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(18)),
@@ -114,21 +114,17 @@ class _AppFormFieldState extends State<AppFormField> {
           Expanded(
             child: Row(
               children: [
-                 Text(
-                 "36. ",
-                   style: TextStyle(
-                            fontSize: 20,
-                            letterSpacing: 0.15,
-                            fontWeight: FontWeight.w500)
-                ),
+                Text("36. ",
+                    style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 0.15,
+                        fontWeight: FontWeight.w500)),
                 Expanded(
-                  child: Text(
-                   "Abhiram S",
-                     style: TextStyle(
-                              fontSize: 20,
-                              letterSpacing: 0.15,
-                              fontWeight: FontWeight.w500)
-                  ),
+                  child: Text("Abhiram S",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 0.15,
+                          fontWeight: FontWeight.w500)),
                 ),
               ],
             ),
@@ -261,7 +257,7 @@ class _AppFormFieldState extends State<AppFormField> {
               ),
             ),
             isExpanded: true,
-            items: widget.list?.map((value) {
+            items: widget.list?.cast<String>().map((value) {
               i++;
               return DropdownMenuItem(
                 value: value,

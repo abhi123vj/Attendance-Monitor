@@ -1,6 +1,7 @@
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
+import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:get/get.dart';
 
  class AppRoutes {
@@ -16,6 +17,10 @@ import 'package:get/get.dart';
      GetPage(
       name: '/login',
       page: () => LoginScreen(),
+    ),
+      GetPage(
+      name: '/syllabus',
+      page: () => SyllabusScreen(),
     ),
   ];
  
