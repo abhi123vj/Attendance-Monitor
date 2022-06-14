@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              classDetails("syllabus", "syllabus"),
+              classDetails("syllabus", "View"),
               classDetails("results", "Results"),
               classDetails("Attendance", "View"),
             ],
@@ -92,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               classDetails("Time Table", "table"),
-              classDetails("Internals", "internal"),
-              classDetails("Deadlines", "deadline"),
+              classDetails("Internals", "View"),
+              classDetails("Notify", "deadline"),
             ],
           ),
         ],
@@ -104,9 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
   TextButton classDetails(String key, String value) {
     return TextButton(
         onPressed: () {
-          if (value == "syllabus") {
+          if (key == "syllabus") {
             Get.toNamed("/syllabus");
-          }else if (value == "table") {
+          }
+          if (key == "Time Table") {
             Get.toNamed("/tymtable");
           }
         },

@@ -16,6 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   Get.arguments!=null? _emailController.text = Get.arguments:"";
     return Scaffold(
       backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
@@ -102,40 +103,42 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 3.h,),
+                      SizedBox(
+                        height: 3.h,
+                      ),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                'Don\'t have an account?',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              'Don\'t have an account?',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(LoginScreen());
-                              },
-                              child: Text(
-                               'SignUp',
-                                style: TextStyle(
-                                  color: AppColors.cyanDark,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.offNamed("/signup");
+                            },
+                            child: Text(
+                              'SignUp',
+                              style: TextStyle(
+                                color: AppColors.cyanDark,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ],),
-                      
+                          ),
+                        ],
+                      ),
                     ]),
               ),
             ),
