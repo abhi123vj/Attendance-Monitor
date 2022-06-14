@@ -59,8 +59,8 @@ class _TimetableCreateScreenState extends State<TimetableCreateScreen> {
       {'index': 5, 'date': 'Fri'},
     ].toList();
     final List<Map> Controller = [
-      {'index': 0, 'Controller': _sub1Controller},
-      {'index': 1, 'Controller': _sub2Controller},
+      {'index': 1, 'Controller': _sub1Controller},
+      {'index': 2, 'Controller': _sub2Controller},
       {'index': 2, 'Controller': _sub3Controller},
       {'index': 3, 'Controller': _sub4Controller},
       {'index': 4, 'Controller': _sub5Controller},

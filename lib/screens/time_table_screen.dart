@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:attendance_montior/controllers/timetable_controller.dart';
 import 'package:attendance_montior/screens/time_table_upload_screen.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import '../constants/app_colors.dart';
 import '../controllers/suject_controller.dart';
 
 class TimeTableScreen extends StatelessWidget {
-  const TimeTableScreen({Key? key}) : super(key: key);
+  TimeTableScreen({Key? key}) : super(key: key);
+  TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class TimeTableScreen extends StatelessWidget {
     List<String> sem = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'];
     List<String> branch = ['CSE', 'EC', 'IT'];
     final List<Map> date = [
-      {'index': 2, 'date': 'Mon'},
-      {'index': 3, 'date': 'Tue'},
-      {'index': 4, 'date': 'Wed'},
-      {'index': 5, 'date': 'Thu'},
-      {'index': 6, 'date': 'Fri'},
+      {'index': 1, 'date': 'Mon'},
+      {'index': 2, 'date': 'Tue'},
+      {'index': 3, 'date': 'Wed'},
+      {'index': 4, 'date': 'Thu'},
+      {'index': 5, 'date': 'Fri'},
     ].toList();
     late int selectedIndex = 0;
 
@@ -38,42 +40,48 @@ class TimeTableScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(height: 4.h,),
+            SizedBox(
+              height: 4.h,
+            ),
             Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(width: 5.h,),
-                            FittedBox(
-                              child: Text(
-                                'Want new time table?',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(TimetableCreateScreen());
-                              },
-                              child: Text(
-                               'Create',
-                                style: TextStyle(
-                                  color: AppColors.yellowDark,
-                                  fontSize: 15,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ],),
-                          SizedBox(height: 3.h,),
-                      
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 5.h,
+                ),
+                FittedBox(
+                  child: Text(
+                    'Want new time table?',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 15,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.to(TimetableCreateScreen());
+                  },
+                  child: Text(
+                    'Create',
+                    style: TextStyle(
+                      color: AppColors.yellowDark,
+                      fontSize: 15,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
             Container(
               width: 100.w,
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
@@ -107,48 +115,60 @@ class TimeTableScreen extends StatelessWidget {
                         color: AppColors.black)
                   ]),
             ),
-            SizedBox(height: 3.h,),
+            SizedBox(
+              height: 3.h,
+            ),
             Container(
               height: MediaQuery.of(context).size.height * 0.12,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return InkWell(
-                      child: Padding(
-                          padding: EdgeInsets.all(0.7.h),
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FittedBox(
-                                  child: Text(
-                                    date[index]['date'],
-                                    style: TextStyle(
-                                      color: AppColors.white,
-                                      fontSize: 18,
-                                      letterSpacing: 1,
-                                    ),
+                  return Obx(() => Padding(
+                    padding: EdgeInsets.all(1.h),
+                    child: TextButton(
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FittedBox(
+                                child: Text(
+                                  date[index]['date'],
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 18,
+                                    letterSpacing: 1,
                                   ),
                                 ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: selectedIndex == index
-                                    ? Colors.yellowAccent
-                                    : AppColors.cyanNormal,
                               ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
-                            ),
-                            width: 9.0.h,
-                            height: 11.5.h,
-                          )),
-                      onTap: () {
-                        {
-                          selectedIndex = index;
-                        };
-                      });
+                            ],
+                          ),
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(
+                          //     color: timeC. selectedIndex.value == index
+                          //         ? Colors.yellowAccent
+                          //         : AppColors.cyanNormal,
+                          //   ),
+                          //   borderRadius:
+                          //       BorderRadius.all(Radius.circular(12.0)),
+                          // ),
+                          // width: 9.0.h,
+                          // height: 11.5.h,
+                        ),
+                        onPressed: () {
+                          timeC.selectedIndex.value = index;
+                        },
+                        style: ButtonStyle(
+                            shape:
+                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        side: BorderSide(
+                                          color:
+                                              timeC.selectedIndex.value == index
+                                                  ? Colors.yellowAccent
+                                                  : AppColors.cyanNormal,
+                                        ))))),
+                  ));
                 },
                 itemCount: date.length,
                 scrollDirection: Axis.horizontal,
@@ -163,7 +183,6 @@ class TimeTableScreen extends StatelessWidget {
             table('1:00-2:00 pm', 'Maths'),
             table('2:00-3:00 pm', 'Physics'),
             table('3:00-4:00 pm', 'Chem'),
-            
           ],
         ),
       ),
@@ -184,11 +203,14 @@ class TimeTableScreen extends StatelessWidget {
             ),
           ),
           Expanded(child: Container()),
-          Text(t2,style: TextStyle(
+          Text(
+            t2,
+            style: TextStyle(
               color: AppColors.yellowPale,
               fontSize: 16,
               letterSpacing: 1,
-            ),),
+            ),
+          ),
         ],
       ),
     );
