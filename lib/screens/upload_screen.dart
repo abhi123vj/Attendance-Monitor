@@ -68,19 +68,16 @@ class UploadScreen extends StatelessWidget {
                             '5th hour',
                             '6th hour',
                           ]),
-                     
                       AppFormField(
                           controller: topic,
                           maxLines: 4,
                           height: 11.h,
                           hintText: 'Topics'),
-                     
                       AppFormField(
                           controller: remark,
                           maxLines: 4,
                           height: 14.h,
                           hintText: 'Remark'),
-                      
                       Row(
                         children: [
                           Expanded(
@@ -104,7 +101,6 @@ class UploadScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    
                     ]),
               ),
             ),
