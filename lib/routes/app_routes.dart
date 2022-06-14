@@ -20,19 +20,11 @@ class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
       name: '/',
-      page: () => SplashScreen(),
+      page: () => HomeScreen(),
     ),
     GetPage(
       name: '/mark',
       page: () => MarkAttendanceScreen(),
-    ),
-    GetPage(
-      name: '/..',
-      page: () => HomeScreen(),
-    ),
-    GetPage(
-      name: '/',
-      page: () => AttendenceReview(),
     ),
      GetPage(
       name: '/login',
@@ -42,6 +34,16 @@ class AppRoutes {
       name: '/syllabus',
       page: () => SyllabusScreen(),
     ),
+    
+    GetPage(
+      name: '/',
+      page: () => AttendenceReview(),
+    ),
+     GetPage(
+      name: '/login',
+      page: () => LoginScreen(),
+    ),
+      
       GetPage(
       name: '/signup',
       page: () => SignUpScreen(),
