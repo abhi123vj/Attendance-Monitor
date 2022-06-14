@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/controllers/authentication_controller.dart';
 import 'package:attendance_montior/network/repo/app_auth.dart';
+import 'package:attendance_montior/screens/signup_screen.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -122,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(LoginScreen());
+                                Get.to(SignUpScreen());
                               },
                               child: Text(
                                'SignUp',
