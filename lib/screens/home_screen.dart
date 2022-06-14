@@ -15,8 +15,62 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController tmp = TextEditingController();
   HomeController homeC = Get.put(HomeController());
+  final TextEditingController tmp = TextEditingController();
+
+  TextButton classDetails(String key, String value) {
+    return TextButton(
+        onPressed: () {
+          if (value == "syllabus") {
+            Get.toNamed("/syllabus");
+          } else if (value == "table") {
+            Get.toNamed("/tymtable");
+          }
+        },
+        child: Container(
+            height: 30.w,
+            width: 19.w,
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  key,
+                  style: TextStyle(
+                      color: value == "View"
+                          ? AppColors.yellowPale
+                          : AppColors.cyanLight,
+                      fontSize: 14,
+                      letterSpacing: 0.10,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            )),
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(
+                        color: value == "View"
+                            ? AppColors.yellowPale
+                            : AppColors.cyanLight)))));
+  }
+
+  // TextButton subjectButton(String subjectName) {
+  // return TextButton(
+  //     onPressed: () {},
+  //     child: Text(subjectName,
+  //         style: TextStyle(
+  //             fontSize: 14,
+  //             letterSpacing: 0.75,
+  //             fontWeight: FontWeight.w500)),
+  //     style: ButtonStyle(
+  //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //             RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(18.0),
+  //                 side: BorderSide(color: AppColors.cyanDark)))));
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,57 +154,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  TextButton classDetails(String key, String value) {
-    return TextButton(
-        onPressed: () {
-          if (value == "syllabus") {
-            Get.toNamed("/syllabus");
-          }else if (value == "table") {
-            Get.toNamed("/tymtable");
-          }
-        },
-        child: Container(
-            height: 30.w,
-            width: 19.w,
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  key,
-                  style: TextStyle(
-                      color: value == "View"
-                          ? AppColors.yellowPale
-                          : AppColors.cyanLight,
-                      fontSize: 14,
-                      letterSpacing: 0.10,
-                      fontWeight: FontWeight.w500),
-                ),
-              ],
-            )),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: BorderSide(
-                        color: value == "View"
-                            ? AppColors.yellowPale
-                            : AppColors.cyanLight)))));
-  }
-
-  // TextButton subjectButton(String subjectName) {
-  // return TextButton(
-  //     onPressed: () {},
-  //     child: Text(subjectName,
-  //         style: TextStyle(
-  //             fontSize: 14,
-  //             letterSpacing: 0.75,
-  //             fontWeight: FontWeight.w500)),
-  //     style: ButtonStyle(
-  //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-  //             RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(18.0),
-  //                 side: BorderSide(color: AppColors.cyanDark)))));
-  // }
 }
