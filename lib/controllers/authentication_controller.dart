@@ -13,8 +13,9 @@ class AuthController extends GetxController {
       TextEditingController();
   final TextEditingController passwordTextEditingController =
       TextEditingController();
-
+  RxBool isloading = false.obs;
   login({required Map params}) async {
+    isloading.value = true;
     var res = await AuthRepo.userLogin(params: params);
     log("first ${res}");
     if (res.success == true) {
@@ -48,8 +49,12 @@ class AuthController extends GetxController {
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
-      Get.snackbar("Login Failed", res.message.toString(),colorText: AppColors.cyanLight);
+      Get.snackbar("Login Failed", res.message.toString(),
+          colorText: AppColors.cyanLight);
       log("Receds fail  ${res.message}");
+      
     }
+  
+   isloading.value = false;
   }
 }

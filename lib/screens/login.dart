@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/controllers/authentication_controller.dart';
 import 'package:attendance_montior/network/repo/app_auth.dart';
@@ -13,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
   AuthController authC = Get.put(AuthController());
 
   @override
@@ -80,25 +81,67 @@ class LoginScreen extends StatelessWidget {
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.only(top: 5.0.h),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  log("message");
-                                  authC.login(params: {
-                                    "username": _emailController.text,
-                                    "password": _passwordController.text
-                                  });
-                                },
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 4.w),
-                                    primary: AppColors.cyanDark,
-                                    shape: const StadiumBorder()),
+                              child: Obx(() => ElevatedButton(
+                                    onPressed: () {
+                                      log("message");
+                                     if(authC.isloading.isFalse) {
+                                       log("message2");
+                                        authC.login(params: {
+                                          "username": _emailController.text,
+                                          "password": _passwordController.text
+                                        });
+                                      }
+                                    },
+                                    child: authC.isloading.isTrue
+                                        ? JumpingText('Loading...')
+                                       
+                                        : Text(
+                                            'Login',
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                    style: ElevatedButton.styleFrom(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 4.w),
+                                        primary: AppColors.cyanDark,
+                                        shape: const StadiumBorder()),
+                                  )),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              'Don\'t have an account?',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(SignUpScreen());
+                            },
+                            child: Text(
+                              'SignUp',
+                              style: TextStyle(
+                                color: AppColors.cyanDark,
+                                fontSize: 15,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
