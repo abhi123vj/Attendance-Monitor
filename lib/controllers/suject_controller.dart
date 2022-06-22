@@ -26,6 +26,8 @@ class SubjectController extends GetxController {
           module4: "module4")
       .obs;
   RxBool isSyllabusEmplty = true.obs;
+
+  @override
   void onInit() {
     semTextEditingController.addListener(() {
       isSyllabusEmplty.value = true;

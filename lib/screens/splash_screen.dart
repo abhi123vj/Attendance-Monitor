@@ -1,5 +1,6 @@
 import 'package:attendance_montior/constants/app_colors.dart';
-import 'package:attendance_montior/screens/login.dart';
+import 'package:attendance_montior/constants/app_strings.dart';
+import 'package:attendance_montior/screens/login_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -30,12 +31,12 @@ class SplashScreen extends StatelessWidget {
                 topLeft: Radius.circular(60), topRight: Radius.circular(60)),
           ),
           child: Stack(children: [
-            Positioned(
+            const Positioned(
                 left: 170,
                 right: 170,
                 top: 20,
                 child: Text(
-                  "UCEK",
+                 AppStrings.ucek,
                   style: TextStyle(
                       color: AppColors.cyanNormal,
                       fontSize: 25,

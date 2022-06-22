@@ -9,7 +9,7 @@ import 'package:sizer/sizer.dart';
 import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,19 +24,21 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           "UCEK Buzz",
-          style: TextStyle(
-              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(
               onPressed: () {
                 log("Profile icon Tapped");
               },
-              icon: Icon(Icons.notifications))
+              icon: const Icon(Icons.notifications))
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: 100.w,
@@ -46,37 +48,70 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi, ${homeC.currentuser!.name}",
-                  style: TextStyle(
-                      color: AppColors.cyanNormal,
-                      fontSize: 34,
-                      fontWeight: FontWeight.w400),
+                  "Hi,${homeC.currentuser!.name}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline4
+                      ?.copyWith(fontWeight: FontWeight.w600),
                 ),
-                Text(homeC.greetingMes.value,
-                    style: TextStyle(
-                        fontSize: 24,
-                        letterSpacing: 0.00,
-                        fontWeight: FontWeight.w400)),
-                SizedBox(
+                Text(
+                  homeC.greetingMes.value,
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                const SizedBox(
                   height: 20,
                 ),
               ],
             ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(40.0),
-                    bottomRight: Radius.circular(40.0)),
-                color: AppColors.blackGlaze,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0)),
+                color: AppColors.bgWhite,
                 boxShadow: [
                   BoxShadow(
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: Offset(0, 10),
-                      color: AppColors.black)
+                      spreadRadius: .5,
+                      blurRadius: 4,
+                      offset: const Offset(0, 6),
+                      color: AppColors.bgBlack.withOpacity(.4))
                 ]),
           ),
           SizedBox(
             height: 5.h,
+          ),
+          Text(
+                      "Upcoming class",
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Material(
+              elevation: 2,
+              child: Container(
+                width: 100.w,
+                decoration: BoxDecoration(color: AppColors.accentYellow),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    
+                     Text(
+                      "9:00 PM - 10:00 PM  Graph Theory S8",
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                     Text(
+                      "9:00 PM - 10:00 PM  Graph Theory S8",
+                      style: Theme.of(context).textTheme.subtitle2,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -111,11 +146,14 @@ class _HomeScreenState extends State<HomeScreen> {
           if (key == "Time Table") {
             Get.toNamed("/tymtable");
           }
+          if (key == "Attendance") {
+            Get.toNamed("/markAttendance");
+          }
         },
         child: Container(
             height: 30.w,
             width: 19.w,
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 // import 'package:intl/intl.dart';
@@ -15,16 +16,24 @@ class AppFormField extends StatefulWidget {
   final TextEditingController controller;
   final bool isReadOnly;
   final int maxLines;
+  final int index;
   final double height;
+  final Function()? markPresent;
+  final Function()? markAbsent;
+  final Color borderColor;
   const AppFormField({
+    this.index = 0,
     this.hintText,
+    this.borderColor = AppColors.yellowPale,
     this.type = 'Normal',
     Key? key,
     required this.controller,
     this.list,
     this.isReadOnly = false,
     this.maxLines = 1,
-    this.height=65,
+    this.height = 60,
+    this.markPresent,
+    this.markAbsent,
   }) : super(key: key);
 
   @override
@@ -41,62 +50,76 @@ class _AppFormFieldState extends State<AppFormField> {
         return dropDownTextField();
       case "Mark":
         return markerTextField();
-        case "Number":
-        return normalTextField(isNumbers:true);
+      case "Number":
+        return normalTextField(isNumbers: true);
+      case "phone":
+        return normalTextField(isphone: true);
+      case "password":
+        return normalTextField(isPassword: true);
+         case "email":
+        return normalTextField(isEmail: true);
       default:
         return normalTextField();
     }
   }
 
-  Container normalTextField(
+  Material normalTextField(
       {isEmail = false,
       isPassword = false,
       isphone = false,
       isNumbers = false}) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 40),
-      width: 100.w,height: widget.height,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(18)),
-        border: Border.all(color: AppColors.cyanLight, width: 1),
-      ),
-      padding: const EdgeInsets.only(
-        left: 20,
-      ),
-      alignment: Alignment.centerLeft,
-      child: TextFormField(
-        controller: widget.controller,
-        readOnly: widget.isReadOnly,
-        maxLines: widget.maxLines,
-        keyboardType: isphone
-            ? TextInputType.phone
-            : isEmail
-                ? TextInputType.emailAddress
-                : isNumbers
-                    ? TextInputType.number
-                    : TextInputType.text,
-        obscureText: isPassword,
-        textCapitalization: !isEmail && !isPassword && !isphone && !isNumbers
-            ? TextCapitalization.words
-            : TextCapitalization.none,
-        inputFormatters: isphone
-            ? [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10)
-              ]
-            : isPassword
-                ? []
-                : isNumbers
-                    ? [FilteringTextInputFormatter.digitsOnly,
-                    ]
-                    : [FilteringTextInputFormatter.singleLineFormatter],
-        decoration: InputDecoration(
-            border: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-            ),
-            hintStyle: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
-            hintText: widget.hintText),
+    return Material(
+      elevation: 2,
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
+      child: Container(
+        width: 100.w,
+        height: widget.height,
+        decoration: BoxDecoration(
+          color: AppColors.accentYellow,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        ),
+        padding: const EdgeInsets.only(
+          left: 20,
+        ),
+        alignment: Alignment.centerLeft,
+        child: TextFormField(
+          style: Theme.of(context).textTheme.subtitle1,
+          controller: widget.controller,
+          readOnly: widget.isReadOnly,
+          maxLines: widget.maxLines,
+          keyboardType: isphone
+              ? TextInputType.phone
+              : isEmail
+                  ? TextInputType.emailAddress
+                  : isNumbers
+                      ? TextInputType.number
+                      : TextInputType.text,
+          obscureText: isPassword,
+          textCapitalization: !isEmail && !isPassword && !isphone && !isNumbers
+              ? TextCapitalization.words
+              : TextCapitalization.none,
+          inputFormatters: isphone
+              ? [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(10)
+                ]
+              : isPassword
+                  ? []
+                  : isNumbers
+                      ? [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ]
+                      : [FilteringTextInputFormatter.singleLineFormatter],
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .subtitle2
+                  ?.copyWith(color: AppColors.bgBlack.withOpacity(.7)),
+              hintText: widget.hintText),
+        ),
       ),
     );
   }
@@ -111,7 +134,7 @@ class _AppFormFieldState extends State<AppFormField> {
       width: 100.w,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(18)),
-        border: Border.all(color: AppColors.yellowPale, width: 1),
+        border: Border.all(color: widget.borderColor, width: 1),
       ),
       padding: const EdgeInsets.only(
         left: 20,
@@ -122,13 +145,13 @@ class _AppFormFieldState extends State<AppFormField> {
           Expanded(
             child: Row(
               children: [
-                Text("36. ",
+                Text("${widget.index + 1}. ",
                     style: TextStyle(
                         fontSize: 20,
                         letterSpacing: 0.15,
                         fontWeight: FontWeight.w500)),
                 Expanded(
-                  child: Text("Abhiram S",
+                  child: Text(widget.hintText.toString(),
                       style: TextStyle(
                           fontSize: 20,
                           letterSpacing: 0.15,
@@ -138,13 +161,13 @@ class _AppFormFieldState extends State<AppFormField> {
             ),
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: widget.markPresent,
               icon: Icon(
                 Icons.check,
                 color: AppColors.cyanNormal,
               )),
           IconButton(
-              onPressed: () {},
+              onPressed: widget.markAbsent,
               icon: Icon(
                 Icons.close,
                 color: AppColors.redDark,
@@ -203,67 +226,47 @@ class _AppFormFieldState extends State<AppFormField> {
   Stack dropDownTextField() {
     int i = 0;
     return Stack(
+      
       children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 40),
-          width: 100.w,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(18)),
-            border: Border.all(
-              color: AppColors.cyanLight,
-              width: 1,
+        Material(
+          elevation: 2,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          child: Container(
+            width: 100.w,
+            height: widget.height,
+            decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+
+              color: AppColors.accentYellow,
             ),
-          ),
-          padding: const EdgeInsets.only(
-            left: 20,
-          ),
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  onChanged: (val) {
-                    print("Val is $val");
-                  },
-                  controller: widget.controller,
-                  readOnly: true,
-                  decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                      ),
-                      hintStyle: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                      hintText: '-- Select ${widget.hintText} --'),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SizedBox(
-                  height: 50,
-                  child: Image.asset(
-                    AppImages.dropDownIcon,
-                    fit: BoxFit.fitHeight,
+            padding: const EdgeInsets.only(
+              left: 20,
+            ),
+            alignment: Alignment.centerLeft,
+            child: TextFormField(
+              onChanged: (val) {
+                print("Val is $val");
+              },
+              controller: widget.controller,
+              readOnly: true,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
                   ),
-                ),
-              ),
-            ],
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      ?.copyWith(color: AppColors.bgBlack.withOpacity(.7)),
+                  hintText: '-- Select ${widget.hintText} --'),
+            ),
           ),
         ),
         Opacity(
           opacity: 0,
           child: DropdownButton<String>(
             underline: null,
-            dropdownColor: AppColors.blackGlaze,
-            borderRadius: null,
-            icon: SizedBox(
-              height: 50,
-              child: Image.asset(
-                AppImages.dropDownIcon,
-                fit: BoxFit.fitHeight,
-              ),
-            ),
+            dropdownColor: AppColors.bgBlack,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             isExpanded: true,
             items: widget.list?.cast<String>().map((value) {
               i++;
@@ -272,9 +275,9 @@ class _AppFormFieldState extends State<AppFormField> {
                 child: Text(
                   value,
                   style: TextStyle(
-                      color: i % 2 == 0
-                          ? AppColors.yellowPale
-                          : AppColors.cyanLight),
+                      color: value == widget.controller.text
+                          ? AppColors.accentYellow
+                          : AppColors.white),
                 ),
               );
             }).toList(),

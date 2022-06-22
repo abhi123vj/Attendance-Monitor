@@ -44,13 +44,13 @@ class AuthController extends GetxController {
     log("first ${res}");
     if (res.success == true) {
       res as SignUpResponse;
-      Get.snackbar("${res.user?.name} Your Account created", res.message.toString(),colorText: AppColors.cyanLight);
+      Get.snackbar("${res.user?.name} Your Account created", res.message.toString());
       Get.offAllNamed("/login", arguments:res.user?.username);
       log("Receds ${res.user?.name}");
     } else {
-      res as BaseResponse;
+     ///? res as BaseResponse;
       Get.snackbar("Login Failed", res.message.toString(),
-          colorText: AppColors.cyanLight);
+          );
       log("Receds fail  ${res.message}");
       
     }

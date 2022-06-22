@@ -1,64 +1,61 @@
-import 'package:attendance_montior/screens/attendce_detial.dart';
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
-import 'package:attendance_montior/screens/login.dart';
+import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
-import 'package:attendance_montior/screens/signup.dart';
+import 'package:attendance_montior/screens/signup_screen.dart';
 import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:attendance_montior/screens/time_table_screen.dart';
 import 'package:attendance_montior/screens/time_table_upload_screen.dart';
-import 'package:attendance_montior/screens/login.dart';
-import 'package:attendance_montior/screens/mark_attendance_screen.dart';
-import 'package:attendance_montior/screens/signup.dart';
 import 'package:attendance_montior/screens/splash_screen.dart';
-import 'package:attendance_montior/screens/upload_screen.dart';
 import 'package:get/get.dart';
-
 import '../screens/splash_screen.dart';
 
 class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
-      name: '/',
+      name: homeScreen,
       page: () => HomeScreen(),
     ),
     GetPage(
-      name: '/mark',
+      name: markAttndcScreen,
       page: () => MarkAttendanceScreen(),
     ),
-     GetPage(
-      name: '/login',
-      page: () => LoginScreen(),
-    ),
-      GetPage(
-      name: '/syllabus',
-      page: () => SyllabusScreen(),
-    ),
-    
     GetPage(
-      name: '/',
-      page: () => AttendenceReview(),
-    ),
-     GetPage(
-      name: '/login',
+      name: loginScreen,
       page: () => LoginScreen(),
     ),
-      
-      GetPage(
-      name: '/signup',
+    GetPage(
+      name: signUpScreen,
+      transition: Transition.leftToRightWithFade,
       page: () => SignUpScreen(),
     ),
-     GetPage(
+    GetPage(
+      name: syllabusScreen,
+      page: () => const SyllabusScreen(),
+    ),
+    GetPage(
+      name: '/attendenceReview',
+      page: () => const AttendenceReview(),
+    ),
+    GetPage(
       name: '/tymtable',
       page: () => TimeTableScreen(),
     ),
-      GetPage(
+    GetPage(
       name: '/tymtablecreate',
-      page: () => TimetableCreateScreen(),
+      page: () => const TimetableCreateScreen(),
     ),
     GetPage(
-      name: '/....',
-      page: () => SplashScreen(),
+      name: '/splash',
+      page: () => const SplashScreen(),
     ),
   ];
+  static String initialPage = loginScreen;
+
+  static String homeScreen = '/';
+  static String markAttndcScreen = '/markAttendance';
+  static String loginScreen = '/login';
+  static String signUpScreen = '/signUp';
+
+  static String syllabusScreen = '/syllabus';
 }

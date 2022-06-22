@@ -12,7 +12,7 @@ Future<void> main() async {
     builder: (context, orientation, deviceType) {
       
       return GetMaterialApp(
-        initialRoute: '/login',
+        initialRoute: AppRoutes.initialPage,
         getPages: AppRoutes.pages,
          debugShowCheckedModeBanner: false,
                   theme: AppTheme.theme,
