@@ -3,6 +3,7 @@ import 'package:attendance_montior/controllers/timetable_controller.dart';
 import 'package:attendance_montior/screens/time_table_upload_screen.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,208 +12,123 @@ import '../controllers/suject_controller.dart';
 
 class TimeTableScreen extends StatelessWidget {
   TimeTableScreen({Key? key}) : super(key: key);
-  TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
+  final TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
 
   @override
   Widget build(BuildContext context) {
     final _semController = TextEditingController();
     final _branchController = TextEditingController();
-    List<String> sem = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'];
-    List<String> branch = ['CSE', 'EC', 'IT'];
-    final List<Map> date = [
-      {'index': 1, 'date': 'Mon'},
-      {'index': 2, 'date': 'Tue'},
-      {'index': 3, 'date': 'Wed'},
-      {'index': 4, 'date': 'Thu'},
-      {'index': 5, 'date': 'Fri'},
-    ].toList();
-    late int selectedIndex = 0;
+    final List _date = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Time Table",
-          style: TextStyle(
-              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+        appBar: AppBar(
+          title: Text(
+            "Time Table",
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(
-              height: 4.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 5.h,
-                ),
-                FittedBox(
-                  child: Text(
-                    'Want new time table?',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.to(TimetableCreateScreen());
-                  },
-                  child: Text(
-                    'Create',
-                    style: TextStyle(
-                      color: AppColors.yellowDark,
-                      fontSize: 15,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
+        body: Column(
+          children: [            
             Container(
-              width: 100.w,
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppFormField(
-                      type: "DropDown",
-                      hintText: "Semester",
-                      list: sem,
-                      controller: _semController),
-                  //  _semController.text.isNotEmpty
-                  AppFormField(
-                      type: "DropDown",
-                      hintText: "Branch",
-                      list: branch,
-                      controller: _branchController)
-                ],
-              ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40.0),
-                      bottomRight: Radius.circular(40.0)),
-                  color: AppColors.blackGlaze,
-                  boxShadow: [
-                    BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 3,
-                        offset: Offset(0, 10),
-                        color: AppColors.black)
-                  ]),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.12,
+              height: 60,
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Obx(() => Padding(
-                    padding: EdgeInsets.all(1.h),
-                    child: TextButton(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FittedBox(
-                                child: Text(
-                                  date[index]['date'],
-                                  style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 18,
-                                    letterSpacing: 1,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          // decoration: BoxDecoration(
-                          //   border: Border.all(
-                          //     color: timeC. selectedIndex.value == index
-                          //         ? Colors.yellowAccent
-                          //         : AppColors.cyanNormal,
-                          //   ),
-                          //   borderRadius:
-                          //       BorderRadius.all(Radius.circular(12.0)),
-                          // ),
-                          // width: 9.0.h,
-                          // height: 11.5.h,
-                        ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _date.length,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Bounce(
+                        duration: const Duration(milliseconds: 110),
                         onPressed: () {
                           timeC.selectedIndex.value = index;
                         },
-                        style: ButtonStyle(
-                            shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12.0),
-                                        side: BorderSide(
-                                          color:
-                                              timeC.selectedIndex.value == index
-                                                  ? Colors.yellowAccent
-                                                  : AppColors.cyanNormal,
-                                        ))))),
-                  ));
-                },
-                itemCount: date.length,
-                scrollDirection: Axis.horizontal,
-              ),
+                        child: Obx(() => Container(
+                              
+                              width: 130,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,),
+                              margin: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: timeC.selectedIndex.value == index
+                                      ? AppColors.bgBlack
+                                      : AppColors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: Text(
+                                _date[index],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button
+                                    ?.copyWith(
+                                      color: timeC.selectedIndex.value == index
+                                          ? AppColors.white
+                                          : AppColors.bgBlack,
+                                    ),
+                              ),
+                            )));
+                  }),
             ),
-            SizedBox(
-              height: 2.h,
-            ),
-            table('9:00-10:00 am', 'Maths'),
-            table('10:00-11:00 am', 'Physics'),
-            table('11:00-12:00 pm', 'Chem'),
-            table('1:00-2:00 pm', 'Maths'),
-            table('2:00-3:00 pm', 'Physics'),
-            table('3:00-4:00 pm', 'Chem'),
+            Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10))
+                  ),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: ListView.builder(itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Material(
+                    elevation: 3,
+                     borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                    child: Container(
+                                       
+                    
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                           decoration: BoxDecoration(
+                             color: AppColors.accentGreen,borderRadius:
+                                          BorderRadius.only( topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+                           ),
+                            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("9:00AM - 10:00AM",style: Theme.of(context)
+                          .textTheme
+                          .caption),
+                                Text("S8 CSE",style: Theme.of(context)
+                          .textTheme
+                          .subtitle1),
+                              ],
+                            ),
+                          ),
+                           Container(                       
+                            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                            child: Text("Graph Theory",style: Theme.of(context)
+                          .textTheme
+                          .headline6)),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                         borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                        color: AppColors.white
+                      ),
+                    ),
+                  ),
+                );
+                            }),
+                          ))
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget table(t1, t2) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.h),
-      child: Row(
-        children: [
-          Text(
-            t1,
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 16,
-              letterSpacing: 1,
-            ),
-          ),
-          Expanded(child: Container()),
-          Text(
-            t2,
-            style: TextStyle(
-              color: AppColors.yellowPale,
-              fontSize: 16,
-              letterSpacing: 1,
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }

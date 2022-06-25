@@ -24,10 +24,10 @@ class AuthController extends GetxController {
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
-      Get.snackbar("Login Failed", res.message.toString(),
-          colorText: AppColors.cyanLight);
+      Get.snackbar("Login Failed", res.message.toString());
       log("Receds fail  ${res.message}");
     }
+    isloading.value = false;
   }
 
   signUp({required Map params}) async {

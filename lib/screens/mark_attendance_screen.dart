@@ -66,14 +66,14 @@ class MarkAttendanceScreen extends StatelessWidget {
               ],
             ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40.0),
-                color: AppColors.blackGlaze,
+              color: AppColors.bgWhite,
+                borderRadius: BorderRadius.circular(10.0),
                 boxShadow: [
                   BoxShadow(
                       spreadRadius: 2,
                       blurRadius: 3,
-                      offset: Offset(0, 6),
-                      color: AppColors.black)
+                      offset: Offset(0, 5),
+                      color: AppColors.bgBlack.withOpacity(.3))
                 ]),
           ),
           Expanded(

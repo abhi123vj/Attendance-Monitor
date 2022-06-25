@@ -79,8 +79,8 @@ class LoginScreen extends StatelessWidget {
                               log("message2");
                               authC.login(params: {
                                 "username":
-                                    "tcr1@ucek.com", //_emailController.text,
-                                "password": "123456" //_passwordController.text
+                                    "Test4@gmail.com", //_emailController.text,
+                                "password": "Test@123" //_passwordController.text
                               });
                             }
                           },

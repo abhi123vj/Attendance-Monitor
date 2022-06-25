@@ -161,8 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   key,
                   style: TextStyle(
                       color: value == "View"
-                          ? AppColors.yellowPale
-                          : AppColors.cyanLight,
+                          ? AppColors.bgBlack
+                          : AppColors.bgBlack,
                       fontSize: 14,
                       letterSpacing: 0.10,
                       fontWeight: FontWeight.w500),
