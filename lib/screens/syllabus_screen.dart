@@ -19,9 +19,14 @@ class SyllabusScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Syllabus",
-          style: TextStyle(
-              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(fontWeight: FontWeight.bold)
+              .copyWith(color: AppColors.white),
         ),
+        iconTheme: IconThemeData(color: AppColors.white),
+        backgroundColor: AppColors.bgBlack,
       ),
       body: Obx(
         () => Column(
@@ -29,8 +34,7 @@ class SyllabusScreen extends StatelessWidget {
           children: [
             Container(
               width: 100.w,
-              padding:
-                  EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.w),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,103 +44,107 @@ class SyllabusScreen extends StatelessWidget {
                       hintText: "Semester",
                       list: subC.semList.toList(),
                       controller: subC.semTextEditingController),
-                  subC.subjectsMap.isNotEmpty
-                      ? AppFormField(
-                          type: "DropDown",
-                          hintText: "Subject",
-                          list: subC.subjectsMap.entries
-                              .map((entry) => entry.value.subjectName)
-                              .toList(),
-                          controller: subC.subTextEditingController)
-                      : SizedBox(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  if (subC.subjectsMap.isNotEmpty)
+                    AppFormField(
+                        type: "DropDown",
+                        hintText: "Subject",
+                        list: subC.subjectsMap.entries
+                            .map((entry) => entry.value.toString())
+                            .toList(),
+                        controller: subC.subTextEditingController),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      if(subC.syllabus.value.credits!=null)
+                      Text("Credits: ${subC.syllabus.value.credits}"  ,  style: Theme.of(context)
+                                    .textTheme
+                                    .button,
+                      ),                     
+                    ],
+                  ),
+               
                 ],
               ),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40.0),
-                      bottomRight: Radius.circular(40.0)),
-                  color: AppColors.blackGlaze,
+                      bottomLeft: Radius.circular(10.0),
+                      bottomRight: Radius.circular(10.0)),
+                  color: AppColors.bgBlack,
                   boxShadow: [
                     BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 3,
-                        offset: Offset(0, 10),
-                        color: AppColors.black)
+                        spreadRadius: .5,
+                        blurRadius: 4,
+                        offset: const Offset(0, 6),
+                        color: AppColors.bgBlack.withOpacity(.4))
                   ]),
             ),
-        
-             Expanded(
-              
-              child: subC.isSyllabusEmplty.isFalse? SingleChildScrollView(
-                child: Column(
-                children: [
-                    Text(
-                  "Module 1",
-                  style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 0.15,
-                      fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Obx(() => Text(
-                      subC.syllabus.value.module1,
-                      style: TextStyle(
-                          fontSize: 20,
-                          letterSpacing: 0.10,
-                          fontWeight: FontWeight.w500),
-                    )),
-                Text(
-                  "Module 2",
-                  style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 0.15,
-                      fontWeight: FontWeight.w500),
-                ),               
-                  SizedBox(
-                    height: 10,
-                  ),
-                          Obx(() => Text(
-                    subC.syllabus.value.module2,
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 0.10,
-                        fontWeight: FontWeight.w500),
-                  )),
-                          Text(
-                "Module 3",
-                style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 0.15,
-                    fontWeight: FontWeight.w500),
+            if (subC.syllabus.value.modules?.isNotEmpty ?? false)
+              Expanded(
+                  child: Obx(() => ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: subC.syllabus.value.modules?.length,
+                      itemBuilder: (context, index) {
+                        return ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            minHeight: 100.0,
+                            maxHeight: 400,
                           ),
-                Obx(() => Text(
-                    subC.syllabus.value.module2,
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 0.10,
-                        fontWeight: FontWeight.w500),
-                  )),
-                          Text(
-                "Module 4",
-                style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 0.15,
-                    fontWeight: FontWeight.w500),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            decoration: BoxDecoration(
+                                color: index % 2 == 0
+                                    ? AppColors.accentGreen
+                                    : AppColors.accentYellow,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  subC.syllabus.value.modules
+                                          ?.elementAt(index)
+                                          .moduleName ??
+                                      "Module",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: subC.syllabus.value.modules
+                                        ?.elementAt(index)
+                                        .moduleData
+                                        ?.length,
+                                    itemBuilder: (context, index2) {
+                                      return Text(
+                                          subC.syllabus.value.modules
+                                                  ?.elementAt(index)
+                                                  .moduleData
+                                                  ?.elementAt(index2) ??
+                                              "",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2);
+                                    })
+                              ],
+                            ),
                           ),
-                Obx(() => Text(
-                    subC.syllabus.value.module2,
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 0.10,
-                        fontWeight: FontWeight.w500),
-                  )),
-                ],
-                           ),
-              )
-             :  Center(child: Text("No Data"),)
-             )
+                        );
+                      })))
           ],
         ),
       ),

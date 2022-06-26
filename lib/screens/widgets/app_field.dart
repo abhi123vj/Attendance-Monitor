@@ -20,6 +20,8 @@ class AppFormField extends StatefulWidget {
   final double height;
   final Function()? markPresent;
   final Function()? markAbsent;
+  final Function(int val)? onValChange;
+
   final Color borderColor;
   const AppFormField({
     this.index = 0,
@@ -34,6 +36,7 @@ class AppFormField extends StatefulWidget {
     this.height = 60,
     this.markPresent,
     this.markAbsent,
+    this.onValChange,
   }) : super(key: key);
 
   @override
@@ -56,7 +59,7 @@ class _AppFormFieldState extends State<AppFormField> {
         return normalTextField(isphone: true);
       case "password":
         return normalTextField(isPassword: true);
-         case "email":
+      case "email":
         return normalTextField(isEmail: true);
       default:
         return normalTextField();
@@ -224,9 +227,7 @@ class _AppFormFieldState extends State<AppFormField> {
   }
 
   Stack dropDownTextField() {
-    int i = 0;
     return Stack(
-      
       children: [
         Material(
           elevation: 2,
@@ -235,8 +236,7 @@ class _AppFormFieldState extends State<AppFormField> {
             width: 100.w,
             height: widget.height,
             decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: AppColors.accentYellow,
             ),
             padding: const EdgeInsets.only(
@@ -244,12 +244,15 @@ class _AppFormFieldState extends State<AppFormField> {
             ),
             alignment: Alignment.centerLeft,
             child: TextFormField(
+              
               onChanged: (val) {
                 print("Val is $val");
               },
               controller: widget.controller,
               readOnly: true,
+              maxLines: null,
               decoration: InputDecoration(
+                
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
@@ -269,8 +272,8 @@ class _AppFormFieldState extends State<AppFormField> {
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             isExpanded: true,
             items: widget.list?.cast<String>().map((value) {
-              i++;
               return DropdownMenuItem(
+
                 value: value,
                 child: Text(
                   value,
@@ -282,8 +285,7 @@ class _AppFormFieldState extends State<AppFormField> {
               );
             }).toList(),
             onChanged: (String? newValue) {
-              log(newValue.toString());
-
+              log(newValue.toString());            
               setState(() {
                 log(newValue.toString());
                 widget.controller.text = newValue!;

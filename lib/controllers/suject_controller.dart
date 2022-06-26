@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:attendance_montior/models/newSyllabus.dart';
 import 'package:attendance_montior/models/syllabus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../models/subject.dart';
 
 class SubjectController extends GetxController {
   final FirebaseFirestore db = FirebaseFirestore.instance;
@@ -16,70 +16,62 @@ class SubjectController extends GetxController {
   final TextEditingController subTextEditingController =
       TextEditingController();
   RxList semList = <String>[].obs;
-  Map<String, SubjectResponse> subjectsMap = {}.obs.cast();
-  Map keyFinder = {};
-  Rx<SyllabusResponse> syllabus = SyllabusResponse(
-          credits: "credits",
-          module1: "module1",
-          module2: "module2",
-          module3: "module3",
-          module4: "module4")
-      .obs;
-  RxBool isSyllabusEmplty = true.obs;
-
+  Rx<NewSyllabusModel> syllabus = NewSyllabusModel().obs;
+  RxMap subjectsMap = {}.obs;
+  RxInt activeSubjectIndex = 1.obs;
   @override
   void onInit() {
     semTextEditingController.addListener(() {
-      isSyllabusEmplty.value = true;
       semValue.value = semTextEditingController.text;
+      syllabus.value = NewSyllabusModel();
+      subTextEditingController.clear();
       fetchSubject(semValue.value);
     });
-    subTextEditingController.addListener(() {
+    subTextEditingController.addListener(() async {
       //semValue.value = subTextEditingController.text;
-      isSyllabusEmplty.value = true;
-      fetchSyllabus(keyFinder[subTextEditingController.text]);
+      for (var key in subjectsMap.keys) {
+        if (subjectsMap[key] == subTextEditingController.text) {
+          fetchSyllabus2(key);
+          break;
+        }
+      }
     });
     fetchsem();
     super.onInit();
   }
 
-  fetchSyllabus(id) {
+  fetchSyllabus2(id) async {
     try {
-      final docRef = db.collection("Syllabus").doc("2018 Scheme");
-      docRef.get().then(
+      await db.collection("Syllabus").doc(id).get().then(
         (DocumentSnapshot doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          data.forEach(
-            (key, value) {
-              if (key.trim() == id.toString().trim()) {
-                isSyllabusEmplty.value = false;
-                syllabus.value = SyllabusResponse.fromJson(value);
-                log(value["Module1"].toString());
-              }
-            },
-          );
+          if(doc.data()!=null){
+            final data = doc.data() as Map<String, dynamic>;
+          var jsonDecod = NewSyllabusModel.fromJson(data);
+          log("jsonDecod = ${jsonDecod.references}");
+          syllabus.value = jsonDecod;}
+          // syllabus.value= SyllabusResponse.fromJson(data[id]);
         },
-        onError: (e) => print("Error getting document: $e"),
+        onError: (e) {
+          print("Error getting document: $e");
+        },
       );
     } catch (e) {
-      log("err $e");
+      log(e.toString());
     }
   }
 
   fetchSubject(sem) async {
-    subjectsMap.clear();
-    keyFinder.clear();
-    final docRef = db.collection("Subjects").doc(sem);
+    final docRef = db.collection("Subjects/").doc(sem);
     docRef.get().then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
+        subjectsMap.clear();
         data.forEach(
           (key, value) {
-            subjectsMap[key] = SubjectResponse.fromJson(value);
-            keyFinder[SubjectResponse.fromJson(value).subjectName] = key;
+            log("message ${key} value = ${value['subjectName']}");
+            subjectsMap[key] = value['subjectName'];
           },
         );
-        log("message ${subjectsMap}");
       },
       onError: (e) => print("Error getting document: $e"),
     );
