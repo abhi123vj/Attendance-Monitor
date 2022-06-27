@@ -78,9 +78,9 @@ class LoginScreen extends StatelessWidget {
                             if (authC.isloading.isFalse) {
                               log("message2");
                               authC.login(params: {
-                                "username":
-                                    "Test4@gmail.com", //_emailController.text,
-                                "password": "Test@123" //_passwordController.text
+                                "email":
+                                    _emailController.text,
+                                "password":_passwordController.text
                               });
                             }
                           },

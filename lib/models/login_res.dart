@@ -31,7 +31,7 @@ class User {
   User({
     required this.id,
     required this.name,
-    required this.username,
+    required this.email,
     required this.mobnumber,
     required this.dept,
     required this.currentuserStatus,
@@ -39,7 +39,7 @@ class User {
 
   String id;
   String name;
-  String username;
+  String email;
   int mobnumber;
   String dept;
   String currentuserStatus;
@@ -47,7 +47,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["_id"] == null ? null : json["_id"],
         name: json["name"] == null ? null : json["name"],
-        username: json["username"] == null ? null : json["username"],
+        email: json["email"] == null ? null : json["email"],
         mobnumber: json["mobnumber"] == null ? null : json["mobnumber"],
         dept: json["dept"] == null ? null : json["dept"],
         currentuserStatus: json["currentuserStatus"] == null
@@ -58,7 +58,7 @@ class User {
   Map<String, dynamic> toJson() => {
         "_id": id == null ? null : id,
         "name": name == null ? null : name,
-        "username": username == null ? null : username,
+        "email": email == null ? null : email,
         "mobnumber": mobnumber == null ? null : mobnumber,
         "dept": dept == null ? null : dept,
         "currentuserStatus":

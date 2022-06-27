@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:sizer/sizer.dart';
 
 import '../controllers/authentication_controller.dart';
@@ -95,28 +96,33 @@ class SignUpScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            authC.signUp(params: {
-                              "name": _nameController.text,
-                              "username": _staffIdController.text,
-                              "mobnumber": _phnNoController.text,
-                              "dept": _deptIdController.text,
-                              "role": "Tecaher",
-                              "password": _passwordController.text
-                            });
-                          },
-                          child: Text(
-                            'Signup',
-                            style: Theme.of(context).textTheme.button,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 5.w),
-                              primary: AppColors.bgBlack,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(18)))),
-                        ),
+                        child: Obx(() => ElevatedButton(
+                              onPressed: () {
+                                authC.signUp(params: {
+                                  "name": _nameController.text,
+                                  "email": _staffIdController.text,
+                                  "mobnumber": _phnNoController.text,
+                                  "dept": _deptIdController.text,
+                                  "role": "Teacher",
+                                  "password": _passwordController.text
+                                });
+                              },
+                              child: authC.isloading.isTrue
+                                  ? JumpingText(                                    
+                                      'Loading...',
+                                      style: Theme.of(context).textTheme.button,
+                                    )
+                                  : Text(
+                                      'Signup',
+                                      style: Theme.of(context).textTheme.button,
+                                    ),
+                              style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.symmetric(vertical: 5.w),
+                                  primary: AppColors.bgBlack,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(18)))),
+                            )),
                       ),
                     ],
                   ),

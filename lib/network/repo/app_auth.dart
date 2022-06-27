@@ -16,7 +16,7 @@ class AuthRepo {
   static Future userSignUp({required Map params}) async {
     try {
       final Response response = await dio.post(ApiUrl.signUp, data: params);
- log("Errrorsssssss $response");
+      log("Errrorsssssss $response");
       if (response.isSuccess()) {
         log("Sucess ${response.data}");
         final loginres = signUpResponseFromJson(response.data);
@@ -36,6 +36,7 @@ class AuthRepo {
   static Future userLogin({required Map params}) async {
     try {
       final Response response = await dio.post(ApiUrl.signIn, data: params);
+      log(response.data.toString());
       if (response.isSuccess()) {
         final loginres = loginResponseFromJson(response.data);
         return loginres;
@@ -44,7 +45,7 @@ class AuthRepo {
         return loginres;
       }
     } catch (error) {
-        final errorRess = BaseResponse(success: false, message: error.toString());
+      final errorRess = BaseResponse(success: false, message: error.toString());
       return errorRess;
     }
   }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:attendance_montior/config/app_congif.dart';
@@ -24,15 +25,17 @@ class DioHelper {
 
   DioHelper(String baseUrl) {
     dio.options.baseUrl = baseUrl;
+    dio.options.connectTimeout = 5000;
+    dio.options.receiveTimeout = 3000;
+
     dio.options.followRedirects = true;
     dio.options.headers = {
       // 'bearer': 'Bearer ${UserSession().accessToken}',
       HttpHeaders.acceptHeader: 'application/json',
+
       //  HttpHeaders.authorizationHeader: 'Bearer ${UserSession().accessToken}'
-     
     };
     dio.transformer = JsonTransformer();
-    
 
     // auth interceptor
     _setupAuthInterceptor();
@@ -41,10 +44,8 @@ class DioHelper {
   void _setupAuthInterceptor() {
     dio.interceptors.add(
       InterceptorsWrapper(onRequest: (options, handler) async {
-       
         return handler.next(options);
       }, onError: (DioError error, ErrorInterceptorHandler handler) {
-      
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
@@ -59,16 +60,37 @@ class DioHelper {
               break;
           }
         } else if (error.type == DioErrorType.other) {
-          // Check internet connection
+          log("Error time");
+          // handler.resolve(Response(
+          //   requestOptions: error.requestOptions,
+          //   data: {
+          //     'success': false,
+          //     'message': error.response?.data["message"],
+          //     'errorMessage': error.message
+          //   },
+          //   statusCode: error.response?.statusCode,
+          // ));
         } else {
+          log("Error time 2 ${error.response?.data["success"]}");
+          handler.resolve(Response(
+            requestOptions: error.requestOptions,
+            data: {
+              'success': false,
+              'message': error.message,
+              'errorMessage': "errormessage"
+            },
+            statusCode: 500,
+          ));
+          return;
           // Show error message
         }
         handler.resolve(Response(
           requestOptions: error.requestOptions,
           data: {
-            'success':error.response?.data["success"],
+            'success': error.response?.data["success"],
             'message': error.response?.data["message"],
-            'errorMessage': error.message},
+            'errorMessage': error.message
+          },
           statusCode: error.response?.statusCode,
         ));
       }),

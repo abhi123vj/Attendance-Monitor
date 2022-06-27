@@ -40,21 +40,25 @@ class AuthController extends GetxController {
     //   "role": "Tecaher",
     //   "password": "Test@1223"
     // };
+    log(params.toString());
+    isloading.value = true;
     var res = await AuthRepo.userSignUp(params: params);
     log("first ${res}");
     if (res.success == true) {
       res as SignUpResponse;
-      Get.snackbar("${res.user?.name} Your Account created", res.message.toString());
-      Get.offAllNamed("/login", arguments:res.user?.username);
+      Get.snackbar(
+          "${res.user?.name} Your Account created", res.message.toString());
+      Get.offAllNamed("/login", arguments: res.user?.username);
       log("Receds ${res.user?.name}");
     } else {
-     ///? res as BaseResponse;
-      Get.snackbar("Login Failed", res.message.toString(),
-          );
+      ///? res as BaseResponse;
+      Get.snackbar(
+        "Login Failed",
+        res.message.toString(),
+      );
       log("Receds fail  ${res.message}");
-      
     }
-  
-   isloading.value = false;
+
+    isloading.value = false;
   }
 }
