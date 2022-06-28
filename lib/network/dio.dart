@@ -4,7 +4,10 @@ import 'dart:io';
 
 import 'package:attendance_montior/config/app_congif.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:flutter/foundation.dart';
+
+import '../config/user_session.dart';
 
 class DioHelper {
   Dio dio = Dio();
@@ -32,6 +35,7 @@ class DioHelper {
     dio.options.headers = {
       // 'bearer': 'Bearer ${UserSession().accessToken}',
       HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.authorizationHeader: UserSession().accessToken
 
       //  HttpHeaders.authorizationHeader: 'Bearer ${UserSession().accessToken}'
     };
@@ -42,10 +46,28 @@ class DioHelper {
   }
 
   void _setupAuthInterceptor() {
+     dio.interceptors.add(
+    RetryInterceptor(
+      dio: dio,
+      logPrint: print, // specify log function (optional)
+      retries: 3, // retry count (optional)
+      retryDelays: const [
+        // set delays between retries (optional)
+        Duration(seconds: 1), // wait 1 sec before first retry
+        Duration(seconds: 2), // wait 2 sec before second retry
+        Duration(seconds: 3), // wait 3 sec before third retry
+      ],
+    ),
+  );
+
     dio.interceptors.add(
-      InterceptorsWrapper(onRequest: (options, handler) async {
+
+      InterceptorsWrapper(
+        
+      onRequest: (options, handler) async {
         return handler.next(options);
-      }, onError: (DioError error, ErrorInterceptorHandler handler) {
+      },
+      onError: (DioError error, ErrorInterceptorHandler handler) {
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
@@ -57,21 +79,42 @@ class DioHelper {
               break;
             case 500:
               // Server broken
+              handler.resolve(Response(
+                requestOptions: error.requestOptions,
+                data: {
+                  'success': false,
+                  'message': error.message,
+                  'errorMessage': "errormessage"
+                },
+                statusCode: error.response?.statusCode,
+              ));
               break;
           }
         } else if (error.type == DioErrorType.other) {
-          log("Error time");
-          // handler.resolve(Response(
-          //   requestOptions: error.requestOptions,
-          //   data: {
-          //     'success': false,
-          //     'message': error.response?.data["message"],
-          //     'errorMessage': error.message
-          //   },
-          //   statusCode: error.response?.statusCode,
-          // ));
+          log("Error time ${error.type}");
+          handler.resolve(Response(
+            requestOptions: error.requestOptions,
+            data: {
+              'success': false,
+              'message': 'Network Error ${error.type}',
+              'errorMessage': error.message
+            },
+            statusCode: error.response?.statusCode,
+          ));
+        } else if (error.type == DioErrorType.connectTimeout) {
+          log("Error connection ${error.type}");
+
+          handler.resolve(Response(
+            requestOptions: error.requestOptions,
+            data: {
+              'success': false,
+              'message': 'Network Error ${error.type}',
+              'errorMessage': error.message
+            },
+            statusCode: 500,
+          ));
         } else {
-          log("Error time 2 ${error.response?.data["success"]}");
+          log("Error time 2 ${error.type}");
           handler.resolve(Response(
             requestOptions: error.requestOptions,
             data: {
@@ -79,21 +122,23 @@ class DioHelper {
               'message': error.message,
               'errorMessage': "errormessage"
             },
-            statusCode: 500,
+            statusCode: error.response?.statusCode,
           ));
           return;
           // Show error message
         }
-        handler.resolve(Response(
-          requestOptions: error.requestOptions,
-          data: {
-            'success': error.response?.data["success"],
-            'message': error.response?.data["message"],
-            'errorMessage': error.message
-          },
-          statusCode: error.response?.statusCode,
-        ));
-      }),
+        //   handler.resolve(Response(
+        //     requestOptions: error.requestOptions,
+        //     data: {
+        //       'success': error.response?.data["success"],
+        //       'message': error.response?.data["message"],
+        //       'errorMessage': error.message
+        //     },
+        //     statusCode: error.response?.statusCode,
+        //   ));
+      }
+      ),
+
     );
   }
 }

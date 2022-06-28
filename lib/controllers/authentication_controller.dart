@@ -8,6 +8,8 @@ import 'package:attendance_montior/network/repo/app_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../config/user_session.dart';
+
 class AuthController extends GetxController {
   final TextEditingController emailTextEditingController =
       TextEditingController();
@@ -20,6 +22,7 @@ class AuthController extends GetxController {
     log("first ${res}");
     if (res.success == true) {
       res as LoginResponse;
+      saveUserSession(res);
       Get.offAllNamed("/", arguments: res.user);
       log("Receds ${res.user?.name}");
     } else {
@@ -28,6 +31,19 @@ class AuthController extends GetxController {
       log("Receds fail  ${res.message}");
     }
     isloading.value = false;
+  }
+
+  void saveUserSession(LoginResponse session) {
+    if (session.token != null) {
+      final tokens = session.token;
+      final user = session.user;
+      if (tokens != null && user != null) {
+        UserSession().saveTokens(tokens);
+        UserSession().saveUser(user);
+        UserSession().tokens = tokens;
+        UserSession().user = user;
+      }
+    }
   }
 
   signUp({required Map params}) async {

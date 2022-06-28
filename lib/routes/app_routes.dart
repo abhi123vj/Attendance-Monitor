@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
@@ -7,7 +9,9 @@ import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:attendance_montior/screens/time_table_screen.dart';
 import 'package:attendance_montior/screens/time_table_upload_screen.dart';
 import 'package:attendance_montior/screens/splash_screen.dart';
+import 'package:attendance_montior/screens/user_deatils.dart';
 import 'package:get/get.dart';
+import '../config/user_session.dart';
 import '../screens/splash_screen.dart';
 
 class AppRoutes {
@@ -49,13 +53,22 @@ class AppRoutes {
       name: '/splash',
       page: () => const SplashScreen(),
     ),
+        GetPage(
+      name: '/userDetails',
+      page: () =>  UserDetailsScreen(),
+    ),
   ];
-  static String initialPage = loginScreen;
+
+
+
+  static String initialPage = splashSCreen;
 
   static String homeScreen = '/';
+  static String userDetails = '/userDetails';
   static String markAttndcScreen = '/markAttendance';
   static String loginScreen = '/login';
   static String signUpScreen = '/signUp';
+  static String splashSCreen = '/splash';
 
   static String syllabusScreen = '/syllabus';
 }

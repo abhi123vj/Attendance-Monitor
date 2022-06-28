@@ -17,4 +17,6 @@ class ApiUrl {
   //profile
    static String userDetails = 'user/userDetails';
 
+    static const String allUsers = '/api/admin/users';
+
 }
