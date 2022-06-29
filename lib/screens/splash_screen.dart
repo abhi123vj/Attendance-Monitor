@@ -51,9 +51,8 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Container(
                   child: SvgPicture.asset(
                 AppImages.clgLogo,
-                color: AppColors.bgWhite,
-                colorBlendMode: BlendMode.dstATop,
-                cacheColorFilter: true,
+                //color: AppColors.bgWhite,
+                // colorBlendMode: BlendMode.src,
               )))
         ]));
   }
