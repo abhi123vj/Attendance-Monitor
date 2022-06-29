@@ -53,15 +53,13 @@ class AppRoutes {
       name: '/splash',
       page: () => const SplashScreen(),
     ),
-        GetPage(
+    GetPage(
       name: '/userDetails',
-      page: () =>  UserDetailsScreen(),
+      page: () => UserDetailsScreen(),
     ),
   ];
 
-
-
-  static String initialPage = splashSCreen;
+  static String initialPage = '/splash';
 
   static String homeScreen = '/';
   static String userDetails = '/userDetails';
