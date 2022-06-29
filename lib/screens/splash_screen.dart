@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   checkUserData() {
-    Timer(const Duration(seconds: 10000), (() async {
+    Timer(const Duration(seconds: 3), (() async {
       await UserSession().initUserSession();
       if (UserSession().isLoggedIn()) {
         log("User satstus true");

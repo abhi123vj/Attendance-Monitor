@@ -150,60 +150,72 @@ class UserDetailsScreen extends StatelessWidget {
                           itemCount: homeC.techerList.length,
                           itemBuilder: ((context, index) {
                             //?repace With listItemWIdget
-                            return Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                decoration: const BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    color: AppColors.accentGreen),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            homeC.techerList
-                                                .elementAt(index)
-                                                .userName,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline5
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.w600)),
-                                        Text(
-                                            homeC.techerList
-                                                .elementAt(index)
-                                                .dept,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            homeC.techerList
-                                                .elementAt(index)
-                                                .email,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2),
-                                        Text(
-                                            "+91 ${homeC.techerList.elementAt(index).mobnumber}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2),
-                                      ],
-                                    ),
-                                  ],
-                                ));
+                            return GestureDetector(
+                              onTap: () {
+                                ClipboardPrompt(
+                                    homeC.pendingUser[UserRoles.teacher]
+                                        ?.elementAt(index)
+                                        .userName,
+                                    homeC.pendingUser[UserRoles.teacher]
+                                        ?.elementAt(index)
+                                        .email,
+                                    context);
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  decoration: const BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color: AppColors.accentGreen),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              homeC.techerList
+                                                  .elementAt(index)
+                                                  .userName,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline5
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                          Text(
+                                              homeC.techerList
+                                                  .elementAt(index)
+                                                  .dept,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              homeC.techerList
+                                                  .elementAt(index)
+                                                  .email,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2),
+                                          Text(
+                                              "+91 ${homeC.techerList.elementAt(index).mobnumber}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            );
                           }));
                 } else if (homeC.activeUser.value == UserRoles.student) {
                   return homeC.studentList.isEmpty
@@ -217,60 +229,72 @@ class UserDetailsScreen extends StatelessWidget {
                           itemCount: homeC.studentList.length,
                           itemBuilder: ((context, index) {
                             //?repace With listItemWIdget
-                            return Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                decoration: const BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    color: AppColors.accentYellow),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            homeC.studentList
-                                                .elementAt(index)
-                                                .userName,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline5
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.w600)),
-                                        Text(
-                                            homeC.studentList
-                                                .elementAt(index)
-                                                .dept,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            homeC.studentList
-                                                .elementAt(index)
-                                                .email,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2),
-                                        Text(
-                                            "+91 ${homeC.studentList.elementAt(index).mobnumber}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2),
-                                      ],
-                                    ),
-                                  ],
-                                ));
+                            return GestureDetector(
+                              onTap: () {
+                                ClipboardPrompt(
+                                    homeC.pendingUser[UserRoles.teacher]
+                                        ?.elementAt(index)
+                                        .userName,
+                                    homeC.pendingUser[UserRoles.teacher]
+                                        ?.elementAt(index)
+                                        .email,
+                                    context);
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  decoration: const BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color: AppColors.accentYellow),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              homeC.studentList
+                                                  .elementAt(index)
+                                                  .userName,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline5
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                          Text(
+                                              homeC.studentList
+                                                  .elementAt(index)
+                                                  .dept,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              homeC.studentList
+                                                  .elementAt(index)
+                                                  .email,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2),
+                                          Text(
+                                              "+91 ${homeC.studentList.elementAt(index).mobnumber}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            );
                           }));
                 } else if (homeC.activeUser.value == "Pending") {
                   //?replace wit hwidget 2
@@ -504,6 +528,56 @@ class UserDetailsScreen extends StatelessWidget {
   }
 
   showDialog(String? name, String? email, BuildContext cntx) {
+    Get.defaultDialog(
+        title: "Verify user",
+        middleText: "Do you want to accept $name?",
+        backgroundColor: AppColors.bgBlack,
+        titleStyle: Theme.of(cntx)
+            .textTheme
+            .headline6
+            ?.copyWith(color: AppColors.bgWhite),
+        middleTextStyle: Theme.of(cntx)
+            .textTheme
+            .subtitle2
+            ?.copyWith(color: AppColors.white),
+        cancel: Bounce(
+            child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: AppColors.white),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: const Text("Reject")),
+            duration: const Duration(milliseconds: 110),
+            onPressed: () {
+              if (email != null) {
+                homeC.updateUserStatus(email, 'Rejected');
+              } else {
+                log("No Email fond");
+              }
+              Get.back();
+              log("Reject");
+            }),
+        confirm: Bounce(
+            child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: AppColors.accentGreen),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: const Text("Accept")),
+            duration: const Duration(milliseconds: 110),
+            onPressed: () {
+              if (email != null) {
+                homeC.updateUserStatus(email, 'Accepted');
+              } else {
+                log("No Email fond");
+              }
+              Get.back();
+            }));
+  }
+
+  ClipboardPrompt(String? name, String? email, BuildContext cntx) {
     Get.defaultDialog(
         title: "Verify user",
         middleText: "Do you want to accept $name?",
