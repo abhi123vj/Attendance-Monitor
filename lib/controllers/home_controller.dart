@@ -5,9 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
+import '../config/user_session.dart';
+
 class HomeController extends GetxController {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   RxString greetingMes = "".obs;
+  String? userName = "";
   List animationList = [
     ['PopOutRightidle', 'PopOutRightIn'],
     ['PopOutBot'],
@@ -17,9 +20,13 @@ class HomeController extends GetxController {
   User? currentuser;
   @override
   void onInit() {
+    getUserName();
     greetingMes.value = greetingMessage();
-    currentuser = Get.arguments;
     super.onInit();
+  }
+
+  getUserName() {
+    userName = UserSession().user?.name;
   }
 
   String greetingMessage() {

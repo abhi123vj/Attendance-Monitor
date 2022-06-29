@@ -44,7 +44,8 @@ class DioHelper {
     );
 
     dio.interceptors.add(
-      InterceptorsWrapper(onRequest: (options, handler) async {
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
         if (options.headers['authorization'] == '' ||
             options.headers['authorization'] == null) {
           log("Empty token fetching token");
@@ -58,10 +59,12 @@ class DioHelper {
         log(options.headers.toString());
 
         return handler.next(options);
-      }, onResponse: (options, handler) async {
+      }, 
+      onResponse: (options, handler) async {
         log("response was ${options.data}");
          return handler.next(options);
-      }, onError: (DioError error, ErrorInterceptorHandler handler) {
+      },
+      onError: (DioError error, ErrorInterceptorHandler handler) {
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:

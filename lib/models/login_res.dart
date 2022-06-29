@@ -2,7 +2,6 @@
 //
 //     final loginResponse = loginResponseFromJson(jsonString);
 
-import 'dart:convert';
 
 LoginResponse loginResponseFromJson(Map<String, dynamic> str) =>
     LoginResponse.fromJson(str);

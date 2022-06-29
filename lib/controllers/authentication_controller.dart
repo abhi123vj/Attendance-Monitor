@@ -17,14 +17,20 @@ class AuthController extends GetxController {
   final TextEditingController passwordTextEditingController =
       TextEditingController();
   RxBool isloading = false.obs;
+
   login({required Map params}) async {
     isloading.value = true;
+   
+
+    ///! network req
     var res = await AuthRepo.userLogin(params: params);
+
+
     log("first ${res}");
     if (res.success == true) {
       res as LoginResponse;
-       saveUserSession(res);
-      Get.offAllNamed(AppRoutes.homeScreen, arguments: res.user);
+      saveUserSession(res);
+      Get.offAllNamed(AppRoutes.homeScreen);
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
@@ -46,6 +52,7 @@ class AuthController extends GetxController {
       }
     }
   }
+
   signUp({required Map params}) async {
     // log(params.toString());
     // var params = {
@@ -64,8 +71,7 @@ class AuthController extends GetxController {
       res as SignUpResponse;
       Get.snackbar(
           "${res.user?.name} Your Account created", res.message.toString());
-      Get.offAllNamed(AppRoutes.loginScreen
-      , arguments: res.user?.email);
+      Get.offAllNamed(AppRoutes.loginScreen, arguments: res.user?.email);
       log("Receds ${res.user?.name}");
     } else {
       ///? res as BaseResponse;

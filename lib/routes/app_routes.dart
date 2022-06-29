@@ -46,10 +46,12 @@ class AppRoutes {
       page: () => const TimetableCreateScreen(),
     ),
     GetPage(
-      name: '/splash',
+      name: splashSCreen,
       page: () => const SplashScreen(),
     ),
   ];
+
+  ///?init page
   static String initialPage = splashSCreen;
 
   static String homeScreen = '/';
@@ -57,6 +59,5 @@ class AppRoutes {
   static String loginScreen = '/login';
   static String signUpScreen = '/signUp';
   static String splashSCreen = '/splash';
-
   static String syllabusScreen = '/syllabus';
 }

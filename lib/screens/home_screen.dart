@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi,${UserSession().user?.name}",
+                  "Hi,${homeC.userName}",
                   style: Theme.of(context)
                       .textTheme
                       .headline4

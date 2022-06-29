@@ -35,7 +35,7 @@ class AuthRepo {
 
   static Future userLogin({required Map params}) async {
     try {
-      final Response response = await dio.post(ApiUrl.signIn, data: params);
+      final Response response = await dio.post(ApiUrl.signIn, data: params);      
       log(response.data.toString());
       if (response.isSuccess()) {
         final loginres = loginResponseFromJson(response.data);
