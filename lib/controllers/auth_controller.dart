@@ -6,6 +6,7 @@ import 'package:attendance_montior/models/login_response.dart';
 import 'package:attendance_montior/models/signup_response.dart';
 
 import 'package:attendance_montior/network/repo/app_auth.dart';
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class AuthController extends GetxController {
     if (res.success == true) {
       res as LoginResponse;
       saveUserSession(res);
-      Get.offAllNamed("/", arguments: res.user);
+      Get.offAllNamed(AppRoutes.homeScreen, arguments: res.user);
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
@@ -49,14 +50,16 @@ class AuthController extends GetxController {
 
   signUp({required Map params}) async {
     // log(params.toString());
-    // var params = {
-    //   "name": "Abhi4",
-    //   "username": "Test4@gmail.com",
-    //   "mobnumber": 6285454548,
-    //   "dept": "CSE",
-    //   "role": "Tecaher",
-    //   "password": "Test@1223"
-    // };
+    var params = {
+      "name": "Aish",
+      "username": "Test4@gmail.com",
+      "mobnumber": 6285454548,
+      "dept": "CSE",
+      "role": "Student",
+      "year":"2018",
+      "rollno":"18404007",
+      "password": "Test@1223"
+    };
     log(params.toString());
     isloading.value = true;
     var res = await AuthRepo.userSignUp(params: params);

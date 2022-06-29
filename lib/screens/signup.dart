@@ -1,5 +1,6 @@
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/controllers/auth_controller.dart';
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 
 import 'package:attendance_montior/screens/widgets/app_field.dart';
@@ -23,7 +24,8 @@ class SignUpScreen extends StatelessWidget {
   final _staffIdController = TextEditingController();
   final _deptIdController = TextEditingController();
   final _phnNoController = TextEditingController();
-
+  final _rollNoController = TextEditingController();
+  final _yearController = TextEditingController();
  final AuthController authC = Get.put(AuthController());
 
   @override
@@ -80,6 +82,22 @@ class SignUpScreen extends StatelessWidget {
                     height: 10,
                   ),
                   AppFormField(
+                    controller: _rollNoController,
+                    hintText: 'Roll No.',
+                    type: 'number',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  AppFormField(
+                    controller: _yearController,
+                    hintText: 'Year of joining',
+                    type: 'number',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  AppFormField(
                       type: "DropDown",
                       list: [
                         "CSE",
@@ -117,6 +135,8 @@ class SignUpScreen extends StatelessWidget {
                                   "email": _staffIdController.text,
                                   "mobnumber": _phnNoController.text,
                                   "dept": _deptIdController.text,
+                                  "year":_yearController.text,
+                                  "rollno":_rollNoController.text,
                                   "role": "Student",
                                   "password": _passwordController.text
                                 });
@@ -140,9 +160,35 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
+                 SizedBox(
+                height: 6.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FittedBox(
+                    child: Text(
+                      'Already has an account?',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
                   ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.loginScreen);
+                    },
+                    child: Text(
+                      'Login',
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
                 ],
               ),
             ),
