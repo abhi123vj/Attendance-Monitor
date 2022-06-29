@@ -35,7 +35,7 @@ class SignUpResponse {
 class User {
     User({
         required this.name,
-        required this.username,
+        required this.email,
         required this.mobnumber,
         required this.dept,
         required this.role,
@@ -43,7 +43,7 @@ class User {
     });
 
     String name;
-    String username;
+    String email;
     int mobnumber;
     String dept;
     String role;
@@ -51,7 +51,7 @@ class User {
 
     factory User.fromJson(Map<String, dynamic> json) => User(
         name: json["name"] == null ? null : json["name"],
-        username: json["username"] == null ? null : json["username"],
+        email: json["email"] == null ? null : json["email"],
         mobnumber: json["mobnumber"] == null ? null : json["mobnumber"],
         dept: json["dept"] == null ? null : json["dept"],
         role: json["role"] == null ? null : json["role"],
@@ -60,7 +60,7 @@ class User {
 
     Map<String, dynamic> toJson() => {
         "name": name == null ? null : name,
-        "username": username == null ? null : username,
+        "username": email == null ? null : email,
         "mobnumber": mobnumber == null ? null : mobnumber,
         "dept": dept == null ? null : dept,
         "role": role == null ? null : role,

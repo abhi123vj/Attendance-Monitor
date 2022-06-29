@@ -8,6 +8,12 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   RxString greetingMes = "".obs;
+  List animationList = [
+    ['PopOutRightidle', 'PopOutRightIn'],
+    ['PopOutBot'],
+    ['PopOutRightIn'],
+    ['PopOutRightidle'],
+  ];
   User? currentuser;
   @override
   void onInit() {

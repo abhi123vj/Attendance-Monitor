@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/attendce_detial.dart';
+import 'package:attendance_montior/screens/widgets/app_drawer.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.notifications))
         ],
       ),
+        drawer: AppDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

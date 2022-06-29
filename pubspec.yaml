@@ -48,6 +48,7 @@ dependencies:
   flutter_bounce: ^1.1.0
   shared_preferences: ^2.0.15
   dio_smart_retry: ^1.2.0
+  rive: ^0.9.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -77,6 +78,8 @@ flutter:
     - assets/icons/svg/
 
     - assets/images/
+    - assets/images/rive/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

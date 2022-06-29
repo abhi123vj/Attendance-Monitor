@@ -65,7 +65,7 @@ class AuthController extends GetxController {
       Get.snackbar(
           "${res.user?.name} Your Account created", res.message.toString());
       Get.offAllNamed(AppRoutes.loginScreen
-      , arguments: res.user?.username);
+      , arguments: res.user?.email);
       log("Receds ${res.user?.name}");
     } else {
       ///? res as BaseResponse;
