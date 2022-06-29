@@ -19,7 +19,6 @@ class UserSession {
   }
 
   Future initUserSession() async {
-   
     await getTokens();
     await getUser();
   }
@@ -32,14 +31,13 @@ class UserSession {
   // Check if the user is logged or not
   bool isLoggedIn() {
     // print(accessToken);
-    return tokens == null ? false : true;
+    return tokens == null || tokens == '' ? false : true;
   }
 
   // To save user token
   void saveTokens(String token) {
-  
+    tokens = token;
     DataManager().putString(PreferenceKeys.userTokens, token);
-   
   }
 
   // To Save user details in shared preference
@@ -50,7 +48,7 @@ class UserSession {
   }
 
   // To get the saved tokens from the shared preference
-  Future getTokens() async {   
+  Future getTokens() async {
     String tokenMap = await DataManager().getString(PreferenceKeys.userTokens);
     log("fetched tokens is $tokenMap");
     tokens = tokenMap;
@@ -58,7 +56,6 @@ class UserSession {
 
   // To get user from the shared preference
   Future getUser() async {
-   
     final userMap =
         await DataManager().getJsonObject(PreferenceKeys.userDetails);
     if (userMap.isNotEmpty) {
