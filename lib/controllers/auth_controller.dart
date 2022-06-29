@@ -58,7 +58,8 @@ class AuthController extends GetxController {
       "role": "Student",
       "year":"2018",
       "rollno":"18404007",
-      "password": "Test@1223"
+      "password": "Test@1223",
+      "studentid":"18cs208"
     };
     log(params.toString());
     isloading.value = true;
