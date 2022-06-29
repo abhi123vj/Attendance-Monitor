@@ -51,20 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 5.h,
           ),
-          Row(
-            children: [
-              Bounce(
-                  child: Container(
-                    decoration: BoxDecoration(color: AppColors.white),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Text("All Users"),
-                  ),
-                  duration: const Duration(milliseconds: 110),
-                  onPressed: () {
-                    homeC.fetchUsers();
-                  }),
-            ],
-          ),
+         
           SizedBox(
             height: 10,
           ),

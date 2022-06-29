@@ -6,7 +6,7 @@ class ApiUrl {
   static const String signIn = 'api/login';
   // Reset Password
   static const String resetPassword = 'resetPassword';
-   // Forgot Password
+  // Forgot Password
   static const String forgotPass = 'forgotPassword';
   // Dashboard
   static const String dashboard = 'dashboard';
@@ -15,8 +15,8 @@ class ApiUrl {
   //   return 'giveHelp/user/$userId';
   // }
   //profile
-   static String userDetails = 'user/userDetails';
+  static String userDetails = 'user/userDetails';
 
-    static const String allUsers = '/api/admin/users';
-
+  static const String allUsers = '/api/admin/users';
+  static const String verifyUser = '/api/admin/acceptuser';
 }

@@ -11,32 +11,15 @@ import '../config/user_session.dart';
 
 class DioHelper {
   Dio dio = Dio();
-
-  // static Map<String, dynamic> get headers {
-  //   return {
-  //     'bearer': 'Bearer ${UserSession().accessToken}',
-  //     HttpHeaders.acceptHeader: 'application/json',
-  //   };
-  // }
-
-  // static Options get options {
-  //   return Options(
-  //     followRedirects: true,
-  //     headers: headers
-  //   );
-  // }
-
   DioHelper(String baseUrl) {
     dio.options.baseUrl = baseUrl;
     dio.options.connectTimeout = 5000;
     dio.options.receiveTimeout = 3000;
-
     dio.options.followRedirects = true;
     dio.options.headers = {
       // 'bearer': 'Bearer ${UserSession().accessToken}',
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: UserSession().accessToken
-
       //  HttpHeaders.authorizationHeader: 'Bearer ${UserSession().accessToken}'
     };
     dio.transformer = JsonTransformer();
@@ -46,28 +29,35 @@ class DioHelper {
   }
 
   void _setupAuthInterceptor() {
-     dio.interceptors.add(
-    RetryInterceptor(
-      dio: dio,
-      logPrint: print, // specify log function (optional)
-      retries: 3, // retry count (optional)
-      retryDelays: const [
-        // set delays between retries (optional)
-        Duration(seconds: 1), // wait 1 sec before first retry
-        Duration(seconds: 2), // wait 2 sec before second retry
-        Duration(seconds: 3), // wait 3 sec before third retry
-      ],
-    ),
-  );
+    dio.interceptors.add(
+      RetryInterceptor(
+        dio: dio,
+        logPrint: print, // specify log function (optional)
+        retries: 3, // retry count (optional)
+        retryDelays: const [
+          // set delays between retries (optional)
+          Duration(seconds: 1), // wait 1 sec before first retry
+          Duration(seconds: 2), // wait 2 sec before second retry
+          Duration(seconds: 3), // wait 3 sec before third retry
+        ],
+      ),
+    );
 
     dio.interceptors.add(
+      InterceptorsWrapper(onRequest: (options, handler) async {
+        if (options.headers['authorization'] == '' ||
+            options.headers['authorization'] == null) {
+          log("Empty token fetching token");
+          await UserSession().getTokens();
+          if(UserSession().accessToken !=''||UserSession().accessToken.isNotEmpty) {
+            options.headers['authorization'] = UserSession().accessToken;
+          }
+        }
 
-      InterceptorsWrapper(
-        
-      onRequest: (options, handler) async {
+        log(options.headers.toString());
+
         return handler.next(options);
-      },
-      onError: (DioError error, ErrorInterceptorHandler handler) {
+      }, onError: (DioError error, ErrorInterceptorHandler handler) {
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
@@ -136,9 +126,7 @@ class DioHelper {
         //     },
         //     statusCode: error.response?.statusCode,
         //   ));
-      }
-      ),
-
+      }),
     );
   }
 }

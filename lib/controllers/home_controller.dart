@@ -20,7 +20,7 @@ class HomeController extends GetxController {
   List<SimpleUserModel> studentList = [];
   Map<String, List<SimpleUserModel>> pendingUser = {};
   RxString activeUser = UserRoles.teacher.obs;
-
+  RxBool isLoading = false.obs;
   changeActiveUSer(String str) {
     activeUser.value = str;
     update();
@@ -32,6 +32,20 @@ class HomeController extends GetxController {
     currentuser = Get.arguments;
     fetchUsers();
     super.onInit();
+  }
+
+  updateUserStatus(String email, String status) async {
+    isLoading.value = true;
+    update();
+    var res = await HomeRepo.verifyUser(
+        {"email": email, "currentuserStatus": status});
+    await fetchUsers();
+    res as BaseResponse;
+    if (res.success) {
+      Get.snackbar("User $status", res.message.toString());
+    } else {
+      Get.snackbar("Oh No! Error.", res.message.toString());
+    }
   }
 
   String greetingMessage() {
@@ -49,6 +63,8 @@ class HomeController extends GetxController {
   }
 
   fetchUsers() async {
+    isLoading.value = true;
+    update();
     var res = await HomeRepo.alluserDetails();
     if (res.success == true) {
       res as allusers.AllUserData;
@@ -65,9 +81,10 @@ class HomeController extends GetxController {
         if (user.currentuserStatus == "Accepted") {
           techerList.add(tmp);
         } else {
-          if (pendingUser[UserRoles.student] == null) {
-            pendingUser[UserRoles.student] = [];
+          if (pendingUser[UserRoles.teacher] == null) {
+            pendingUser[UserRoles.teacher] = [];
           }
+
           pendingUser[UserRoles.teacher]?.add(tmp);
         }
       }
@@ -87,11 +104,11 @@ class HomeController extends GetxController {
           pendingUser[UserRoles.student]?.add(tmp);
         }
       }
-      
-      update();
     } else {
       res as BaseResponse;
       Get.snackbar("Login Failed", res.message.toString());
     }
+    isLoading.value = false;
+    update();
   }
 }
