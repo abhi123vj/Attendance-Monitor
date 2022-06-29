@@ -1,11 +1,13 @@
 import 'dart:developer';
 
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/attendce_detial.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import '../config/user_session.dart';
 import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi,${homeC.currentuser!.name}",
+                  "Hi,${UserSession().user?.name}",
                   style: Theme.of(context)
                       .textTheme
                       .headline4
@@ -80,12 +82,12 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 5.h,
           ),
           Text(
-                      "Upcoming class",
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+            "Upcoming class",
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          SizedBox(
+            height: 10,
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Material(
@@ -96,12 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    
-                     Text(
+                    Text(
                       "9:00 PM - 10:00 PM  Graph Theory S8",
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
-                     Text(
+                    Text(
                       "9:00 PM - 10:00 PM  Graph Theory S8",
                       style: Theme.of(context).textTheme.subtitle2,
                     )
@@ -148,6 +149,10 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           if (key == "Attendance") {
             Get.toNamed("/markAttendance");
+          }
+          if (key == "Notify") {
+            UserSession().clearSession();
+            Get.toNamed(AppRoutes.loginScreen);
           }
         },
         child: Container(

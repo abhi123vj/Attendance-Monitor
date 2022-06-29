@@ -50,12 +50,13 @@ class AppRoutes {
       page: () => const SplashScreen(),
     ),
   ];
-  static String initialPage = loginScreen;
+  static String initialPage = splashSCreen;
 
   static String homeScreen = '/';
   static String markAttndcScreen = '/markAttendance';
   static String loginScreen = '/login';
   static String signUpScreen = '/signUp';
+  static String splashSCreen = '/splash';
 
   static String syllabusScreen = '/syllabus';
 }

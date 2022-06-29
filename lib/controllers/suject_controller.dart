@@ -25,7 +25,7 @@ class SubjectController extends GetxController {
       semValue.value = semTextEditingController.text;
       syllabus.value = NewSyllabusModel();
       subTextEditingController.clear();
-      fetchSubject(semValue.value);
+      //fetchSubject(semValue.value);
     });
     subTextEditingController.addListener(() async {
       //semValue.value = subTextEditingController.text;

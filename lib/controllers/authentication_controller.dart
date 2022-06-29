@@ -5,8 +5,11 @@ import 'package:attendance_montior/models/base_res.dart';
 import 'package:attendance_montior/models/login_res.dart';
 import 'package:attendance_montior/models/signup_res.dart';
 import 'package:attendance_montior/network/repo/app_auth.dart';
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../config/user_session.dart';
 
 class AuthController extends GetxController {
   final TextEditingController emailTextEditingController =
@@ -20,7 +23,8 @@ class AuthController extends GetxController {
     log("first ${res}");
     if (res.success == true) {
       res as LoginResponse;
-      Get.offAllNamed("/", arguments: res.user);
+       saveUserSession(res);
+      Get.offAllNamed(AppRoutes.homeScreen, arguments: res.user);
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
@@ -30,6 +34,18 @@ class AuthController extends GetxController {
     isloading.value = false;
   }
 
+  void saveUserSession(LoginResponse session) {
+    if (session.token != null) {
+      final tokens = session.token;
+      final user = session.user;
+      if (tokens != null && user != null) {
+        UserSession().saveTokens(tokens);
+        UserSession().saveUser(user);
+        UserSession().tokens = tokens;
+        UserSession().user = user;
+      }
+    }
+  }
   signUp({required Map params}) async {
     // log(params.toString());
     // var params = {
@@ -48,7 +64,8 @@ class AuthController extends GetxController {
       res as SignUpResponse;
       Get.snackbar(
           "${res.user?.name} Your Account created", res.message.toString());
-      Get.offAllNamed("/login", arguments: res.user?.username);
+      Get.offAllNamed(AppRoutes.loginScreen
+      , arguments: res.user?.username);
       log("Receds ${res.user?.name}");
     } else {
       ///? res as BaseResponse;

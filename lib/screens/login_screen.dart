@@ -15,10 +15,12 @@ class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  AuthController authC = Get.put(AuthController());
+  final AuthController authC = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
+    _emailController.text = "abhi@ram.com";
+    _passwordController.text = "Test@123";
     Get.arguments != null ? _emailController.text = Get.arguments : "";
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -78,20 +80,19 @@ class LoginScreen extends StatelessWidget {
                             if (authC.isloading.isFalse) {
                               log("message2");
                               authC.login(params: {
-                                "email":
-                                    _emailController.text,
-                                "password":_passwordController.text
+                                "email": _emailController.text,
+                                "password": _passwordController.text
                               });
                             }
                           },
                           child: authC.isloading.isTrue
                               ? JumpingText(
                                   'Loading...',
-                                   style: Theme.of(context).textTheme.button,
+                                  style: Theme.of(context).textTheme.button,
                                 )
-                              :  Text(
+                              : Text(
                                   'Login',
-                                    style: Theme.of(context).textTheme.button,
+                                  style: Theme.of(context).textTheme.button,
                                 ),
                           style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(vertical: 5.w),
@@ -109,7 +110,7 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   FittedBox(
+                  FittedBox(
                     child: Text(
                       'Don\'t have an account?',
                       style: Theme.of(context).textTheme.subtitle2,
@@ -122,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                     onTap: () {
                       Get.toNamed(AppRoutes.signUpScreen);
                     },
-                    child:  Text(
+                    child: Text(
                       'SignUp',
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
