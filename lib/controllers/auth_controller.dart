@@ -56,8 +56,8 @@ class AuthController extends GetxController {
       "mobnumber": 6285454548,
       "dept": "CSE",
       "role": "Student",
-      "year":"2018",
-      "rollno":"18404007",
+      "batch":"2018",
+      "registernumber":"18404007",
       "password": "Test@1223",
       "studentid":"18cs208"
     };

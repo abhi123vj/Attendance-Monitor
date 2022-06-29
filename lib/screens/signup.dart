@@ -135,8 +135,8 @@ class SignUpScreen extends StatelessWidget {
                                   "email": _staffIdController.text,
                                   "mobnumber": _phnNoController.text,
                                   "dept": _deptIdController.text,
-                                  "year":_yearController.text,
-                                  "rollno":_rollNoController.text,
+                                  "batch":_yearController.text,
+                                  "registernumber":_rollNoController.text,
                                   "role": "Student",
                                   "password": _passwordController.text
                                 });
