@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:attendance_montior/constants/app_colors.dart';
+import 'package:attendance_montior/models/base_response.dart';
+import 'package:attendance_montior/models/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -30,6 +32,22 @@ class AuthRepo {
     } catch (error) {
       log("Errror $error");
        return false;
+     }
+  }
+
+  static Future userLogin({required Map params}) async {
+    try {
+      final Response response = await dio.post(ApiUrl.signIn, data: params);
+      if (response.isSuccess()) {      
+        final loginres = loginResponseFromJson(response.data);
+        return loginres;
+      } else {    
+         final loginres = baseResponseFromJson(response.data);
+        return loginres;
+      }
+    } catch (error) {
+      log("Errror ${error}");
+      return false;
     }
   }
 }

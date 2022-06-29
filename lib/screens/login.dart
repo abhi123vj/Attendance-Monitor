@@ -2,8 +2,11 @@ import 'dart:developer';
 
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/network/repo/app_auth.dart';
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -106,6 +109,35 @@ class LoginScreen extends StatelessWidget {
                           top: 5.h,
                         ),
                       ),
+                       SizedBox(
+                height: 3.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FittedBox(
+                    child: Text(
+                      'Don\'t have an account?',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.signUpScreen);
+                    },
+                    child: Text(
+                      'SignUp',
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
                     ]),
               ),
             ),
