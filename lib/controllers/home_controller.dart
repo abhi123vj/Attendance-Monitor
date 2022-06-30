@@ -106,7 +106,7 @@ class HomeController extends GetxController {
       }
     } else {
       res as BaseResponse;
-      Get.snackbar("Login Failed", res.message.toString());
+      Get.snackbar("Something went wrong!", res.message.toString());
     }
     isLoading.value = false;
     update();

@@ -63,6 +63,15 @@ class DioHelper {
             case 401:
               break;
             case 403:
+             handler.resolve(Response(
+                requestOptions: error.requestOptions,
+                data: {
+                  'success': false,
+                  'message': error.response?.data['message'],
+                  'errorMessage': "errormessage"
+                },
+                statusCode: error.response?.statusCode,
+              ));
               // Forbidden
               break;
             case 404:
