@@ -55,10 +55,12 @@ class DioHelper {
           }
         }
 
-        log(options.headers.toString());
+        log("header ${options.headers.toString()}");
+        log("body data is ${options.data}");
 
         return handler.next(options);
-      }, onResponse: (options, handler) async {
+      }, 
+      onResponse: (options, handler) async {
         log("response was ${options.data}");
         return handler.next(options);
       }, onError: (DioError error, ErrorInterceptorHandler handler) {
@@ -110,13 +112,13 @@ class DioHelper {
                 statusCode: error.response?.statusCode,
               ));
               break;
-            case 500:
+           default :
               // Server broken
               handler.resolve(Response(
                 requestOptions: error.requestOptions,
                 data: {
                   'success': false,
-                  'message': error.message,
+                  'message': error.response?.data['message'],
                   'errorMessage': "errormessage"
                 },
                 statusCode: error.response?.statusCode,
