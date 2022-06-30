@@ -85,10 +85,24 @@ class SignUpScreen extends StatelessWidget {
                     height: 10,
                   ),
                   AppFormField(
-                    controller: _yearController,
-                    hintText: 'Year of joining',
-                    type: 'number',
-                  ),
+                      type: "DropDown",
+                      list: [
+                        "2018",
+                        "2019",
+                        "2020",
+                        "2021",
+                        "2022",
+                        "2023",
+                        "2024",
+                        "2025"
+                      ],
+                      controller: _yearController,
+                      hintText: 'Year of joining'),
+                  // AppFormField(
+                  //   controller: _yearController,
+                  //   hintText: 'Year of joining',
+                  //   type: 'number',
+                  // ),
                   SizedBox(
                     height: 10,
                   ),
@@ -134,12 +148,12 @@ class SignUpScreen extends StatelessWidget {
                                   "registernumber": _rollNoController.text,
                                   "role": "Student",
                                   "password": _passwordController.text,
-                                  "studentId":
-                                      _yearController.text.characters.take(2) +
-                                          _deptIdController.text.characters
-                                              .take(2) +
-                                          _rollNoController.text.characters
-                                              .take(3),
+                                  // "studentId":
+                                  //     _yearController.text.characters.take(2) +
+                                  //         _deptIdController.text.characters
+                                  //             .take(2) +
+                                  //         _rollNoController.text.characters
+                                  //             .take(3),
                                 });
                               },
                               child: authC.isloading.isTrue
