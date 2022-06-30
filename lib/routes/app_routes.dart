@@ -44,7 +44,7 @@ import 'package:get/get.dart';
   ];
 
 
-   static String initialPage = splashSCreen;
+   static String initialPage = '/tymtable';
 
   static String homeScreen = '/';
   static String userDetails = '/userDetails';

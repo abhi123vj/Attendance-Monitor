@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:attendance_montior/controllers/time_table_controller.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,8 @@ import '../constants/app_colors.dart';
 import '../controllers/suject_controller.dart';
 
 class TimeTableScreen extends StatelessWidget {
-  const TimeTableScreen({Key? key}) : super(key: key);
-
+ TimeTableScreen({Key? key}) : super(key: key);
+TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
   @override
   Widget build(BuildContext context) {
     final _semController = TextEditingController();
@@ -71,48 +72,49 @@ class TimeTableScreen extends StatelessWidget {
                         color: AppColors.black)
                   ]),
             ),
-            SizedBox(height: 3.h,),
-            Container(
+            SizedBox(
+              height: 3.h,
+            ),
+           Container(
               height: MediaQuery.of(context).size.height * 0.12,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return InkWell(
-                      child: Padding(
-                          padding: EdgeInsets.all(0.7.h),
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FittedBox(
-                                  child: Text(
-                                    date[index]['date'],
-                                    style: TextStyle(
-                                      color: AppColors.white,
-                                      fontSize: 18,
-                                      letterSpacing: 1,
-                                    ),
+                  return Obx(() => Padding(
+                    padding: EdgeInsets.all(1.h),
+                    child: TextButton(
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FittedBox(
+                                child: Text(
+                                  date[index]['date'],
+                                  style: TextStyle(
+                                    color: AppColors.white,
+                                    fontSize: 18,
+                                    letterSpacing: 1,
                                   ),
                                 ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: selectedIndex == index
-                                    ? Colors.yellowAccent
-                                    : AppColors.cyanNormal,
                               ),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12.0)),
-                            ),
-                            width: 9.0.h,
-                            height: 11.5.h,
-                          )),
-                      onTap: () {
-                        {
-                          selectedIndex = index;
-                        };
-                      });
+                            ],
+                          ),
+                        ),
+                        onPressed: () {
+                          timeC.selectedIndex.value = index;
+                        },
+                        style: ButtonStyle(
+                            shape:
+                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        side: BorderSide(
+                                          color:
+                                              timeC.selectedIndex.value == index
+                                                  ? Colors.yellowAccent
+                                                  : AppColors.cyanNormal,
+                                        ))))),
+                  ));
                 },
                 itemCount: date.length,
                 scrollDirection: Axis.horizontal,
@@ -121,14 +123,45 @@ class TimeTableScreen extends StatelessWidget {
             SizedBox(
               height: 2.h,
             ),
-            table('9:00-10:00 am', 'Maths'),
-            table('10:00-11:00 am', 'Physics'),
-            table('11:00-12:00 pm', 'Chem'),
-            table('1:00-2:00 pm', 'Maths'),
-            table('2:00-3:00 pm', 'Physics'),
-            table('3:00-4:00 pm', 'Chem'),
+           
+             Container(height: 50.h,
+               child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return  Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.orangeDark),
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
+                  width: double.infinity,
+                  height: 14.5.h,
+                  child: Column(children: [
+                    SizedBox(height: 0.5.h,),
+                   table_row('Start Time', '9:00am'),
+                   table_row('End Time', "10:00am"),
+                   table_row('Subject', "CSA"),
+                   table_row('Teacher', "Manu")
+                  ]),
+              ),
+            );
+          }),
+             ),
+         
           ],
         ),
+      ),
+    );
+  }
+
+  Widget table_row(t1, t2) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 0.5.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [Text(t1), Text(t2)],
       ),
     );
   }
@@ -147,11 +180,14 @@ class TimeTableScreen extends StatelessWidget {
             ),
           ),
           Expanded(child: Container()),
-          Text(t2,style: TextStyle(
+          Text(
+            t2,
+            style: TextStyle(
               color: AppColors.yellowPale,
               fontSize: 16,
               letterSpacing: 1,
-            ),),
+            ),
+          ),
         ],
       ),
     );
