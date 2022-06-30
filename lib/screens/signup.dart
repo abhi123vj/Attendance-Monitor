@@ -11,11 +11,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:sizer/sizer.dart';
 
-
-
-
-
-
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
   final _nameController = TextEditingController();
@@ -26,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
   final _phnNoController = TextEditingController();
   final _rollNoController = TextEditingController();
   final _yearController = TextEditingController();
- final AuthController authC = Get.put(AuthController());
+  final AuthController authC = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +32,22 @@ class SignUpScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             'Sign up',
-           style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 22,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
+            style: TextStyle(
+              color: AppColors.white,
+              fontSize: 22,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
           Text(
             'Welcome to UCEK Buzz',
             style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 18,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+              color: AppColors.white,
+              fontSize: 18,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           SizedBox(
             height: 5.h,
           ),
@@ -135,14 +130,20 @@ class SignUpScreen extends StatelessWidget {
                                   "email": _staffIdController.text,
                                   "mobnumber": _phnNoController.text,
                                   "dept": _deptIdController.text,
-                                  "batch":_yearController.text,
-                                  "registernumber":_rollNoController.text,
+                                  "batch": _yearController.text,
+                                  "registernumber": _rollNoController.text,
                                   "role": "Student",
-                                  "password": _passwordController.text
+                                  "password": _passwordController.text,
+                                  "studentId":
+                                      _yearController.text.characters.take(2) +
+                                          _deptIdController.text.characters
+                                              .take(2) +
+                                          _rollNoController.text.characters
+                                              .take(3),
                                 });
                               },
                               child: authC.isloading.isTrue
-                                  ? JumpingText(                                    
+                                  ? JumpingText(
                                       'Loading...',
                                       style: Theme.of(context).textTheme.button,
                                     )
@@ -160,35 +161,35 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                 SizedBox(
-                height: 6.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FittedBox(
-                    child: Text(
-                      'Already has an account?',
-                      style: Theme.of(context).textTheme.subtitle2,
-                    ),
+                  SizedBox(
+                    height: 6.h,
                   ),
-                  const SizedBox(
-                    width: 5,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FittedBox(
+                        child: Text(
+                          'Already has an account?',
+                          style: Theme.of(context).textTheme.subtitle2,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.loginScreen);
+                        },
+                        child: Text(
+                          'Login',
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                      ),
+                    ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoutes.loginScreen);
-                    },
-                    child: Text(
-                      'Login',
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
                 ],
               ),
             ),

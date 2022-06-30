@@ -50,35 +50,35 @@ class AuthController extends GetxController {
 
   signUp({required Map params}) async {
     // log(params.toString());
-    var params = {
+    var params2 = {
       "name": "Aish",
-      "username": "Test4@gmail.com",
+      "email": "Test4@gmail.com",
       "mobnumber": 6285454548,
       "dept": "CSE",
       "role": "Student",
       "batch":"2018",
       "registernumber":"18404007",
       "password": "Test@1223",
-      "studentid":"18cs208"
+      "studentId":"18cs208"
     };
     log(params.toString());
     isloading.value = true;
-    var res = await AuthRepo.userSignUp(params: params);
+    var res = await AuthRepo.userSignUp(params: params2);
     log("first ${res}");
-    if (res.success == true) {
-      res as SignUpResponse;
-      Get.snackbar(
-          "${res.user?.name} Your Account created", res.message.toString());
-      Get.offAllNamed("/login", arguments: res.user?.username);
-      log("Receds ${res.user?.name}");
-    } else {
-      ///? res as BaseResponse;
-      Get.snackbar(
-        "Login Failed",
-        res.message.toString(),
-      );
-      log("Receds fail  ${res.message}");
-    }
+    // if (res.success == true) {
+    //   res as SignUpResponse;
+    //   Get.snackbar(
+    //       "${res.user?.name} Your Account created", res.message.toString());
+    //   Get.offAllNamed("/login", arguments: res.user?.username);
+    //   log("Receds ${res.user?.name}");
+    // } else {
+    //   ///? res as BaseResponse;
+    //   Get.snackbar(
+    //     "Login Failed",
+    //     res.message.toString(),
+    //   );
+    //   log("Receds fail  ${res.message}");
+    // }
 
     isloading.value = false;
   }

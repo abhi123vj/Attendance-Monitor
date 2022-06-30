@@ -1,7 +1,7 @@
 class ApiUrl {
   ApiUrl._();
   // Sign up
-  static const String signUp = 'signUp';
+  static const String signUp = '/api/student/register';
   // Sign in
   static const String signIn = 'api/login';
   // Reset Password

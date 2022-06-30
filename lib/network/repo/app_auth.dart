@@ -20,19 +20,19 @@ class AuthRepo {
     try {
       final Response response = await dio.post(ApiUrl.signUp, data: params);
       log("Errrorsssssss $response");
-      if (response.isSuccess()) {
-        log("Sucess ${response.data}");
-        final loginres = signUpResponseFromJson(response.data);
-        return loginres;
-      } else {
-        log("Failed $response");
-        final loginres = baseResponseFromJson(response.data);
-        return loginres;
-      }
+      // if (response.isSuccess()) {
+      //   log("Sucess ${response.data}");
+      //   final loginres = signUpResponseFromJson(response.data);
+      //   return loginres;
+      // } else {
+      //   log("Failed $response");
+      //   final loginres = baseResponseFromJson(response.data);
+      //   return loginres;
+      // }
     } catch (error) {
       log("Errror $error");
-      final errorRess = BaseResponse(success: false, message: error.toString());
-      return errorRess;
+      // final errorRess = BaseResponse(success: false, message: error.toString());
+      // return errorRess;
     }
   }
 
