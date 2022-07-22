@@ -47,23 +47,26 @@ class DioHelper {
       InterceptorsWrapper(onRequest: (options, handler) async {
         if (options.headers['authorization'] == '' ||
             options.headers['authorization'] == null) {
-          log("Empty token fetching token");
           await UserSession().getTokens();
-          if(UserSession().accessToken !=''||UserSession().accessToken.isNotEmpty) {
+          if (UserSession().accessToken != '' ||
+              UserSession().accessToken.isNotEmpty) {
             options.headers['authorization'] = UserSession().accessToken;
           }
         }
 
-        log(options.headers.toString());
+        log(" url = ${options.uri} \nheaders = ${options.headers.toString()} \nbody =${options.data}");
 
         return handler.next(options);
+      }, onResponse: (response, handler) async {
+        log("Response is $response");
+         return handler.next(response);
       }, onError: (DioError error, ErrorInterceptorHandler handler) {
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
               break;
             case 403:
-             handler.resolve(Response(
+              handler.resolve(Response(
                 requestOptions: error.requestOptions,
                 data: {
                   'success': false,
