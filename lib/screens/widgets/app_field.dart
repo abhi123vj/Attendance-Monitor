@@ -37,6 +37,8 @@ class _AppFormFieldState extends State<AppFormField> {
         return dropDownTextField();
       case "Mark":
         return markerTextField();
+         case 'Password':
+        return normalTextField(isPassword: true);
       default:
         return normalTextField();
     }
@@ -86,8 +88,9 @@ class _AppFormFieldState extends State<AppFormField> {
             border: const OutlineInputBorder(
               borderSide: BorderSide.none,
             ),
-            hintStyle: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),
+            hintStyle: Theme.of(context)
+                          .textTheme
+                          .subtitle1,
             hintText: widget.hintText),
       ),
     );
@@ -223,10 +226,9 @@ class _AppFormFieldState extends State<AppFormField> {
                       border: const OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
-                      hintStyle: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .subtitle1,
                       hintText: '-- Select ${widget.hintText} --'),
                 ),
               ),
@@ -234,10 +236,7 @@ class _AppFormFieldState extends State<AppFormField> {
                 onPressed: () {},
                 icon: SizedBox(
                   height: 50,
-                  child: Image.asset(
-                    AppImages.dropDownIcon,
-                    fit: BoxFit.fitHeight,
-                  ),
+                  child: Icon(Icons.arrow_drop_down_circle_outlined),
                 ),
               ),
             ],
@@ -247,7 +246,7 @@ class _AppFormFieldState extends State<AppFormField> {
           opacity: 0,
           child: DropdownButton<String>(
             underline: null,
-            dropdownColor: AppColors.blackGlaze,
+            //dropdownColor: AppColors.blackGlaze,
             borderRadius: null,
             icon: SizedBox(
               height: 50,

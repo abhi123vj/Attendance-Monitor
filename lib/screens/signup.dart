@@ -32,21 +32,15 @@ class SignUpScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             'Sign up',
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 22,
-              letterSpacing: 1,
-              fontWeight: FontWeight.w800,
-            ),
+            style:Theme.of(context)
+                          .textTheme
+                          .headline5
           ),
           Text(
             'Welcome to UCEK Buzz',
-            style: TextStyle(
-              color: AppColors.white,
-              fontSize: 18,
-              letterSpacing: 1,
-              fontWeight: FontWeight.w500,
-            ),
+            style:Theme.of(context)
+                          .textTheme
+                          .headline6
           ),
           SizedBox(
             height: 5.h,

@@ -31,114 +31,119 @@ TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
       appBar: AppBar(
         title: Text(
           "Time Table",
-          style: TextStyle(
-              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+          style:Theme.of(context)
+                          .textTheme
+                          .headline5
+          
         ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 3.h),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-            height: 2.h,
-          ),
-                AppFormField(
-                    type: "DropDown",
-                    hintText: "Semester",
-                    list: sem,
-                    controller: _semController),
-                //  _semController.text.isNotEmpty
-                AppFormField(
-                    type: "DropDown",
-                    hintText: "Branch",
-                    list: branch,
-                    controller: _branchController)
-              ],
-            ),
-          ),
-          // SizedBox(
-          //   height: 1.h,
-          // ),
-         Container(
-            height: MediaQuery.of(context).size.height * 0.12,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return Obx(() => Padding(
-                  padding: EdgeInsets.all(1.h),
-                  child: TextButton(
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                date[index]['date'],
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 18,
-                                  letterSpacing: 1,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 3.h),
+            //   child: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       SizedBox(
+            //   height: 2.h,
+            // ),
+            //       AppFormField(
+            //           type: "DropDown",
+            //           hintText: "Semester",
+            //           list: sem,
+            //           controller: _semController),
+            //       //  _semController.text.isNotEmpty
+            //       AppFormField(
+            //           type: "DropDown",
+            //           hintText: "Branch",
+            //           list: branch,
+            //           controller: _branchController)
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 1.h,
+            // ),
+           Container(
+              height: MediaQuery.of(context).size.height * 0.12,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Obx(() => Padding(
+                    padding: EdgeInsets.all(1.h),
+                    child: TextButton(
+                        child: Container(
+                        
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FittedBox(
+                                child: Text(
+                                  date[index]['date'],
+                                  style:Theme.of(context)
+                          .textTheme
+                          .headline6
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        timeC.selectedIndex.value = index;
-                      },
-                      style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12.0),
-                                      side: BorderSide(
-                                        color:
-                                            timeC.selectedIndex.value == index
-                                                ? Colors.yellowAccent
-                                                : AppColors.cyanNormal,
-                                      ))))),
-                ));
-              },
-              itemCount: date.length,
-              scrollDirection: Axis.horizontal,
+                        onPressed: () {
+                          timeC.selectedIndex.value = index;
+                        },
+                        style: ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(timeC.selectedIndex.value == index
+                                                  ? Colors.yellow
+                                                  : AppColors.cyanNormal,) ,
+                            shape:
+                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        side: BorderSide(
+                                          color:
+                                              timeC.selectedIndex.value == index
+                                                  ? Colors.yellow
+                                                  : AppColors.cyanNormal,
+                                        ))))),
+                  ));
+                },
+                itemCount: date.length,
+                scrollDirection: Axis.horizontal,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 2.h,
-          ),
+            SizedBox(
+              height: 2.h,
+            ),
+           
+             Container(height:78.h,
+               child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return  Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.orangeDark),
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
+                  width: double.infinity,
+                  height: 14.5.h,
+                  child: Column(children: [
+                    SizedBox(height: 0.5.h,),
+                   table_row('Start Time', '9:00am'),
+                   table_row('End Time', "10:00am"),
+                   table_row('Subject', "CSA"),
+                   table_row('Teacher', "Manu")
+                  ]),
+              ),
+            );
+          }),
+             ),
          
-           Container(height: 44.h,
-             child: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          return  Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.orangeDark),
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                ),
-                width: double.infinity,
-                height: 14.5.h,
-                child: Column(children: [
-                  SizedBox(height: 0.5.h,),
-                 table_row('Start Time', '9:00am'),
-                 table_row('End Time', "10:00am"),
-                 table_row('Subject', "CSA"),
-                 table_row('Teacher', "Manu")
-                ]),
-            ),
-          );
-        }),
-           ),
-       
-        ],
+          ],
+        ),
       ),
     );
   }

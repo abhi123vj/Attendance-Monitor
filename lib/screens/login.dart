@@ -17,12 +17,12 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blackGlaze,
+     // backgroundColor: AppColors.blackGlaze,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Material(
             child: Container(
-              color: AppColors.blackGlaze,
+              //color: AppColors.blackGlaze,
               child: Padding(
                 padding: EdgeInsets.only(
                     top: 15.h, left: 5.h, bottom: 26.9.h, right: 5.h),
@@ -31,21 +31,15 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Login In',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 22,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: Theme.of(context)
+                          .textTheme
+                          .headline5
                       ),
                       Text(
                         'Welcome to UCEK Buzz',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 18,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style:Theme.of(context)
+                          .textTheme
+                          .headline6
                       ),
                       SizedBox(
                         height: 5.h,
@@ -55,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                       AppFormField(
                         controller: _passwordController,
                         hintText: 'Password',
-                        type: 'password',
+                        type: 'Password',
                       ),
                       Container(
                         alignment: Alignment.topRight,
@@ -63,12 +57,9 @@ class LoginScreen extends StatelessWidget {
                           child: Text(
                             'Forgot Password',
                             textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 16,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style:Theme.of(context)
+                          .textTheme
+                          .subtitle1
                           ),
                           onTap: () {
                            
