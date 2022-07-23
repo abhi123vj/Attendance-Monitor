@@ -25,7 +25,7 @@ class AuthController extends GetxController {
     if (res.success == true) {
       res as LoginResponse;
       saveUserSession(res);
-      Get.offAllNamed(AppRoutes.homeScreen, arguments: res.user);
+      Get.offAllNamed("/", arguments: res.user);
       log("Receds ${res.user?.name}");
     } else {
       res as BaseResponse;
