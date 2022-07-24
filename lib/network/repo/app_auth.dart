@@ -42,14 +42,14 @@ class AuthRepo {
       log(response.data.toString());
       if (response.isSuccess()) {
         final loginres = loginResponseFromJson(response.data);
-        return loginres;
+      return loginres;
       } else {
         final loginres = baseResponseFromJson(response.data);
-        return loginres;
+      return loginres;
       }
     } catch (error) {
       final errorRess = BaseResponse(success: false, message: error.toString());
-      return errorRess;
+    return errorRess;
     }
   }
 }

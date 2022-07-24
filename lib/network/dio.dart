@@ -61,6 +61,7 @@ class DioHelper {
         log("Response is $response");
          return handler.next(response);
       }, onError: (DioError error, ErrorInterceptorHandler handler) {
+         log("Error is is $error");
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
@@ -77,8 +78,7 @@ class DioHelper {
               ));
               // Forbidden
               break;
-            case 404:
-              break;
+         
             case 500:
               // Server broken
               handler.resolve(Response(
@@ -129,15 +129,15 @@ class DioHelper {
           return;
           // Show error message
         }
-        //   handler.resolve(Response(
-        //     requestOptions: error.requestOptions,
-        //     data: {
-        //       'success': error.response?.data["success"],
-        //       'message': error.response?.data["message"],
-        //       'errorMessage': error.message
-        //     },
-        //     statusCode: error.response?.statusCode,
-        //   ));
+          handler.resolve(Response(
+            requestOptions: error.requestOptions,
+            data: {
+             'success': false,
+              'message': error.message,
+              'errorMessage': "errormessage"
+            },
+            statusCode: error.response?.statusCode,
+          ));
       }),
     );
   }

@@ -3,7 +3,7 @@ class ApiUrl {
   // Sign up
   static const String signUp = '/api/student/register';
   // Sign in
-  static const String signIn = 'api/login';
+  static const String signIn = 'api/student/login';
   // Reset Password
   static const String resetPassword = 'resetPassword';
   // Forgot Password
@@ -17,5 +17,5 @@ class ApiUrl {
   //profile
   static String userDetails = 'user/userDetails';
   //time table
-  static String timeTable = '/viewtimetable';
+  static String timeTable = 'api/viewtimetable';
 }

@@ -23,8 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           "UCEK Buzz",
-          style: TextStyle(
-              fontSize: 20, letterSpacing: 0.15, fontWeight: FontWeight.w500),
+          style: Theme.of(context)
+                          .textTheme
+                          .headline5
         ),
         actions: [
           IconButton(
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40.0),
                     bottomRight: Radius.circular(40.0)),
-                color: AppColors.blackGlaze,
+                color: AppColors.bgWhite,
                 boxShadow: [
                   BoxShadow(
                       spreadRadius: 2,
