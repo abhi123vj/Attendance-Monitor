@@ -18,7 +18,7 @@ class AuthController extends GetxController {
   final TextEditingController passwordTextEditingController =
       TextEditingController();
   RxBool isloading = false.obs;
-  login({required Map params}) async {
+   login({required Map params}) async {
     isloading.value = true;
     var res = await AuthRepo.userLogin(params: params);
     log("first ${res}");

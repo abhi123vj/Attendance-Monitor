@@ -115,7 +115,7 @@ class SignUpScreen extends StatelessWidget {
                   AppFormField(
                     controller: _passwordController,
                     hintText: 'Password',
-                    type: 'password',
+                    type: 'Password',
                   ),
                   SizedBox(
                     height: 10,
@@ -123,7 +123,7 @@ class SignUpScreen extends StatelessWidget {
                   AppFormField(
                     controller: _cpasswordController,
                     hintText: 'Confirm Password',
-                    type: 'password',
+                    type: 'Password',
                   ),
                   SizedBox(
                     height: 40,
