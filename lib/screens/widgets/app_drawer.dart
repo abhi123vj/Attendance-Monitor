@@ -1,3 +1,4 @@
+import 'package:attendance_montior/config/user_timetable.dart';
 import 'package:attendance_montior/constants/app_image_strings.dart';
 import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -52,10 +53,10 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title:  Text('Log Out' ,style: Theme.of(context).textTheme.subtitle1),
+            title:
+                Text('Log Out', style: Theme.of(context).textTheme.subtitle1),
             onTap: () {
               logoutDialog(context);
-            
             },
           ),
         ],
@@ -65,40 +66,55 @@ class AppDrawer extends StatelessWidget {
 
   logoutDialog(BuildContext cntx) {
     Get.defaultDialog(
-      title: "Log Out",
-      middleText: "Do you want to Logout?",
-      backgroundColor: AppColors.bgBlack,
-      titleStyle: Theme.of(cntx)
-          .textTheme
-          .headline6
-          ?.copyWith(color: AppColors.bgWhite),
-      middleTextStyle:
-          Theme.of(cntx).textTheme.subtitle2?.copyWith(color: AppColors.white),
-      cancel: Bounce(
-          child: Container(
-              decoration:  BoxDecoration(
-                border: Border.all(color: AppColors.bgWhite),
-                  borderRadius:  BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.bgBlack),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child:  Text("Cancel", style : Theme.of(cntx).textTheme.button?.copyWith(color: AppColors.bgWhite),)),
-          duration: const Duration(milliseconds: 110),
-          onPressed: () {
-            Get.back();
-          }),
-            confirm: Bounce(
+        title: "Log Out",
+        middleText: "Do you want to Logout?",
+        backgroundColor: AppColors.bgBlack,
+        titleStyle: Theme.of(cntx)
+            .textTheme
+            .headline6
+            ?.copyWith(color: AppColors.bgWhite),
+        middleTextStyle: Theme.of(cntx)
+            .textTheme
+            .subtitle2
+            ?.copyWith(color: AppColors.white),
+        cancel: Bounce(
+            child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.bgWhite),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: AppColors.bgBlack),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  "Cancel",
+                  style: Theme.of(cntx)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: AppColors.bgWhite),
+                )),
+            duration: const Duration(milliseconds: 110),
+            onPressed: () {
+              Get.back();
+            }),
+        confirm: Bounce(
             child: Container(
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: AppColors.accentYellow),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child:  Text("Logout",style : Theme.of(cntx).textTheme.button?.copyWith(color: AppColors.bgBlack),)),
+                child: Text(
+                  "Logout",
+                  style: Theme.of(cntx)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: AppColors.bgBlack),
+                )),
             duration: const Duration(milliseconds: 110),
             onPressed: () {
               UserSession().clearSession();
+              UserTimeTable().clearSession();
               Get.offNamed(AppRoutes.loginScreen);
-            })
-    );
+            }));
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +15,6 @@ class AttendenceController extends GetxController {
     RxInt totalStudents = 0.obs;
 
   RxString semValue = "".obs;
-  final FirebaseFirestore db = FirebaseFirestore.instance;
 
   final TextEditingController semTextEditingController =
       TextEditingController();
@@ -26,22 +24,8 @@ class AttendenceController extends GetxController {
       semValue.value = semTextEditingController.text;
       //fetchStudentLists(semValue.value);
     });
-    fetchsem();
+   
     super.onInit();
   }
 
-  fetchsem() async {
-    try {
-      await db.collection("Subjects").get().then((event) {
-        for (var doc in event.docs) {
-          semList.add(doc.id);
-
-          print("${doc.id} => ${doc.data()}");
-        }
-      });
-    } catch (e) {
-      log("Sems error $e");
-    }
-    log("SThe sem $semList");
-  }
 }

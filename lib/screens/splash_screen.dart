@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:attendance_montior/config/user_session.dart';
+import 'package:attendance_montior/config/user_timetable.dart';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/constants/app_strings.dart';
 import 'package:attendance_montior/routes/app_routes.dart';
@@ -29,7 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
   checkUserData()  {
     Timer(const Duration(seconds: 1),(()async {
          await UserSession().initUserSession();
+          
     if (UserSession().isLoggedIn()) {
+      await UserTimeTable().initUserTimetable();
       log("User satstus true");
       Get.offNamed(AppRoutes.homeScreen);
     }else{

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:attendance_montior/config/user_timetable.dart';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/attendce_detial.dart';
@@ -35,12 +36,22 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                log("Profile icon Tapped");
+                homeC.isAppbarLoading.value = true;
+                homeC.inintFunction();
               },
-              icon: const Icon(Icons.notifications))
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: Obx(() => homeC.isAppbarLoading.isTrue
+                    ? CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: AppColors.bgBlack,
+                      )
+                    : Icon(Icons.refresh)),
+              ))
         ],
       ),
-        drawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,49 +85,108 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.bgWhite,
                 boxShadow: [
                   BoxShadow(
-                      spreadRadius: .5,
+                      spreadRadius: .3,
                       blurRadius: 4,
                       offset: const Offset(0, 6),
-                      color: AppColors.bgBlack.withOpacity(.4))
+                      color: AppColors.bgBlack.withOpacity(.2))
                 ]),
           ),
           SizedBox(
-            height: 5.h,
+            height: 2.h,
           ),
-          Text(
-            "Upcoming class",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Material(
-              elevation: 2,
-              child: Container(
-                width: 100.w,
-                decoration: BoxDecoration(color: AppColors.accentYellow),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "9:00 PM - 10:00 PM  Graph Theory S8",
-                      style: Theme.of(context).textTheme.subtitle2,
-                    ),
-                    Text(
-                      "9:00 PM - 10:00 PM  Graph Theory S8",
-                      style: Theme.of(context).textTheme.subtitle2,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
+       GetBuilder<HomeController>(
+         init: HomeController(),
+         initState: (_) {},
+         builder: (_) {
+           return Column(
+                       mainAxisSize: MainAxisSize.min,
+                       children: homeC.nextClasss.value.subjectName == null
+                           ? []
+                           : [
+                               Text(
+                                 "Upcoming class",
+                                 style: Theme.of(context).textTheme.subtitle1,
+                               ),
+                               SizedBox(
+                                 height: 10,
+                               ),
+                               Padding(
+                                 padding: EdgeInsets.symmetric(horizontal: 10),
+                                 child: Material(
+                                  elevation: 2,
+                                   child: Container(
+                                     width: 100.w,
+                                     child: Container(
+                                       child: Column(
+                                         mainAxisSize: MainAxisSize.min,
+                                         children: [
+                                           Container(
+                                               decoration: BoxDecoration(
+                                                 color: AppColors.accentGreen,
+                                                 
+                                               ),
+                                               padding: EdgeInsets.symmetric(
+                                                   horizontal: 10, vertical: 10),
+                                               child: Row(
+                                                 mainAxisAlignment:
+                                                     MainAxisAlignment.spaceBetween,
+                                                 children: [
+                                                   Text(
+                                                       "${homeC.nextClasss.value.startTime} - ${homeC.nextClasss.value.endTime}",
+                                                       style: Theme.of(context)
+                                                           .textTheme
+                                                           .caption?.copyWith(fontWeight: FontWeight.w600)),
+                                                   Text(
+                                                       "${homeC.nextClasss.value.semester} ${homeC.nextClasss.value.branch}",
+                                                       style: Theme.of(context)
+                                                           .textTheme
+                                                           .subtitle1),
+                                                 ],
+                                               )),
+                                           Container(
+                                               padding: EdgeInsets.symmetric(
+                                                   horizontal: 10, vertical: 10),
+                                               child: Text(
+                                                   homeC.nextClasss.value.subjectName ??
+                                                       "No class",
+                                                   style: Theme.of(context)
+                                                       .textTheme
+                                                       .headline6)),
+                                         ],
+                                       ),
+                                       decoration: BoxDecoration(
+                                           color: AppColors.white),
+                                         
+                                        )                 ),
+                                 ),
+                          ),
+                        
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+              );
+          
+         },)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          ,Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               classDetails("syllabus", "View"),
@@ -154,6 +224,8 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           if (key == "Notify") {
             UserSession().clearSession();
+            UserTimeTable().clearSession();
+
             Get.toNamed(AppRoutes.loginScreen);
           }
         },

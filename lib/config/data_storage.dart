@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferenceKeys {
   static const String userTokens = 'user_tokens';
   static const String userDetails = 'user_details';
+    static const String userTimeTable = 'user_timetable';
 }
 
 class DataManager {

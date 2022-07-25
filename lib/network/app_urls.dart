@@ -5,7 +5,7 @@ class ApiUrl {
   // Sign in
   static const String signIn = 'api/login';
   // Reset Password
-  static const String resetPassword = 'resetPassword';
+  static const String timeTable = '/api/viewtimetableteacher';
    // Forgot Password
   static const String forgotPass = 'forgotPassword';
   // Dashboard
