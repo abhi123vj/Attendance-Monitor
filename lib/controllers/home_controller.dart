@@ -65,7 +65,7 @@ class HomeController extends GetxController {
         }
       } else {
         res as BaseResponse;
-        Get.snackbar("Login Failed", res.message.toString());
+        Get.snackbar("TimeTable Fetch Failed", res.message.toString());
         log("Receds fail  ${res.message}");
       }
       log(res.toString());

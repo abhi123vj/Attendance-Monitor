@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:attendance_montior/models/syllabus_res.dart';
 import 'package:attendance_montior/models/timetable_model.dart';
 import 'package:dio/dio.dart';
 
@@ -11,12 +12,31 @@ class HomeRepo {
   static Future getTimeTable({required Map params}) async {
     try {
       final Response response = await dio.post(ApiUrl.timeTable, data: params);
-      if (response.isSuccess()) {       
+      if (response.isSuccess()) {
         final timetableResponse = timeTableFromJson(response.data);
         return timetableResponse;
-      } else {      
+      } else {
         final timetableResponse = baseResponseFromJson(response.data);
         return timetableResponse;
+      }
+    } catch (error) {
+      log("Error home repo -> $error");
+      final errorRess = BaseResponse(success: false, message: error.toString());
+      return errorRess;
+    }
+  }
+
+  static Future getSyllabus({required Map params}) async {
+    try {
+      final Response response = await dio.post(
+        ApiUrl.syllabus, data: params
+      );
+      if (response.isSuccess()) {
+        final syllabusResponse = syllabusFromJson(response.data);
+        return syllabusResponse;
+      } else {
+        final syllabusResponse = baseResponseFromJson(response.data);
+        return syllabusResponse;
       }
     } catch (error) {
       log("Error home repo -> $error");
