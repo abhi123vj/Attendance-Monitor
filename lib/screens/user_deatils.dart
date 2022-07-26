@@ -558,13 +558,16 @@ class UserDetailsScreen extends StatelessWidget {
               Get.back();
               log("Reject");
             }),
-            custom: Bounce(child: Container(
+        custom: Bounce(
+            child: Container(
                 decoration: const BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     color: AppColors.white),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: const Text("Reject")),, duration: Duration(milliseconds: 20), onPressed:  () {
+                child: const Text("Reject")),
+            duration: Duration(milliseconds: 20),
+            onPressed: () {
               if (email != null) {
                 homeC.updateUserStatus(email, 'Accepted');
               } else {
@@ -638,8 +641,6 @@ class UserDetailsScreen extends StatelessWidget {
                 log("No Email fond");
               }
               Get.back();
-            })
-            
-            );
+            }));
   }
 }

@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
               bottom: -14.h,
               width: 100.w,
               child: Container(
-                  child: SvgPicture.asset(
+                  child: Image.asset(
                 AppImages.clgLogo,
                 //color: AppColors.bgWhite,
                 // colorBlendMode: BlendMode.src,
