@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
+import 'package:attendance_montior/screens/create_sub.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
@@ -57,11 +58,15 @@ class AppRoutes {
       name: '/userDetails',
       page: () =>  UserDetailsScreen(),
     ),
+    GetPage(
+      name: createSubject,
+      page: () =>  CreateSubject(),
+    ),
   ];
 
 
 
-  static String initialPage = splashSCreen;
+  static String initialPage = createSubject;
 
   static String homeScreen = '/';
   static String userDetails = '/userDetails';
@@ -69,6 +74,7 @@ class AppRoutes {
   static String loginScreen = '/login';
   static String signUpScreen = '/signUp';
   static String splashSCreen = '/splash';
+  static String createSubject = '/createSub';
 
   static String syllabusScreen = '/syllabus';
 }
