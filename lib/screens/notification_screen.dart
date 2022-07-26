@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -139,21 +140,33 @@ theme: const ExpandedTileThemeData(
                         SizedBox(height: 2.h,),
                         Row(mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            ElevatedButton(
-                                  onPressed: () {
-                                   
-                                  },
-                                  child: Text(
-                                          'Delete',
-                                          style: Theme.of(context).textTheme.button?.copyWith(color: AppColors.redDark),
-                                        ),
-                                  style: ElevatedButton.styleFrom(
-                                      padding: EdgeInsets.symmetric(vertical: 1.w,horizontal: 2.h),
-                                      primary: AppColors.white,
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(6)))),
-                                ),
+                            Bounce(
+                        duration: const Duration(milliseconds: 110),
+                        onPressed: () {
+                          //subC.deleteNotify(index);
+                        },
+                        child: Container(
+                            
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10
+                              ),
+                              margin: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: Text(
+                             "Remove",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .button
+                                    ?.copyWith(
+                                      color: AppColors.redDark,
+                                    ),
+                              ),
+                            ))
                           ],
                         )
                         
