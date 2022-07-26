@@ -52,7 +52,7 @@ class AppRoutes {
     ),
         GetPage(
       name: notificationScreen,
-      page: () => const NotifyScreen(),
+      page: () =>  NotifyScreen(),
     ),
   ];
 
