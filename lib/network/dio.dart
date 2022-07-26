@@ -44,8 +44,7 @@ class DioHelper {
     );
 
     dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
+      InterceptorsWrapper(onRequest: (options, handler) async {
         if (options.headers['authorization'] == '' ||
             options.headers['authorization'] == null) {
           log("Empty token fetching token");
@@ -56,50 +55,48 @@ class DioHelper {
           }
         }
 
-        log(options.headers.toString());
+        log("url = ${options.uri} \n header = ${options.headers} \nbody = ${options.data}");
 
         return handler.next(options);
-      }, 
-      onResponse: (options, handler) async {
+      }, onResponse: (options, handler) async {
         log("response was ${options.data}");
-         return handler.next(options);
-      },
-      onError: (DioError error, ErrorInterceptorHandler handler) {
+        return handler.next(options);
+      }, onError: (DioError error, ErrorInterceptorHandler handler) {
         if (error.type == DioErrorType.response) {
           switch (error.response?.statusCode) {
             case 401:
-             handler.resolve(Response(
-            requestOptions: error.requestOptions,
-            data: {
-              'success': error.response?.data["success"],
-              'message': error.response?.data["message"],
-              'errorMessage': error.message
-            },
-            statusCode: error.response?.statusCode,
-          ));
+              handler.resolve(Response(
+                requestOptions: error.requestOptions,
+                data: {
+                  'success': error.response?.data["success"],
+                  'message': error.response?.data["message"],
+                  'errorMessage': error.message
+                },
+                statusCode: error.response?.statusCode,
+              ));
               break;
             case 403:
-             handler.resolve(Response(
-            requestOptions: error.requestOptions,
-            data: {
-              'success': error.response?.data["success"],
-              'message': error.response?.data["message"],
-              'errorMessage': error.message
-            },
-            statusCode: error.response?.statusCode,
-          ));
+              handler.resolve(Response(
+                requestOptions: error.requestOptions,
+                data: {
+                  'success': error.response?.data["success"],
+                  'message': error.response?.data["message"],
+                  'errorMessage': error.message
+                },
+                statusCode: error.response?.statusCode,
+              ));
               // Forbidden
               break;
             case 404:
-             handler.resolve(Response(
-            requestOptions: error.requestOptions,
-            data: {
-              'success': error.response?.data["success"],
-              'message': error.response?.data["message"],
-              'errorMessage': error.message
-            },
-            statusCode: error.response?.statusCode,
-          ));
+              handler.resolve(Response(
+                requestOptions: error.requestOptions,
+                data: {
+                  'success': error.response?.data["success"],
+                  'message': error.response?.data["message"],
+                  'errorMessage': error.message
+                },
+                statusCode: error.response?.statusCode,
+              ));
               break;
             case 500:
               // Server broken
@@ -150,8 +147,7 @@ class DioHelper {
           ));
           return;
           // Show error message
-        }      
-         
+        }
       }),
     );
   }

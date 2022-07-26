@@ -220,13 +220,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Get.toNamed("/tymtable");
           }
           if (key == "Attendance") {
-            Get.toNamed("/markAttendance");
+           Get.toNamed(AppRoutes.markAttndcScreen);
           }
           if (key == "Notify") {
-            UserSession().clearSession();
-            UserTimeTable().clearSession();
+           
 
-            Get.toNamed(AppRoutes.loginScreen);
+            Get.toNamed(AppRoutes.notificationScreen);
           }
         },
         child: Container(

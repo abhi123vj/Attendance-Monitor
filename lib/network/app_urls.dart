@@ -9,7 +9,7 @@ class ApiUrl {
    // Forgot Password
   static const String syllabus = '/api/viewsyllabus';
   // Dashboard
-  static const String dashboard = 'dashboard';
+  static const String notify = '/api/viewnotification';
   // Give Help details
   // static String giveHelpDetails({required String userId}) {
   //   return 'giveHelp/user/$userId';

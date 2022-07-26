@@ -18,6 +18,7 @@ class SyllabusScreen extends StatelessWidget {
     SubjectController subC = Get.put(SubjectController());
     final _searchKey = TextEditingController();
     Timer? searchOnStoppedTyping;
+    subC.getSujects();
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -52,9 +53,11 @@ class SyllabusScreen extends StatelessWidget {
                     if (searchOnStoppedTyping != null) {
                       searchOnStoppedTyping?.cancel();
                     }
-                    searchOnStoppedTyping =  Timer(duration, () {
-                      if(subC.searchKey.value != str.trim()){subC.searchKey.value = str.trim();
-                      subC.getSujects();}
+                    searchOnStoppedTyping = Timer(duration, () {
+                      if (subC.searchKey.value != str.trim()) {
+                        subC.searchKey.value = str.trim();
+                        subC.getSujects();
+                      }
                     });
                   },
                   decoration: InputDecoration(

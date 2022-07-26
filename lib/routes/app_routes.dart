@@ -2,6 +2,7 @@ import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
+import 'package:attendance_montior/screens/notification_screen.dart';
 import 'package:attendance_montior/screens/signup_screen.dart';
 import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:attendance_montior/screens/time_table_screen.dart';
@@ -49,6 +50,10 @@ class AppRoutes {
       name: splashSCreen,
       page: () => const SplashScreen(),
     ),
+        GetPage(
+      name: notificationScreen,
+      page: () => const NotifyScreen(),
+    ),
   ];
 
   ///?init page
@@ -60,4 +65,6 @@ class AppRoutes {
   static String signUpScreen = '/signUp';
   static String splashSCreen = '/splash';
   static String syllabusScreen = '/syllabus';
+    static String notificationScreen = '/notify';
+
 }
