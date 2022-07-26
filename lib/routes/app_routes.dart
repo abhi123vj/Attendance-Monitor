@@ -1,3 +1,4 @@
+import 'package:attendance_montior/screens/attendance_check.dart';
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
@@ -54,6 +55,10 @@ class AppRoutes {
       name: notificationScreen,
       page: () =>  NotifyScreen(),
     ),
+     GetPage(
+      name: attendanceDisplay,
+      page: () =>  AttendanceDisplay(),
+    ),
   ];
 
   ///?init page
@@ -66,5 +71,6 @@ class AppRoutes {
   static String splashSCreen = '/splash';
   static String syllabusScreen = '/syllabus';
     static String notificationScreen = '/notify';
+      static String attendanceDisplay = '/attendanceDisplay';
 
 }

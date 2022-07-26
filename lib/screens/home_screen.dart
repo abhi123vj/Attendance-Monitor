@@ -94,103 +94,86 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(
             height: 2.h,
           ),
-       GetBuilder<HomeController>(
-         init: HomeController(),
-         initState: (_) {},
-         builder: (_) {
-           return Column(
-                       mainAxisSize: MainAxisSize.min,
-                       children: homeC.nextClasss.value.subjectName == null
-                           ? []
-                           : [
-                               Text(
-                                 "Upcoming class",
-                                 style: Theme.of(context).textTheme.subtitle1,
-                               ),
-                               SizedBox(
-                                 height: 10,
-                               ),
-                               Padding(
-                                 padding: EdgeInsets.symmetric(horizontal: 10),
-                                 child: Material(
-                                  elevation: 2,
-                                   child: Container(
-                                     width: 100.w,
-                                     child: Container(
-                                       child: Column(
-                                         mainAxisSize: MainAxisSize.min,
-                                         children: [
-                                           Container(
-                                               decoration: BoxDecoration(
-                                                 color: AppColors.accentGreen,
-                                                 
-                                               ),
-                                               padding: EdgeInsets.symmetric(
-                                                   horizontal: 10, vertical: 10),
-                                               child: Row(
-                                                 mainAxisAlignment:
-                                                     MainAxisAlignment.spaceBetween,
-                                                 children: [
-                                                   Text(
-                                                       "${homeC.nextClasss.value.startTime} - ${homeC.nextClasss.value.endTime}",
-                                                       style: Theme.of(context)
-                                                           .textTheme
-                                                           .caption?.copyWith(fontWeight: FontWeight.w600)),
-                                                   Text(
-                                                       "${homeC.nextClasss.value.semester} ${homeC.nextClasss.value.branch}",
-                                                       style: Theme.of(context)
-                                                           .textTheme
-                                                           .subtitle1),
-                                                 ],
-                                               )),
-                                           Container(
-                                               padding: EdgeInsets.symmetric(
-                                                   horizontal: 10, vertical: 10),
-                                               child: Text(
-                                                   homeC.nextClasss.value.subjectName ??
-                                                       "No class",
-                                                   style: Theme.of(context)
-                                                       .textTheme
-                                                       .headline6)),
-                                         ],
-                                       ),
-                                       decoration: BoxDecoration(
-                                           color: AppColors.white),
-                                         
-                                        )                 ),
-                                 ),
+          GetBuilder<HomeController>(
+            init: HomeController(),
+            initState: (_) {},
+            builder: (_) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: homeC.nextClasss.value.subjectName == null
+                    ? []
+                    : [
+                        Text(
+                          "Upcoming class",
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Material(
+                            elevation: 2,
+                            child: Container(
+                                width: 100.w,
+                                child: Container(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            color: AppColors.accentGreen,
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                  "${homeC.nextClasss.value.startTime} - ${homeC.nextClasss.value.endTime}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .caption
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                              Text(
+                                                  "${homeC.nextClasss.value.semester} ${homeC.nextClasss.value.branch}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle1),
+                                            ],
+                                          )),
+                                      Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 10),
+                                          child: Text(
+                                              homeC.nextClasss.value
+                                                      .subjectName ??
+                                                  "No class",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6)),
+                                    ],
+                                  ),
+                                  decoration:
+                                      BoxDecoration(color: AppColors.white),
+                                )),
                           ),
-                        
+                        ),
                         SizedBox(
                           height: 10,
                         ),
                       ],
               );
-          
-         },)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          ,Row(
+            },
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              classDetails("syllabus", "View"),
-              classDetails("results", "Results"),
+              classDetails("Syllabus", "View"),
+              classDetails("View Attendance", "viewA"),
               classDetails("Attendance", "View"),
             ],
           ),
@@ -220,12 +203,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Get.toNamed("/tymtable");
           }
           if (key == "Attendance") {
-           Get.toNamed(AppRoutes.markAttndcScreen);
+            Get.toNamed(AppRoutes.markAttndcScreen);
           }
           if (key == "Notify") {
-           
-
             Get.toNamed(AppRoutes.notificationScreen);
+          }
+          if (key == "View Attendance") {
+            Get.toNamed(AppRoutes.attendanceDisplay);
           }
         },
         child: Container(
