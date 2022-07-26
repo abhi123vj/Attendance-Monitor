@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:attendance_montior/config/user_session.dart';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/constants/app_image_strings.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sizer/sizer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -43,17 +45,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.bgWhite,
-        body: Stack(children: [
-          Positioned(
-              bottom: -14.h,
-              width: 100.w,
-              child: Container(
-                  child: Image.asset(
+      backgroundColor: AppColors.bgWhite,
+      body: Stack(children: [
+        Positioned(
+            bottom: 30.h,
+            width: 100.w,
+            child: Container(
+              child: Image.asset(
                 AppImages.clgLogo,
-                //color: AppColors.bgWhite,
-                // colorBlendMode: BlendMode.src,
-              )))
-        ]));
+              ),
+            ))
+      ]),
+    );
+  }
+}
+
+class spalsh0 extends StatelessWidget {
+  const spalsh0({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return (Container(
+      color: AppColors.bgWhite,
+    ));
   }
 }
