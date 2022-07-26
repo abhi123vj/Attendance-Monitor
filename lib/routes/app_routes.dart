@@ -5,6 +5,7 @@ import 'package:attendance_montior/screens/create_sub.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
+import 'package:attendance_montior/screens/sent_notification.dart';
 import 'package:attendance_montior/screens/signup_screen.dart';
 import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:attendance_montior/screens/time_table_screen.dart';
@@ -62,11 +63,15 @@ class AppRoutes {
       name: createSubject,
       page: () =>  CreateSubject(),
     ),
+      GetPage(
+      name: '/sendNoti',
+      page: () =>  SentNotification(),
+    ),
   ];
 
 
 
-  static String initialPage = createSubject;
+  static String initialPage = '/sendNoti';
 
   static String homeScreen = '/';
   static String userDetails = '/userDetails';
