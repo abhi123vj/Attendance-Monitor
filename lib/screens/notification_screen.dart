@@ -108,6 +108,17 @@ subC.getNotification();
                             ///! Redesign
                             return ExpandedTile(
                               title: Text("${demoNotify.title} "),
+theme: const ExpandedTileThemeData(
+              //headerColor: Colors.green,
+             // headerRadius: 24.0,
+             // headerPadding: EdgeInsets.all(24.0),
+              headerSplashColor: AppColors.accentGreen,
+              //
+              contentBackgroundColor: Colors.white,
+              contentPadding: EdgeInsets.all(0.0),
+              contentRadius: 12.0,
+            ),
+
                               controller: _controller,
               content: Container(
                 color: AppColors.cyanLight,
