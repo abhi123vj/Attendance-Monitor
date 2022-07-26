@@ -15,6 +15,7 @@ import '../controllers/home_controller.dart';
 
 class MarkAttendanceScreen extends StatelessWidget {
   MarkAttendanceScreen({Key? key}) : super(key: key);
+
   AttendenceController attC = Get.put(AttendenceController());
 
   @override
@@ -66,7 +67,7 @@ class MarkAttendanceScreen extends StatelessWidget {
               ],
             ),
             decoration: BoxDecoration(
-              color: AppColors.bgWhite,
+                color: AppColors.bgWhite,
                 borderRadius: BorderRadius.circular(10.0),
                 boxShadow: [
                   BoxShadow(
@@ -129,7 +130,7 @@ class MarkAttendanceScreen extends StatelessWidget {
                                 true;
                           },
                           markAbsent: () {
-                             if (attC.studentList.elementAt(index)["stStatus"] !=
+                            if (attC.studentList.elementAt(index)["stStatus"] !=
                                     false &&
                                 attC.studentList.elementAt(index)["stStatus"] !=
                                     null) {

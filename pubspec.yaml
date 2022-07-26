@@ -36,13 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
 
-  dev_dependencies:
-  flutter_launcher_icons: "^0.9.2"
-
-# flutter_icons:
-#   android: "sem_Async"
-#   ios: true
-#   image_path: "assets/icon/logo1.png"
+  
 
   google_fonts: ^3.0.1
   sizer: ^2.0.15
