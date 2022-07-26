@@ -133,6 +133,7 @@ theme: const ExpandedTileThemeData(
                              Text(DateFormat("H:m:s").format(demoNotify.createdAt??DateTime.now())),
                            ],
                          ),
+                         Divider(height: 3.h,color: AppColors.white,thickness: 0.3.h,),
                          SizedBox(height: 2.h,),
                         Text("${demoNotify.body}"),
                         SizedBox(height: 2.h,),
@@ -163,7 +164,7 @@ theme: const ExpandedTileThemeData(
                 ),
               ),
                onTap: () {
-            debugPrint("tapped!!");
+            
           },
                               
                               

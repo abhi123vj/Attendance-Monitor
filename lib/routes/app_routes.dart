@@ -32,7 +32,7 @@ class AppRoutes {
     ),
     GetPage(
       name: syllabusScreen,
-      page: () => const SyllabusScreen(),
+      page: () =>  SyllabusScreen(),
     ),
     GetPage(
       name: '/attendenceReview',
