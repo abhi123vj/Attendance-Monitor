@@ -10,8 +10,8 @@ String agreementToJson(Agreement data) => json.encode(data.toJson());
 
 class Agreement {
     Agreement({
-        this.success,
-        this.timetable,
+       required this.success,
+       required this.timetable,
     });
 
     bool success;
@@ -30,9 +30,9 @@ class Agreement {
 
 class Timetable {
     Timetable({
-        this.thursday,
-        this.wednesday,
-        this.tuesday,
+       required this.thursday,
+       required this.wednesday,
+       required this.tuesday,
     });
 
     List<Sday> thursday;
@@ -54,9 +54,9 @@ class Timetable {
 
 class Sday {
     Sday({
-        this.startTime,
-        this.endTime,
-        this.subjectName,
+       required this.startTime,
+        required this.endTime,
+       required this.subjectName,
     });
 
     String startTime;
