@@ -5,6 +5,7 @@ import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:sizer/sizer.dart';
 
 import '../constants/app_colors.dart';
 import '../controllers/suject_controller.dart';
@@ -52,9 +53,11 @@ class SyllabusScreen extends StatelessWidget {
                     if (searchOnStoppedTyping != null) {
                       searchOnStoppedTyping?.cancel();
                     }
-                    searchOnStoppedTyping =  Timer(duration, () {
-                      if(subC.searchKey.value != str.trim()){subC.searchKey.value = str.trim();
-                      subC.getSujects();}
+                    searchOnStoppedTyping = Timer(duration, () {
+                      if (subC.searchKey.value != str.trim()) {
+                        subC.searchKey.value = str.trim();
+                        subC.getSujects();
+                      }
                     });
                   },
                   decoration: InputDecoration(
@@ -89,13 +92,92 @@ class SyllabusScreen extends StatelessWidget {
                                   subC.syllabusList.elementAt(index);
 
                               ///! Redesign
-                              return Container(
-                                margin: EdgeInsets.all(10),
-                                child: Text(
-                                    "${index + 1}) ${demoSyllbus.semester}  ${demoSyllbus.dept}  Scheme ${demoSyllbus.scheme} "),
-                              );
+                              return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: AppColors.accentGreen,
+                                          spreadRadius: 1,
+                                          blurRadius: 3,
+                                          offset: Offset(0,
+                                              4), // changes position of shadow
+                                        ),
+                                      ],
+                                      color: AppColors.bgWhite,
+                                      border: Border.all(
+                                          color: AppColors.orangeDark),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(12.0)),
+                                    ),
+                                    width: double.infinity,
+                                    height: 14.5.h,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            //SizedBox(height: 0.5.h,),
+                                            table_row('Semester',
+                                                '${demoSyllbus.semester}'),
+
+                                            table_row('Department',
+                                                "${demoSyllbus.dept}"),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            table_row('Scheme',
+                                                "${demoSyllbus.scheme} "),
+                                                SizedBox(width: 6.h,),
+                                            Padding(
+                                              padding:  EdgeInsets.only(right:2.h),
+                                              child: Text(
+                                                "View",
+                                                style: TextStyle(
+                                                    color: AppColors.yellowDark),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ));
                             }))))
           ],
         ));
   }
+
+  Widget table_row(t1, t2) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 0.5.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(t1),
+          Text('\t:\t'),
+          Text(
+            t2,
+            style: TextStyle(color: AppColors.cyanDark, fontSize: 20),
+          )
+        ],
+      ),
+    );
+  }
 }
+//${index + 1}) 
