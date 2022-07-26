@@ -13,6 +13,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sizer/sizer.dart';
 
+import '../constants/app_image_strings.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -27,29 +29,34 @@ class _SplashScreenState extends State<SplashScreen> {
     checkUserData();
   }
 
-  checkUserData()  {
-    Timer(const Duration(seconds: 1),(()async {
-         await UserSession().initUserSession();
-          
-    if (UserSession().isLoggedIn()) {
-      await UserTimeTable().initUserTimetable();
-      log("User satstus true");
-      Get.offNamed(AppRoutes.homeScreen);
-    }else{
-      Get.offNamed(AppRoutes.loginScreen);
-    }
+  checkUserData() {
+    Timer(const Duration(seconds: 1), (() async {
+      await UserSession().initUserSession();
+
+      if (UserSession().isLoggedIn()) {
+        await UserTimeTable().initUserTimetable();
+        log("User satstus true");
+        Get.offNamed(AppRoutes.homeScreen);
+      } else {
+        Get.offNamed(AppRoutes.loginScreen);
+      }
     }));
-  
- 
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgBlack,
-      body: Center(
-        child: Text("Splash",),
-      ),
+      backgroundColor: AppColors.bgWhite,
+      body: Stack(children: [
+        Positioned(
+            bottom: 30.h,
+            width: 100.w,
+            child: Container(
+              child: Image.asset(
+                AppImages.clgLogo,
+              ),
+            ))
+      ]),
     );
   }
 }
