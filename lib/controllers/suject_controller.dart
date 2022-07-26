@@ -52,7 +52,7 @@ class SubjectController extends GetxController {
     if (res.success == true) {
       res as Notification;
       if (res.notification != null) {
-        syllabusList.clear();
+        notificationList.clear();
         log(res.notification!.length.toString());
         
         notificationList.addAll(res.notification!.toList());
