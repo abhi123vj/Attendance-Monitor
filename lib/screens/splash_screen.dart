@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:attendance_montior/config/user_session.dart';
 import 'package:attendance_montior/constants/app_colors.dart';
 import 'package:attendance_montior/constants/app_image_strings.dart';
