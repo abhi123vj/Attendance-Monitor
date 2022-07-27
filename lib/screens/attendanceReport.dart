@@ -56,42 +56,45 @@ class _AttdncReportState extends State<AttdncReport> {
                 Text(displayMsg, style: Theme.of(context).textTheme.subtitle1),
           ),
           Expanded(
-            child: Wrap(
-              children: List.generate(
-                  Get.arguments[1].length,
-                  (index) => Bounce(
-                        duration: const Duration(milliseconds: 110),
-                        onPressed: () {
-                          setState(() {
-                            displayMsg =
-                                Get.arguments[2].elementAt(index).notes;
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              color: Get.arguments[1].elementAt(index) == 1
-                                  ? AppColors.accentGreen
-                                  : AppColors.redPastel),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                  DateFormat('dd-MM')
-                                      .format(dateObj.elementAt(index).date),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      ?.copyWith(fontWeight: FontWeight.w600)),
-                              Text(dateObj.elementAt(index).period.toString(),
-                                  style: Theme.of(context).textTheme.button),
-                            ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Wrap(
+                children: List.generate(
+                    Get.arguments[1].length,
+                    (index) => Bounce(
+                          duration: const Duration(milliseconds: 110),
+                          onPressed: () {
+                            setState(() {
+                              displayMsg =
+                                  Get.arguments[2].elementAt(index).notes;
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                color: Get.arguments[1].elementAt(index) == 1
+                                    ? AppColors.accentGreen
+                                    : AppColors.redPastel),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                    DateFormat('dd-MM')
+                                        .format(dateObj.elementAt(index).date),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        ?.copyWith(fontWeight: FontWeight.w600)),
+                                Text(dateObj.elementAt(index).period.toString(),
+                                    style: Theme.of(context).textTheme.button),
+                              ],
+                            ),
                           ),
-                        ),
-                      )),
+                        )),
+              ),
             ),
           ),
         ],

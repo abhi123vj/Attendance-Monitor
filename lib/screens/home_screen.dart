@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "UCEK Buzz",
+          "Sem Async",
           style: Theme.of(context)
               .textTheme
               .headline6

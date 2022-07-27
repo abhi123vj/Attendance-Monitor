@@ -11,7 +11,10 @@ import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:rive/rive.dart';
 import 'package:sizer/sizer.dart';
+
+import '../constants/app_image_strings.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -34,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (UserSession().isLoggedIn()) {
       await UserTimeTable().initUserTimetable();
       log("User satstus true");
-      Get.offNamed(AppRoutes.homeScreen);
+      Get.offNamed(AppRoutes.homeScreen,);
     }else{
       Get.offNamed(AppRoutes.loginScreen);
     }
@@ -48,7 +51,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColors.bgBlack,
       body: Center(
-        child: Text("Splash",),
+        child: RiveAnimation.asset(
+                  AppImages.loderAnimRive, //'PopOutRightidle','PopOutBot',
+                //  animations: homeC.animationList.first,
+                  fit: BoxFit.fitHeight,
+                ),
       ),
     );
   }
