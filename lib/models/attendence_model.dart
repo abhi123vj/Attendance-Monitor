@@ -48,16 +48,21 @@ class Date {
     Date({
       required  this.date,
        required this.period,
+         required      this.notes,
+
       required  this.id,
     });
 
-    DateTime date;
     String period;
+
+    DateTime date;
+    String notes;
     String id;
 
     factory Date.fromJson(Map<String, dynamic> json) => Date(
         date:  DateTime.parse(json["date"]),
         period: json["period"] == null ? null : json["period"],
+         notes: json["notes"] == null ? null : json["notes"],
         id: json["_id"] == null ? null : json["_id"],
     );
 

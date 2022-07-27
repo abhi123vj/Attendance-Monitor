@@ -10,13 +10,12 @@ import '../models/notification_model.dart';
 
 class SubjectController extends GetxController {
   RxList syllabusList = <SyllabusElement>[].obs;
-    RxList notificationList = <NotificationElement>[].obs;
+  RxList notificationList = <NotificationElement>[].obs;
 
   RxString searchKey = "".obs;
   RxBool isloading = false.obs;
   // @override
   // void onInit() {
-   
 
   //   super.onInit();
   // }
@@ -31,7 +30,7 @@ class SubjectController extends GetxController {
       if (res.syllabus != null) {
         syllabusList.clear();
         log(res.syllabus!.length.toString());
-        
+
         syllabusList.addAll(res.syllabus!.toList());
       }
     } else {
@@ -41,12 +40,10 @@ class SubjectController extends GetxController {
     }
     isloading.value = false;
   }
-    getNotification() async {
+
+  getNotification() async {
     isloading.value = true;
-    Map params = {
-      "teacherId":UserSession().user?.id,
-      "key": searchKey.value
-      };
+    Map params = {"teacherId": UserSession().user?.id, "key": searchKey.value};
     var res = await HomeRepo.getNotification(params: params);
 
     if (res.success == true) {
@@ -54,7 +51,7 @@ class SubjectController extends GetxController {
       if (res.notification != null) {
         notificationList.clear();
         log(res.notification!.length.toString());
-        
+
         notificationList.addAll(res.notification!.toList());
       }
     } else {
@@ -64,12 +61,13 @@ class SubjectController extends GetxController {
     }
     isloading.value = false;
   }
-   deleteNOtification(String id) async {
+
+  deleteNOtification(String id) async {
     isloading.value = true;
     Map params = {
-      "teacherId":UserSession().user?.id,
+      "teacherId": UserSession().user?.id,
       "notificationId": id,
-      };
+    };
     var res = await HomeRepo.deleteNotification(params: params);
 
     if (res.success == true) {
@@ -81,6 +79,7 @@ class SubjectController extends GetxController {
       Get.snackbar("Notification Fetch Failed", res.message.toString());
       log("Receds fail  ${res.message}");
     }
-    isloading.value = false;
+    getNotification();
+    
   }
 }

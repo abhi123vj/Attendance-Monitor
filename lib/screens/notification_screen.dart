@@ -169,7 +169,7 @@ class _NotifyScreenState extends State<NotifyScreen> {
                                                   duration: const Duration(
                                                       milliseconds: 110),
                                                   onPressed: () {
-                                                    //subC.deleteNotify(index);
+                                                    subC.deleteNOtification(demoNotify.id);
                                                   },
                                                   child: Container(
                                                     alignment: Alignment.center,
