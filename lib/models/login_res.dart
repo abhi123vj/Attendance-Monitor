@@ -34,6 +34,7 @@ class User {
     required this.mobnumber,
     required this.dept,
     required this.currentuserStatus,
+    required this.subjects,
   });
 
   String id;
@@ -42,6 +43,7 @@ class User {
   int mobnumber;
   String dept;
   String currentuserStatus;
+  List<Subject> subjects;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["_id"] == null ? null : json["_id"],
@@ -52,6 +54,7 @@ class User {
         currentuserStatus: json["currentuserStatus"] == null
             ? null
             : json["currentuserStatus"],
+            subjects: json["subjects"] == null ? [] : List<Subject>.from(json["subjects"].map((x) => Subject.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,5 +65,27 @@ class User {
         "dept": dept == null ? null : dept,
         "currentuserStatus":
             currentuserStatus == null ? null : currentuserStatus,
+             "subjects": subjects == null ? null : List<dynamic>.from(subjects.map((x) => x.toJson())),
       };
+}
+
+
+class Subject {
+    Subject({
+       required this.subjectName,
+       required this.subjectId,
+    });
+
+    String subjectName;
+    String subjectId;
+
+    factory Subject.fromJson(Map<String, dynamic> json) => Subject(
+        subjectName: json["subjectName"] == null ? null : json["subjectName"],
+        subjectId: json["subjectId"] == null ? null : json["subjectId"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "subjectName": subjectName == null ? null : subjectName,
+        "subjectId": subjectId == null ? null : subjectId,
+    };
 }

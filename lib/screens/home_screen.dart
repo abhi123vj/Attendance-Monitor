@@ -194,10 +194,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   TextButton classDetails(String key, String value) {
+    log("message");
     return TextButton(
         onPressed: () {
-          if (key == "syllabus") {
-            Get.toNamed("/syllabus");
+          if (key == "Syllabus") {
+            log("hiii");
+            Get.toNamed(AppRoutes.syllabusScreen);
           }
           if (key == "Time Table") {
             Get.toNamed("/tymtable");
@@ -240,19 +242,4 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? AppColors.yellowPale
                             : AppColors.cyanLight)))));
   }
-
-  // TextButton subjectButton(String subjectName) {
-  // return TextButton(
-  //     onPressed: () {},
-  //     child: Text(subjectName,
-  //         style: TextStyle(
-  //             fontSize: 14,
-  //             letterSpacing: 0.75,
-  //             fontWeight: FontWeight.w500)),
-  //     style: ButtonStyle(
-  //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-  //             RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(18.0),
-  //                 side: BorderSide(color: AppColors.cyanDark)))));
-  // }
 }

@@ -12,12 +12,14 @@ import '../constants/app_colors.dart';
 import '../controllers/suject_controller.dart';
 
 class TimeTableScreen extends StatelessWidget {
-   TimeTableScreen({Key? key}) : super(key: key);
+  TimeTableScreen({Key? key}) : super(key: key);
   final TimeTableCOntroller timeC = Get.put(TimeTableCOntroller());
- final ScrollController controller =  ScrollController();
+  
+  final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         appBar: AppBar(
           title: Text(

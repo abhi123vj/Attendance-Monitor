@@ -13,8 +13,8 @@ class DioHelper {
   Dio dio = Dio();
   DioHelper(String baseUrl) {
     dio.options.baseUrl = baseUrl;
-    dio.options.connectTimeout = 5000;
-    dio.options.receiveTimeout = 3000;
+    dio.options.connectTimeout = 6000;
+    dio.options.receiveTimeout = 6000;
     dio.options.followRedirects = true;
     dio.options.headers = {
       // 'bearer': 'Bearer ${UserSession().accessToken}',

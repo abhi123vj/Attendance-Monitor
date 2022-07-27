@@ -1,9 +1,11 @@
+import 'package:attendance_montior/screens/attendanceReport.dart';
 import 'package:attendance_montior/screens/attendance_check.dart';
 import 'package:attendance_montior/screens/attendece_view_screen.dart';
 import 'package:attendance_montior/screens/home_screen.dart';
 import 'package:attendance_montior/screens/login_screen.dart';
 import 'package:attendance_montior/screens/mark_attendance_screen.dart';
 import 'package:attendance_montior/screens/notification_screen.dart';
+import 'package:attendance_montior/screens/pdfScreen.dart';
 import 'package:attendance_montior/screens/signup_screen.dart';
 import 'package:attendance_montior/screens/syllabus_screen.dart';
 import 'package:attendance_montior/screens/time_table_screen.dart';
@@ -33,7 +35,7 @@ class AppRoutes {
     ),
     GetPage(
       name: syllabusScreen,
-      page: () =>  SyllabusScreen(),
+      page: () => SyllabusScreen(),
     ),
     GetPage(
       name: '/attendenceReview',
@@ -51,13 +53,21 @@ class AppRoutes {
       name: splashSCreen,
       page: () => const SplashScreen(),
     ),
-        GetPage(
+    GetPage(
       name: notificationScreen,
-      page: () =>  NotifyScreen(),
+      page: () => NotifyScreen(),
     ),
-     GetPage(
+    GetPage(
       name: attendanceDisplay,
-      page: () =>  AttendanceDisplay(),
+      page: () => AttendanceDisplay(),
+    ),
+    GetPage(
+      name: pdfScreen,
+      page: () => PDFScreen(),
+    ),
+        GetPage(
+      name: attdncReport,
+      page: () => AttdncReport(),
     ),
   ];
 
@@ -70,7 +80,9 @@ class AppRoutes {
   static String signUpScreen = '/signUp';
   static String splashSCreen = '/splash';
   static String syllabusScreen = '/syllabus';
-    static String notificationScreen = '/notify';
-      static String attendanceDisplay = '/attendanceDisplay';
+  static String notificationScreen = '/notify';
+  static String attendanceDisplay = '/attendanceDisplay';
+  static String pdfScreen = '/pdfScreen';
+    static String attdncReport = '/attdncReport';
 
 }

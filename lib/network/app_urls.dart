@@ -15,6 +15,10 @@ class ApiUrl {
   //   return 'giveHelp/user/$userId';
   // }
   //profile
-   static String userDetails = 'user/userDetails';
+   static String deleteNotification = '/api/deleteNotification';
+   static String studentList = '/api/getstudentlist';
+      static String markAttnd = '/api/markattendance';
+      static String viewAttendnce = '/api/viewattendance';
+
 
 }

@@ -16,18 +16,18 @@ import '../models/notification_model.dart';
 import '../models/syllabus_res.dart';
 
 class NotifyScreen extends StatefulWidget {
-   NotifyScreen({Key? key}) : super(key: key);
+  NotifyScreen({Key? key}) : super(key: key);
 
   @override
   State<NotifyScreen> createState() => _NotifyScreenState();
 }
 
 class _NotifyScreenState extends State<NotifyScreen> {
- late ExpandedTileController _controller;
+  late ExpandedTileController _controller;
 
   void initState() {
     // initialize controller
-    _controller = ExpandedTileController(isExpanded:true);
+    _controller = ExpandedTileController(isExpanded: true);
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _NotifyScreenState extends State<NotifyScreen> {
     SubjectController subC = Get.put(SubjectController());
     final _searchKey = TextEditingController();
     Timer? searchOnStoppedTyping;
-subC.getNotification();
+    subC.getNotification();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -107,96 +107,110 @@ subC.getNotification();
                                 subC.notificationList.elementAt(index);
 
                             ///! Redesign
-                            return ExpandedTile(
-                              title: Text("${demoNotify.title} "),
-theme: const ExpandedTileThemeData(
-              //headerColor: Colors.green,
-             // headerRadius: 24.0,
-             // headerPadding: EdgeInsets.all(24.0),
-              headerSplashColor: AppColors.accentGreen,
-              //
-              contentBackgroundColor: Colors.white,
-              contentPadding: EdgeInsets.all(0.0),
-              contentRadius: 12.0,
-            ),
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10, bottom: 10),
+                              child: ExpandedTile(
+                                title: Text(demoNotify.title,
+                                    style:
+                                        Theme.of(context).textTheme.subtitle1),
+                                theme: const ExpandedTileThemeData(
+                                  //headerColor: Colors.green,
+                                  // headerRadius: 24.0,
+                                  // headerPadding: EdgeInsets.all(24.0),
+                                  headerSplashColor: AppColors.accentGreen,
+                                  //
+                                  contentBackgroundColor: Colors.white,
+                                  contentPadding: EdgeInsets.all(0.0),
+                                  contentRadius: 12.0,
+                                ),
 
-                              controller: _controller,
-              content: Container(
-                color: AppColors.cyanLight,
-                child:  Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Text(DateFormat("dd-MM-yyyy").format(demoNotify.createdAt??DateTime.now())),
-                             Text(DateFormat("H:m:s").format(demoNotify.createdAt??DateTime.now())),
-                           ],
-                         ),
-                         Divider(height: 3.h,color: AppColors.white,thickness: 0.3.h,),
-                         SizedBox(height: 2.h,),
-                        Text("${demoNotify.body}"),
-                        SizedBox(height: 2.h,),
-                        Row(mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Bounce(
-                        duration: const Duration(milliseconds: 110),
-                        onPressed: () {
-                          //subC.deleteNotify(index);
-                        },
-                        child: Container(
-                            
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 10
-                              ),
-                              margin: const EdgeInsets.only(left: 10),
-                              decoration: BoxDecoration(
-                                  color: AppColors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              child: Text(
-                             "Remove",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    ?.copyWith(
-                                      color: AppColors.redDark,
+                                controller: _controller,
+                                content: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  color: AppColors.cyanLight,
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(DateFormat("dd-MM-yyyy")
+                                                  .format(
+                                                      demoNotify.createdAt ??
+                                                          DateTime.now()),  style:
+                                        Theme.of(context).textTheme.caption),
+                                              Text(DateFormat("H:m:s").format(
+                                                  demoNotify.createdAt ??
+                                                      DateTime.now()),  style:
+                                        Theme.of(context).textTheme.caption),
+                                            ],
+                                          ),
+                                          Divider(
+                                           
+                                            color: AppColors.white,
+                                          ),
+                                          SizedBox(
+                                            height: 2.h,
+                                          ),
+                                          Text(demoNotify.body,  style:
+                                        Theme.of(context).textTheme.subtitle2),
+                                          SizedBox(
+                                            height: 2.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Bounce(
+                                                  duration: const Duration(
+                                                      milliseconds: 110),
+                                                  onPressed: () {
+                                                    //subC.deleteNotify(index);
+                                                  },
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 20,
+                                                        vertical: 10),
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 10),
+                                                    decoration: BoxDecoration(
+                                                        color: AppColors.white,
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10))),
+                                                    child: Text(
+                                                      "Remove",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .button
+                                                          ?.copyWith(
+                                                            color: AppColors
+                                                                .redDark,
+                                                          ),
+                                                    ),
+                                                  ))
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
+                                  ),
+                                ),
+                                onTap: () {},
+
+                                //   // Text(
+                                //   //     "${demoNotify.title} body =  ${demoNotify.body}  date = ${demoNotify.createdAt} "),
+                                // ),
                               ),
-                            ))
-                          ],
-                        )
-                        
-                       
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-               onTap: () {
-            
-          },
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                             
-                                
-                                
-                                
-                                
-                                
-                              //   // Text(
-                              //   //     "${demoNotify.title} body =  ${demoNotify.body}  date = ${demoNotify.createdAt} "),
-                              // ),
-                                                        );
+                            );
                           }))))
         ],
       ),

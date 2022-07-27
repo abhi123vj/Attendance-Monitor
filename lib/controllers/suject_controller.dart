@@ -64,4 +64,23 @@ class SubjectController extends GetxController {
     }
     isloading.value = false;
   }
+   deleteNOtification(String id) async {
+    isloading.value = true;
+    Map params = {
+      "teacherId":UserSession().user?.id,
+      "notificationId": id,
+      };
+    var res = await HomeRepo.deleteNotification(params: params);
+
+    if (res.success == true) {
+      res as BaseResponse;
+      Get.snackbar("Notification Cleared!", res.message.toString());
+      log("Receds fail  ${res.message}");
+    } else {
+      res as BaseResponse;
+      Get.snackbar("Notification Fetch Failed", res.message.toString());
+      log("Receds fail  ${res.message}");
+    }
+    isloading.value = false;
+  }
 }

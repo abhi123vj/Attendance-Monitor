@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:attendance_montior/routes/app_routes.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sizer/sizer.dart';
@@ -93,92 +95,98 @@ class SyllabusScreen extends StatelessWidget {
                                   subC.syllabusList.elementAt(index);
 
                               ///! Redesign
-                              return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: AppColors.accentGreen,
-                                          spreadRadius: 1,
-                                          blurRadius: 3,
-                                          offset: Offset(0,
-                                              4), // changes position of shadow
-                                        ),
-                                      ],
-                                      color: AppColors.bgWhite,
-                                      border: Border.all(
-                                          color: AppColors.orangeDark),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12.0)),
+                              return Container(
+                                margin: EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  color: index % 2 == 0
+                                      ? AppColors.accentGreen
+                                      : AppColors.accentYellow,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 2.h,
                                     ),
-                                    width: double.infinity,
-                                    height: 14.5.h,
-                                    child: Column(
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
-                                          height: 2.h,
+                                        Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            // color: AppColors.white
+                                          ),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              //SizedBox(height: 0.5.h,),
+                                              Text(demoSyllbus.semester,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline6
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                              Text(" "),
+                                              Text(demoSyllbus.dept,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline6
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w600))
+                                            ],
+                                          ),
                                         ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            //SizedBox(height: 0.5.h,),
-                                            table_row('Semester',
-                                                '${demoSyllbus.semester}'),
-
-                                            table_row('Department',
-                                                "${demoSyllbus.dept}"),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 2.h,
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            table_row('Scheme',
-                                                "${demoSyllbus.scheme} "),
-                                                SizedBox(width: 6.h,),
-                                            Padding(
-                                              padding:  EdgeInsets.only(right:2.h),
+                                        Bounce(
+                                          duration:
+                                              const Duration(milliseconds: 110),
+                                          onPressed: () {
+                                            //!! Open link
+                                            Get.toNamed(AppRoutes.pdfScreen,arguments:["${demoSyllbus.semester} ${demoSyllbus.dept} ${demoSyllbus.scheme} Scheme", demoSyllbus.syllabus] );
+                                          },
+                                          child: Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 10),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5)),
+                                                  color: AppColors.bgBlack),
                                               child: Text(
-                                                "View",
-                                                style: TextStyle(
-                                                    color: AppColors.yellowDark),
-                                              ),
-                                            )
-                                          ],
+                                                "Scheme ${demoSyllbus.scheme}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .button
+                                                    ?.copyWith(
+                                                        color: AppColors.white),
+                                              )),
                                         ),
                                       ],
                                     ),
-                                  ));
+                                    SizedBox(
+                                      height: 2.h,
+                                    ),
+                                  ],
+                                ),
+                              );
                             }))))
           ],
         ));
   }
-
-  Widget table_row(t1, t2) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 0.5.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(t1),
-          Text('\t:\t'),
-          Text(
-            t2,
-            style: TextStyle(color: AppColors.cyanDark, fontSize: 20),
-          )
-        ],
-      ),
-    );
-  }
 }
-//${index + 1}) 

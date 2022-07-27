@@ -63,4 +63,18 @@ class HomeRepo {
       return errorRess;
     }
   }
+   static Future deleteNotification({required Map params}) async {
+    try {
+      final Response response = await dio.post(
+        ApiUrl.deleteNotification, data: params
+      );     
+        final notificationResponse = baseResponseFromJson(response.data);
+        return notificationResponse;
+      
+    } catch (error) {
+      log("Error home repo -> $error");
+      final errorRess = BaseResponse(success: false, message: error.toString());
+      return errorRess;
+    }
+  }
 }
