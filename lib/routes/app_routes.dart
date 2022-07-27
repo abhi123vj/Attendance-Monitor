@@ -42,7 +42,7 @@ class AppRoutes {
       page: () => const AttendenceReview(),
     ),
     GetPage(
-      name: '/tymtable',
+      name:timeTable,
       page: () => TimeTableScreen(),
     ),
     GetPage(
@@ -75,6 +75,8 @@ class AppRoutes {
   static String initialPage = splashSCreen;
 
   static String homeScreen = '/';
+    static String timeTable = '/tymtable';
+
   static String markAttndcScreen = '/markAttendance';
   static String loginScreen = '/login';
   static String signUpScreen = '/signUp';

@@ -61,6 +61,7 @@ class HomeController extends GetxController {
         res as TimeTable;
         if (res.timetable != null) {
           UserTimeTable().saveUserTimetable(res.timetable!);
+           Get.snackbar("Data Refreshed","All data has been synced");
           getNextClass();
         }
       } else {
@@ -101,6 +102,7 @@ class HomeController extends GetxController {
   }
 
   findTheHour(List<Sday>? monday, DateTime date) {
+    
     if (monday != null && monday.isNotEmpty) {
       monday.sort((a, b) {
         if (stringToTimeOfDay(a.startTime).hour <
@@ -146,7 +148,9 @@ class HomeController extends GetxController {
         nextClasss.value.branch = monday[flag].branch;
       }
       isAppbarLoading.value = false;
+      
       update();
+      
     }
   }
 

@@ -7,6 +7,7 @@ import 'package:attendance_montior/screens/attendce_detial.dart';
 import 'package:attendance_montior/screens/widgets/app_drawer.dart';
 import 'package:attendance_montior/screens/widgets/app_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../config/user_session.dart';
@@ -169,28 +170,76 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              classDetails("Syllabus", "View"),
-              classDetails("View Attendance", "viewA"),
-              classDetails("Attendance", "View"),
-            ],
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              classDetails("Time Table", "table"),
-              classDetails("Internals", "View"),
-              classDetails("Notify", "deadline"),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     classDetails("Syllabus", "View"),
+          //     classDetails("View Attendance", "viewA"),
+          //     classDetails("Attendance", "View"),
+          //   ],
+          // ),
+          // SizedBox(
+          //   height: 3.h,
+          // ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   children: [
+          //     classDetails("Time Table", "table"),
+          //     classDetails("Internals", "View"),
+          //     classDetails("Notify", "deadline"),
+          //   ],
+          // ),
+          Expanded(child: SizedBox(
+            width: 100.w,
+            child: Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              direction: Axis.horizontal,
+              children: [
+                homeButtens(context,"Syllabus",AppRoutes.syllabusScreen,AppColors.accentGreen),
+                  homeButtens(context,"View Attendance",AppRoutes.attendanceDisplay,AppColors.white),
+                    homeButtens(context,"Mark Attendance",AppRoutes.markAttndcScreen,AppColors.accentYellow),
+                      homeButtens(context,"Time Table",AppRoutes.timeTable,AppColors.accentGreen),
+                        homeButtens(context,"Notification",AppRoutes.notificationScreen,AppColors.white),
+                          homeButtens(context,"Internals",AppRoutes.homeScreen,AppColors.accentYellow),
+                 
+              ],
+            ),
+          ))
         ],
       ),
     );
+  }
+
+  Bounce homeButtens(BuildContext context,String value,String route, Color textColor) {
+    return Bounce(
+            duration: const Duration(milliseconds: 110),
+            onPressed: () {
+             Get.toNamed(route);
+            },
+            child: 
+                 Container(
+                   constraints: BoxConstraints(
+                    minWidth: 20,
+                    minHeight: 60,
+                    maxWidth: 170
+                   ),
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.only(
+                        left: 10, right: 10, bottom: 10, top: 10),
+                    decoration: BoxDecoration(
+                        color: AppColors.bgBlack,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Text(
+                     value,
+                      style: Theme.of(context)
+                          .textTheme
+                          .button
+                          ?.copyWith(color: textColor),
+                    ),
+                  )
+               );
   }
 
   TextButton classDetails(String key, String value) {
@@ -232,7 +281,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.w500),
                 ),
               ],
-            )),
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.accentYellow
+            ),
+            ),
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
