@@ -59,6 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             classDetails("Create Subject", "View"),
+            SizedBox(height: 2.h,),
+            classDetails("Sent Notification", "View"),
           
           ],
         ),
@@ -72,12 +74,15 @@ TextButton classDetails(String key, String value) {
           if (key == "Create Subject") {
             Get.toNamed(AppRoutes.createSubject);
           }
+           if (key == "Sent Notification") {
+            Get.toNamed('/sendNoti');
+          }
          
         
         },
         child: Container(
-            height: 30.w,
-            width: 19.w,
+            height: 25.w,
+            width: 50.w,
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

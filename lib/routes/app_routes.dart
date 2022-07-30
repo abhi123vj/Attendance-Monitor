@@ -71,7 +71,7 @@ class AppRoutes {
 
 
 
-  static String initialPage = '/sendNoti';
+  static String initialPage = splashSCreen;
 
   static String homeScreen = '/';
   static String userDetails = '/userDetails';
